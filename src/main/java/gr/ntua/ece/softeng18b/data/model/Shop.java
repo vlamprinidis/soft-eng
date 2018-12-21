@@ -34,11 +34,11 @@ public class Shop {
 		return address;
 	}
 
-	public String getLng() {
+	public double getLng() {
 		return lng;
 	}
 
-	public String getLat() {
+	public double getLat() {
 		return lat;
 	}
 

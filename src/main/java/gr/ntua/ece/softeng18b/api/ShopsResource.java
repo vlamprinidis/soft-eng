@@ -49,6 +49,6 @@ public class ShopsResource extends ServerResource {
 
 			Shop shop = dataAccess.addShop(name, address, lng, lat, withdrawn, tags);
 
-			return new JsonProductRepresentation(shop);
+			return new JsonShopRepresentation(shop);
 		}
 }

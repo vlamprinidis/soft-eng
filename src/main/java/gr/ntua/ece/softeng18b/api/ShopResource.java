@@ -7,7 +7,7 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
-
+import org.restlet.data.Form;
 import java.util.Optional;
 
 public class ShopResource extends ServerResource {
@@ -54,13 +54,14 @@ public class ShopResource extends ServerResource {
 			}
 
 			int success;
+			boolean User_Volunt = true;
 			if (User_Volunt){
 				success = dataAccess.withdrawShop(id);
-				if(!success) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Shop not found - id: " + idAttr);
+				if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Shop not found - id: " + idAttr);
 			}
 			else if (User_Volunt){
 				success = dataAccess.deleteShop(id);
-				if(!success) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Shop not found - id: " + idAttr);
+				if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Shop not found - id: " + idAttr);
 			}
 			else {
 				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
@@ -85,20 +86,22 @@ public class ShopResource extends ServerResource {
 			catch(Exception e) {
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Invalid shop id: " + idAttr);
 			}
-
+			boolean authorized = true;
+			 Shop shop;
 			if (authorized){
 
 				//Create a new restlet form
 				Form form = new Form(entity);
 				//Read the parameters
 				String name = form.getFirstValue("name");
-				String description = form.getFirstValue("description");
-				String category = form.getFirstValue("category");
+				String address = form.getFirstValue("address");
+				double lng = Double.valueOf(form.getFirstValue("lng"));
+				double lat = Double.valueOf(form.getFirstValue("lat"));
 				boolean withdrawn = Boolean.valueOf(form.getFirstValue("withdrawn"));
 				String tags = form.getFirstValue("tags");
 
-				Optional<Shop> optional = dataAccess.fullUpdateShop(id,name, description, category, withdrawn, tags);
-				Shop shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
+				Optional<Shop> optional = dataAccess.fullUpdateShop(id,name, address, lng, lat, withdrawn, tags);
+				shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
 			}
 			else {
 				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
@@ -134,5 +137,4 @@ public class ShopResource extends ServerResource {
 
 	   return new JsonShopRepresentation(shop);
 	   }*/
-}
 }

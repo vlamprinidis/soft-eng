@@ -1,17 +1,20 @@
 package gr.ntua.ece.softeng18b.data.model;
 
 import java.util.Objects;
+import java.util.Date;
 
 public class Price {
 
 	private final long id;
+	private final double value;
 	private final Date date_from;
 	private final Date date_to;
 	private final long productId;
 	private final long shopId;
 
-	public Price(long id, Date date_from, Date date_to, long productId, long shopId) {
+	public Price(long id, double value, Date date_from, Date date_to, long productId, long shopId) {
 		this.id          = id;
+		this.value       = value;
 		this.date_from   = date_from;
 		this.date_to     = date_to;
 		this.productId   = productId;
@@ -22,11 +25,15 @@ public class Price {
 		return id;
 	}
 
-	public String getDate_from() {
+	public double getValue(){
+		return value;
+	}
+
+	public Date getDate_from() {
 		return date_from;
 	}
 
-	public String getDate_to() {
+	public Date getDate_to() {
 		return date_to;
 	}
 

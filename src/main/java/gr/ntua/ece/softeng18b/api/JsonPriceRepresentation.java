@@ -8,7 +8,7 @@ import org.restlet.representation.WriterRepresentation;
 import java.io.IOException;
 import java.io.Writer;
 
-public class JsonProductRepresentation extends WriterRepresentation {
+public class JsonPriceRepresentation extends WriterRepresentation {
 
     private final Price price;
 

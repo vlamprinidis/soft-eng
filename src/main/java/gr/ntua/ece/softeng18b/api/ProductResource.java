@@ -55,13 +55,14 @@ public class ProductResource extends ServerResource {
         }
 		
         int success;
+	boolean User_Volunt = true;
 		if (User_Volunt){
 			success = dataAccess.withdrawProduct(id);
-			if(!success) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
+			if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
 		}
 		else if (User_Volunt){
 			success = dataAccess.deleteProduct(id);
-			if(!success) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
+			if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
 		}
 		else {
 			throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
@@ -86,7 +87,8 @@ public class ProductResource extends ServerResource {
         catch(Exception e) {
             throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Invalid product id: " + idAttr);
         }
-		
+		boolean authorized = true;
+		Product product;
 		if (authorized){
 			
 			//Create a new restlet form
@@ -99,7 +101,7 @@ public class ProductResource extends ServerResource {
 			String tags = form.getFirstValue("tags");
 			
 			Optional<Product> optional = dataAccess.fullUpdateProduct(id,name, description, category, withdrawn, tags);
-			Product product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+			product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
 		}
 		else {
 			throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");

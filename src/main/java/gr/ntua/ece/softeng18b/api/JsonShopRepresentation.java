@@ -8,9 +8,9 @@ import org.restlet.representation.WriterRepresentation;
 import java.io.IOException;
 import java.io.Writer;
 
-public class JsonProductRepresentation extends WriterRepresentation {
+public class JsonShopRepresentation extends WriterRepresentation {
 
-    private final Product shop;
+    private final Shop shop;
 
     public JsonShopRepresentation(Shop shop) {
         super(MediaType.APPLICATION_JSON);

@@ -12,6 +12,8 @@ import org.restlet.resource.ServerResource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
+//import java.sql.Date; 
 
 public class PricesResource extends ServerResource {
 
@@ -37,17 +39,17 @@ public class PricesResource extends ServerResource {
 			//Create a new restlet form
 			Form form = new Form(entity);
 			//Read the parameters
-			double price = Double.valueOf(form.getFirstValue("price"));
-			Date date_from = Date.valueOf(form.getFirstValue("date_from"));
-			Date date_to = Date.valueOf(form.getFirstValue("date_to"));
+			double value = Double.valueOf(form.getFirstValue("value"));
+			Date date_from = java.sql.Date.valueOf(form.getFirstValue("date_from"));
+			Date date_to = java.sql.Date.valueOf(form.getFirstValue("date_to"));
 			long productId = Long.valueOf(form.getFirstValue("productId"));
 			long shopId = Long.valueOf(form.getFirstValue("shopId"));
 
 			//validate the values (in the general case)
 			//...
 
-			Price price = dataAccess.addPrice(price, date_from, date_to, productId, shopId);
+			Price price = dataAccess.addPrice(value, date_from, date_to, productId, shopId);
 
-			return new JsonProductRepresentation(price);
+			return new JsonPriceRepresentation(price);
 		}
 }
