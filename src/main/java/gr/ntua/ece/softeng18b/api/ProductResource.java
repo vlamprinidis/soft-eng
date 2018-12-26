@@ -55,20 +55,21 @@ public class ProductResource extends ServerResource {
         }
 		
         int success;
-	boolean User_Volunt = true;
+	boolean User_Volunt = false;
+	boolean root = true;
 		if (User_Volunt){
 			success = dataAccess.withdrawProduct(id);
 			if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
 		}
-		else if (User_Volunt){
+		else if (root){
 			success = dataAccess.deleteProduct(id);
 			if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
 		}
 		else {
 			throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
 		}
-
-        return new JsonStringRepresentation("OK");
+	String message = "OK";
+        return new JsonStringRepresentation(message);
     }
 	
 	
@@ -97,10 +98,48 @@ public class ProductResource extends ServerResource {
 			String name = form.getFirstValue("name");
 			String description = form.getFirstValue("description");
 			String category = form.getFirstValue("category");
-			boolean withdrawn = Boolean.valueOf(form.getFirstValue("withdrawn"));
+			String withdrawn = form.getFirstValue("withdrawn");
 			String tags = form.getFirstValue("tags");
-			
-			Optional<Product> optional = dataAccess.fullUpdateProduct(id,name, description, category, withdrawn, tags);
+	 		boolean with = Boolean.valueOf(withdrawn);
+				
+			String param = new String();
+			Optional<Product> optional;
+
+			//if (form.size()==1){
+			if( name == null || category == null || withdrawn == null || tags == null){
+				if (name!= null) {
+					param = "name";
+					optional = dataAccess.partialUpdateProduct(id,param,name);
+                        		product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+				}
+				else if(description!=null){
+					param = "description";
+                                        optional = dataAccess.partialUpdateProduct(id,param,description);
+                        		product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+                                }
+				else if(category!=null){
+					 param = "category";
+                                         optional = dataAccess.partialUpdateProduct(id,param,category);
+                        		product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+                                }
+				else if(withdrawn!=null){
+					param = "withdrawn";
+                                        optional = dataAccess.partialUpdateProduct(id,param,withdrawn);
+                        		product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+                                }
+				else if(tags!=null){
+					 param = "tags";
+                                        optional = dataAccess.partialUpdateProduct(id,param,tags);
+                        		product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+                                }
+				else{
+					param = "description";
+                                        optional = dataAccess.partialUpdateProduct(id,param, "");
+                        		product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+                                }
+				 return new JsonProductRepresentation(product);
+			}
+			optional = dataAccess.fullUpdateProduct(id,name, description, category, with, tags);
 			product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
 		}
 		else {

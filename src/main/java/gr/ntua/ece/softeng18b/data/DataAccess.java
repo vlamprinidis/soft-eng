@@ -111,15 +111,17 @@ public class DataAccess {
     }
 	
 	public int withdrawProduct(long id) {
-		boolean bit = true;
-        	Long[] params = new Long[]{id};
+		int bit = 1;
+        	//Long[] params = new Long[]{id};
+		long params = id;
         	int res = jdbcTemplate.update("update product set withdrawn = ? where id = ?", bit, params);
 		return res;
    	 }
 
 	public Optional<Product> fullUpdateProduct(long id, String name, String description, String category, boolean withdrawn, String tags) {
-        Long[] params = new Long[]{id};
-        int res = jdbcTemplate.update("update product set name = ?, description = ?, category = ?, withdrawn = ?, tags = ? where id = ?", name, description, category, withdrawn, tags, params);
+	//Long[] params = new Long[]{id};
+        long params = id;
+	int res = jdbcTemplate.update("update product set name = ?, description = ?, category = ?, withdrawn = ?, tags = ? where id = ?", name, description, category, withdrawn, tags, params);
 		if (res==1){
 			/*List<Product> products = jdbcTemplate.query("select * from product where id = ?", params, new ProductRowMapper());
 			if (products.size() == 1)  {
@@ -133,20 +135,20 @@ public class DataAccess {
 		return Optional.empty();
     }
 
-	/*public Optional<Product> partialUpdateProduct(long id, String name, String description, String category, boolean withdrawn, String tags) {
-        Long[] params = new Long[]{id};
-        int res = jdbcTemplate.update("update product set name = ?, description = ?, category = ?, withdrawn = ?, tags = ? where id = ?", name, description, category, withdrawn, tags, params);
-		if (res){
-			List<Product> products = jdbcTemplate.query("select * from product where id = ?", params, new ProductRowMapper());
-			if (products.size() == 1)  {
-				return Optional.of(products.get(0));
-			}
-			else {
-				return Optional.empty();
-			}
+    public Optional<Product> partialUpdateProduct(long id, String field, String value) {
+        //Long[] params = new Long[]{id};
+   	long params = id;
+	int res;
+	if(field.equals("name"))res = jdbcTemplate.update("update product set name = ? where id = ?", value, params);
+	else if(field.equals("description"))res = jdbcTemplate.update("update product set description = ? where id = ?", value, params);
+	else if(field.equals("category"))res = jdbcTemplate.update("update product set category = ? where id = ?", value, params);
+	else if(field.equals("withdrawn"))res = jdbcTemplate.update("update product set withdrawn = ? where id = ?", Boolean.valueOf(value), params);
+	else res = jdbcTemplate.update("update product set tags = ? where id = ?", value, params);
+		if (res==1){
+			return getProduct(id);
 		}
 		return Optional.empty();
-    }*/
+    }
 	
 		public List<Shop> getShops(Limits limits) {
         //TODO: Support limits
@@ -212,14 +214,16 @@ public class DataAccess {
     }
 	
 	public int withdrawShop(long id) {
-		boolean bit = true;
-        	Long[] params = new Long[]{id};
+		int bit = 1;
+        	//Long[] params = new Long[]{id};
+		long params = id;
         	int res = jdbcTemplate.update("update shop set withdrawn = ? where id = ?", bit, params);
 		return res;
     }
 
 	public Optional<Shop> fullUpdateShop(long id, String name, String address, double lng, double lat, boolean withdrawn, String tags ) {
-        Long[] params = new Long[]{id};
+        //Long[] params = new Long[]{id};
+	long params = id;
         int res = jdbcTemplate.update("update shop set name = ?, address = ?, lng = ?, lat = ?, withdrawn = ?, tags = ? where id = ?", name, address, lng, lat,  withdrawn, tags, params);
 		if (res==1){
 			/*List<Shop> shops = jdbcTemplate.query("select * from shop where id = ?", params, new ShopRowMapper());
