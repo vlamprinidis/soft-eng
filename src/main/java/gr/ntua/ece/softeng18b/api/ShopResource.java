@@ -3,6 +3,7 @@ package gr.ntua.ece.softeng18b.api;
 import gr.ntua.ece.softeng18b.conf.Configuration;
 import gr.ntua.ece.softeng18b.data.DataAccess;
 import gr.ntua.ece.softeng18b.data.model.Shop;
+import gr.ntua.ece.softeng18b.data.model.Message;
 import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
@@ -67,8 +68,8 @@ public class ShopResource extends ServerResource {
 			else {
 				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
 			}
-
-			return new JsonStringRepresentation("OK");
+			Message message = new Message("OK");
+			return new JsonMessageRepresentation(message);
 		}
 
 
@@ -88,7 +89,7 @@ public class ShopResource extends ServerResource {
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Invalid shop id: " + idAttr);
 			}
 			boolean authorized = true;
-			 Shop shop;
+			Shop shop;
 			if (authorized){
 
 				//Create a new restlet form
@@ -111,31 +112,80 @@ public class ShopResource extends ServerResource {
 			return new JsonShopRepresentation(shop);
 		}
 
+	@Override
+		protected Representation patch(Representation entity) throws ResourceException {
+			String idAttr = getAttribute("id");
 
-	/*
-	   protected Representation patch() throws ResourceException {
-	   String idAttr = getAttribute("id");
+			if (idAttr == null) {
+				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Missing shop id");
+			}
 
-	   if (idAttr == null) {
-	   throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Missing shop id");
-	   }
+			Long id = null;
+			try {
+				id = Long.parseLong(idAttr);
+			}
+			catch(Exception e) {
+				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Invalid shop id: " + idAttr);
+			}
+			boolean authorized = true;
+			if (authorized){
 
-	   Long id = null;
-	   try {
-	   id = Long.parseLong(idAttr);
-	   }
-	   catch(Exception e) {
-	   throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Invalid shop id: " + idAttr);
-	   }
+				//Create a new restlet form
+				Form form = new Form(entity);
+				//Read the parameters
+				String name = form.getFirstValue("name");
+				String address = form.getFirstValue("address");
+				String lng = form.getFirstValue("lng");
+				String lat = form.getFirstValue("lat");
+				String withdrawn = form.getFirstValue("withdrawn");                                             
+				String tags = form.getFirstValue("tags");
 
-	   if (authorized){
-	   Optional<Shop> optional = dataAccess.partialUpdateShop(id);
-	   Shop shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
-	   }
-	   else {
-	   throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
-	   }
+				Shop shop;
+				String param = new String();
+				Optional<Shop> optional;
+				if (name!= null) {
+					param = "name";
+					optional = dataAccess.partialUpdateShop(id,param,name);
+					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
+				}
+				else if(address!=null){
+					param = "address";
+					optional = dataAccess.partialUpdateShop(id,param,address);
+					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
+				}
+				else if(lng!=null){
+					param = "lng";
+					optional = dataAccess.partialUpdateShop(id,param,lng);
+					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
+				}
+				else if(lat!=null){
+					param = "lat";
+					optional = dataAccess.partialUpdateShop(id,param,lat);
+					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
+				}
+				else if(withdrawn!=null){
+					param = "withdrawn";
+					optional = dataAccess.partialUpdateShop(id,param,withdrawn);
+					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
+				}
+				else if(tags!=null){
+					param = "tags";
+					optional = dataAccess.partialUpdateShop(id,param,tags);
+					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
+				}
+				else{
+					param = "description";
+					optional = dataAccess.partialUpdateShop(id,param, "");
+					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
+				}
+				return new JsonShopRepresentation(shop);
+			}
+			else {
+				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
+			}
 
-	   return new JsonShopRepresentation(shop);
-	   }*/
+		}
+
+
+
 }

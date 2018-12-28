@@ -14,12 +14,12 @@ public class PriceRowMapper implements RowMapper {
 
 			long id            = rs.getLong("id");
 			double value = rs.getDouble("value");
-			Date date_from        = rs.getDate("date_from");
-			Date date_to = rs.getDate("date_to");
+			Date dateFrom        = rs.getDate("dateFrom");
+			Date dateTo = rs.getDate("dateTo");
 			long productId            = rs.getLong("productId");
 			long shopId            = rs.getLong("shopId");
 
-			return new Price(id, value, date_from, date_to, productId, shopId);
+			return new Price(id, value, dateFrom, dateTo, productId, shopId);
 		}
 
 }

@@ -40,15 +40,15 @@ public class PricesResource extends ServerResource {
 			Form form = new Form(entity);
 			//Read the parameters
 			double value = Double.valueOf(form.getFirstValue("value"));
-			Date date_from = java.sql.Date.valueOf(form.getFirstValue("date_from"));
-			Date date_to = java.sql.Date.valueOf(form.getFirstValue("date_to"));
+			Date dateFrom = java.sql.Date.valueOf(form.getFirstValue("dateFrom"));
+			Date dateTo = java.sql.Date.valueOf(form.getFirstValue("dateTo"));
 			long productId = Long.valueOf(form.getFirstValue("productId"));
 			long shopId = Long.valueOf(form.getFirstValue("shopId"));
 
 			//validate the values (in the general case)
 			//...
 
-			Price price = dataAccess.addPrice(value, date_from, date_to, productId, shopId);
+			Price price = dataAccess.addPrice(value, dateFrom, dateTo, productId, shopId);
 
 			return new JsonPriceRepresentation(price);
 		}
