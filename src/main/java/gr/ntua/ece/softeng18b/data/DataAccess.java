@@ -342,4 +342,17 @@ public class DataAccess {
 		return jdbcTemplate.query("select * from price order by id", EMPTY_ARGS, new PriceRowMapper());
 	}
 
+	public Optional<String> getVolunt(String username) {
+		String[] params = new String[]{username};
+		String sql = "select password from volunts where username = '";
+		List<String> volunt  = jdbcTemplate.query(sql + username + "'", new StringRowMapper());
+		
+		if (volunt.size() == 1)  {
+			return Optional.of(volunt.get(0));
+		}
+		else {
+			return Optional.empty();
+		}
+	}
+
 }
