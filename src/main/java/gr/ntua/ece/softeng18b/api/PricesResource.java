@@ -19,6 +19,7 @@ import org.restlet.data.Status;
 import java.time.LocalDate;
 import java.util.*;
 import java.time.ZoneId;
+//import java.time.format.DateTimeFormatter;
 
 public class PricesResource extends ServerResource {
 
@@ -59,6 +60,7 @@ public class PricesResource extends ServerResource {
 	else if(dateFrom != null && dateTo != null){
 		datefrom = LocalDate.parse(dateFrom);
 		dateto = LocalDate.parse(dateTo);
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		for (LocalDate date = datefrom; date.isBefore(dateto); date = date.plusDays(1)){
 			temp = java.sql.Date.valueOf(date);
 			res = dataAccess.insertDate(temp);	
@@ -116,15 +118,15 @@ public class PricesResource extends ServerResource {
 
 	if(sort == null)
 		sort = "value ASC";
-	else if(sort.equals("geoDist|DESC")&& dist)
-		sort = "geoDist DESC";
-	else if(sort.equals("geoDist|ASC")&& dist)
-		sort = "geoDist ASC"; 
-	else if( sort.equals("tempDate|ASC"))	
-		sort = "tempDate ASC";
-	else if(sort.equals("tempDate|DESC"))
-		sort = "tempDate DESC";
-	else if(sort.equals("value|DESC"))
+	else if(sort.equals("dist|DESC")&& dist)
+		sort = "dist DESC";
+	else if(sort.equals("dist|ASC")&& dist)
+		sort = "dist ASC"; 
+	else if( sort.equals("date|ASC"))	
+		sort = "tempdate ASC";
+	else if(sort.equals("date|DESC"))
+		sort = "tempdate DESC";
+	else if(sort.equals("price|DESC"))
 		sort = "value DESC";
 	else 
 		sort = "value ASC";

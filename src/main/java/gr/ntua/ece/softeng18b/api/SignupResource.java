@@ -28,8 +28,7 @@ public class SignupResource extends ServerResource {
         String username = form.getFirstValue("username");
         String password = form.getFirstValue("password");
         String name = form.getFirstValue("name");
-        long contact = Long.valueOf(form.getFirstValue("contact"));
-        String city = form.getFirstValue("city");
+        String email = form.getFirstValue("email");
 
         //validate the values (in the general case)
         //...
@@ -51,7 +50,7 @@ public class SignupResource extends ServerResource {
 	
 		//String sha256hex = //org.apache.commons.codec.digest.DigestUtils.sha256Hex(stringText); 
 		
-        Volunt volunt = dataAccess.addVolunt(username, password, name, contact, city);
+        Volunt volunt = dataAccess.addVolunt(username, password, name, email);
 
         return new JsonVoluntRepresentation(volunt);
     }

@@ -7,15 +7,13 @@ public class Volunt {
 	private final String username;
 	private final String password;
 	private final String name;
-	private final long contact;
-	private final String city;
+	private final String email;
 
-	public Volunt(String username, String password, String name, long contact, String city) {
+	public Volunt(String username, String password, String name, String email) {
 		this.username = username;
 		this.password = password;
 		this.name     = name;
-		this.contact  = contact;
-		this.city     = city;
+		this.email     = email;
 	}
 
 
@@ -31,12 +29,8 @@ public class Volunt {
 		return name;
 	}
 
-	public long getContact() {
-		return contact;
-	}
-
-	public String getCity() {
-		return city;
+	public String getEmail() {
+		return email;
 	}
 
 }

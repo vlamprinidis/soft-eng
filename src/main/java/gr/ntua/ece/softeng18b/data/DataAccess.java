@@ -300,20 +300,19 @@ public class DataAccess {
 		}
 	}
 
-	public Volunt addVolunt(String username, String password, String name, long contact, String city) {
+	public Volunt addVolunt(String username, String password, String name, String email) {
 		//Create the new price record using a prepared statement
 		PreparedStatementCreator psc = new PreparedStatementCreator() {
 			@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 					PreparedStatement ps = con.prepareStatement(
-							"insert into volunts(username, password, name, contact, city) values(?, ?, ?, ?, ?)",
+							"insert into volunts(username, password, name, email) values(?, ?, ?, ?)",
 							Statement.RETURN_GENERATED_KEYS
 							);
 					ps.setString(1, username);
 					ps.setString(2, password);
 					ps.setString(3,name);
-					ps.setLong(4, contact);
-					ps.setString(5, city);
+					ps.setString(4, email);
 					return ps;
 				}
 		};
@@ -327,8 +326,7 @@ public class DataAccess {
 					username,
 					password,
 					name,
-					contact,
-					city
+					email
 					);
 			return volunt;
 

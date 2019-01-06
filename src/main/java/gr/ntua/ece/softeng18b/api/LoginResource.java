@@ -9,19 +9,17 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.restlet.data.Status;
-//import io.jsonwebtoken.*;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 
 import java.security.MessageDigest;
 import java.util.Date;
-//import io.jsonwebtoken.impl.crypto.MacProvider;
 import java.util.Optional;
+import java.util.Base64;
 
 public class LoginResource extends ServerResource {
 
     private final DataAccess dataAccess = Configuration.getInstance().getDataAccess();
-//	private static final Key key = MacProvider.generateKey();
    
     @Override
     protected Representation post(Representation entity) throws ResourceException {
@@ -31,7 +29,6 @@ public class LoginResource extends ServerResource {
         //Read the parameters
         String username = form.getFirstValue("username");
         String password = form.getFirstValue("password");
-        //String jwtToken = "";
 
      try {
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -52,10 +49,9 @@ public class LoginResource extends ServerResource {
 		if(!mypass.equals(password)){
 			throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Invalid login. Please check your name and password");
 		}
-		
-		//jwtToken = Jwts.builder().setSubject("X-OBSERVATORY-AUTH").setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, key).compact();
-			//return jwtToken;    
-		Message message = new Message("OK");
+		String userCredentials = username + ":" + password;
+		String basicAuth = "X-OBSERVATORY-AUTH " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));
+		Message message = new Message(basicAuth);
 		return new JsonMessageRepresentation(message);
 	}
 }
