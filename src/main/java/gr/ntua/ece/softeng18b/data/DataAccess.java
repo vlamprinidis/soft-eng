@@ -1,6 +1,7 @@
 package gr.ntua.ece.softeng18b.data;
 
-
+import gr.ntua.ece.softeng18b.data.model.NoDistShowPrice;
+import gr.ntua.ece.softeng18b.data.model.ShowPrice;
 import gr.ntua.ece.softeng18b.data.model.Product;
 import gr.ntua.ece.softeng18b.data.model.Shop;
 import gr.ntua.ece.softeng18b.data.model.Volunt;
@@ -355,4 +356,56 @@ public class DataAccess {
 		}
 	}
 
+	 public int deletetDate() {
+		jdbcTemplate.execute("DROP TABLE IF EXISTS tdate");
+		return 1;
+	}
+
+	 public int createtDate() {
+		jdbcTemplate.execute("CREATE TABLE `tdate` ( `tempdate` date NOT NULL, PRIMARY KEY (`tempdate`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
+		return 1;
+	}
+
+
+	public int insertDate(Date date) {
+		//Create the new price record using a prepared statement
+		PreparedStatementCreator psc = new PreparedStatementCreator() {
+			@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					PreparedStatement ps = con.prepareStatement(
+							"insert into tdate(tempdate) values(?)",Statement.RETURN_GENERATED_KEYS);
+					ps.setDate(1, new java.sql.Date(date.getTime()));
+					return ps;
+				}
+		};
+		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+		int cnt = jdbcTemplate.update(psc, keyHolder);
+
+		if (cnt == 1) {
+			//New row has been added
+			 return 1;
+		}
+		else {
+			throw new RuntimeException("Insertion in tdate failed");
+		}
+	}
+
+	
+	public List<ShowPrice> getPrices(Limits limits,String sort,String shops,String products, String tgs, String geoDist, String geoLng, String geoLat) {
+		double maxdist = Double.valueOf(geoDist);
+		double lng = Double.valueOf(geoLng);
+		double lat = Double.valueOf(geoLat);
+		int count;
+		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + "", Integer.class);
+		limits.setTotal(count);
+		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, product.tags, shop.id, shop.name, shop.tags, shop.address, dist from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new ShowPriceRowMapper());
+	}
+	
+public List<NoDistShowPrice> getPrices2(Limits limits,String sort,String shops,String products, String tgs) {
+		int count;
+		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + "", Integer.class);
+		limits.setTotal(count);
+		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, product.tags, shop.id, shop.name, shop.tags, shop.address from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new NoDistShowPriceRowMapper());
+	}
+	
 }
