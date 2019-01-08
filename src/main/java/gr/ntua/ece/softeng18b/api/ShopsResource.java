@@ -8,7 +8,7 @@ import org.restlet.data.Form;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
-
+import org.restlet.data.Status;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +19,10 @@ public class ShopsResource extends ServerResource {
 
 	@Override
 		protected Representation get() throws ResourceException {
+
+			String format = getQueryValue("format");
+			if(format!=null && format.equals("xml"))
+    				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			 String status = getQueryValue("status");
 		        String sort = getQueryValue("sort");
@@ -77,6 +81,10 @@ public class ShopsResource extends ServerResource {
 
 	@Override
 		protected Representation post(Representation entity) throws ResourceException {
+			
+			String format = getQueryValue("format");
+                        if(format!=null && format.equals("xml"))
+                                throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			//Create a new restlet form
 			Form form = new Form(entity);

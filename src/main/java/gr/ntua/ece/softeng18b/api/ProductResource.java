@@ -19,6 +19,10 @@ public class ProductResource extends ServerResource {
 
 	@Override
 		protected Representation get() throws ResourceException {
+			
+			String format = getQueryValue("format");
+       			if(format!=null && format.equals("xml"))
+               			 throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			String idAttr = getAttribute("id");
 
@@ -42,6 +46,11 @@ public class ProductResource extends ServerResource {
 
 	@Override
 		protected Representation delete() throws ResourceException {
+
+			String format = getQueryValue("format");
+                        if(format!=null && format.equals("xml"))
+                                 throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+
 			String idAttr = getAttribute("id");
 
 			if (idAttr == null) {
@@ -82,6 +91,11 @@ public class ProductResource extends ServerResource {
 
 	@Override
 		protected Representation put(Representation entity) throws ResourceException {
+
+			String format = getQueryValue("format");
+                        if(format!=null && format.equals("xml"))
+                                 throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+
 			String idAttr = getAttribute("id");
 
 			if (idAttr == null) {
@@ -125,6 +139,11 @@ public class ProductResource extends ServerResource {
 
 			@Override
 				protected Representation patch(Representation entity) throws ResourceException {
+
+					String format = getQueryValue("format");
+		                        if(format!=null && format.equals("xml"))
+                		                 throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+
 					String idAttr = getAttribute("id");
 
 					if (idAttr == null) {

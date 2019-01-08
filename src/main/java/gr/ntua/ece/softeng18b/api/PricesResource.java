@@ -1,5 +1,5 @@
 package gr.ntua.ece.softeng18b.api;
-
+import org.restlet.data.Status;
 import gr.ntua.ece.softeng18b.conf.Configuration;
 import gr.ntua.ece.softeng18b.data.DataAccess;
 import gr.ntua.ece.softeng18b.data.Limits;
@@ -27,6 +27,10 @@ public class PricesResource extends ServerResource {
 
 	@Override
     protected Representation get() throws ResourceException {
+
+	String format = getQueryValue("format");
+	if(format!=null && format.equals("xml"))
+    		throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 	String geoDist = getQueryValue("geoDist");
 	String geoLng = getQueryValue("geoLng");
@@ -174,6 +178,10 @@ public class PricesResource extends ServerResource {
 
 	@Override
 		protected Representation post(Representation entity) throws ResourceException {
+
+			String format = getQueryValue("format");
+       			if(format!=null && format.equals("xml"))
+                		throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			//Create a new restlet form
 			Form form = new Form(entity);

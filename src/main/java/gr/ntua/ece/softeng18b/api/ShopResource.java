@@ -1,5 +1,4 @@
 package gr.ntua.ece.softeng18b.api;
-
 import gr.ntua.ece.softeng18b.conf.Configuration;
 import gr.ntua.ece.softeng18b.data.DataAccess;
 import gr.ntua.ece.softeng18b.data.model.Shop;
@@ -17,6 +16,10 @@ public class ShopResource extends ServerResource {
 
 	@Override
 		protected Representation get() throws ResourceException {
+			
+			String format = getQueryValue("format");
+                        if(format!=null && format.equals("xml"))
+                                throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			String idAttr = getAttribute("id");
 
@@ -40,6 +43,11 @@ public class ShopResource extends ServerResource {
 
 	@Override
 		protected Representation delete() throws ResourceException {
+
+			String format = getQueryValue("format");
+                        if(format!=null && format.equals("xml"))
+                                throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+
 			String idAttr = getAttribute("id");
 
 			if (idAttr == null) {
@@ -75,6 +83,11 @@ public class ShopResource extends ServerResource {
 
 	@Override
 		protected Representation put(Representation entity) throws ResourceException {
+
+			String format = getQueryValue("format");
+                        if(format!=null && format.equals("xml"))
+                                throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+
 			String idAttr = getAttribute("id");
 
 			if (idAttr == null) {
@@ -114,6 +127,11 @@ public class ShopResource extends ServerResource {
 
 	@Override
 		protected Representation patch(Representation entity) throws ResourceException {
+
+			String format = getQueryValue("format");
+                        if(format!=null && format.equals("xml"))
+                                throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+
 			String idAttr = getAttribute("id");
 
 			if (idAttr == null) {

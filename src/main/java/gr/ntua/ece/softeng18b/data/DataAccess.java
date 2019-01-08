@@ -415,18 +415,31 @@ public class DataAccess {
 		return jdbcTemplate.query("select * from price order by id", EMPTY_ARGS, new PriceRowMapper());
 	}
 
-	public Optional<String> getVolunt(String username) {
+	public String getVolunt(String username) {
 		String[] params = new String[]{username};
 		String sql = "select password from volunts where username = '";
 		List<String> volunt  = jdbcTemplate.query(sql + username + "'", new StringRowMapper());
 		
 		if (volunt.size() == 1)  {
-			return Optional.of(volunt.get(0));
+			return volunt.get(0);
 		}
 		else {
-			return Optional.empty();
+			return null;
 		}
 	}
+
+	public String getAdmin(String username) {
+                String[] params = new String[]{username};
+                String sql = "select password from admins where username = '";
+                List<String> admin  = jdbcTemplate.query(sql + username + "'", new StringRowMapper());
+
+                if (admin.size() == 1)  {
+                        return admin.get(0);
+                }
+                else {
+                        return null;
+                }
+        }
 
 	 public int deletetDate() {
 		jdbcTemplate.execute("DROP TABLE IF EXISTS tdate");
