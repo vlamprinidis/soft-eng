@@ -1,5 +1,5 @@
 package gr.ntua.ece.softeng18b.data;
-
+import java.io.*;
 import gr.ntua.ece.softeng18b.data.model.NoDistShowPrice;
 import gr.ntua.ece.softeng18b.data.model.ShowPrice;
 import gr.ntua.ece.softeng18b.data.model.Product;
@@ -10,7 +10,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-
+import java.util.ArrayList;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,21 +57,49 @@ public class DataAccess {
 		limits.setTotal(count);
 		return jdbcTemplate.query("SELECT * FROM product " + status + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new ProductRowMapper());
 	}
+	
+	public List<String> getProduct_tags(long id) {
+                return jdbcTemplate.query("SELECT tag FROM product_tag WHERE pid=" + id + "", new StringRowMapper());
+        }
 
-	public Product addProduct(String name, String description, String category, boolean withdrawn, String tags ) {
+	public String addProduct_tag(long id, String tag) {
+                //Create the new product_tag record using a prepared statement
+                PreparedStatementCreator psc = new PreparedStatementCreator() {
+                        @Override
+                                public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                                        PreparedStatement ps = con.prepareStatement(
+                                                "insert into product_tag(pid,tag) values(?, ?)",Statement.RETURN_GENERATED_KEYS);
+                                        ps.setLong(1, id);
+                                        ps.setString(2, tag);
+                                        return ps;
+                                }
+                };
+                GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+                int cnt = jdbcTemplate.update(psc, keyHolder);
+
+                if (cnt == 1) {
+                        
+                        return tag;
+
+                }
+                else {
+                        throw new RuntimeException("Creation of Product_tag failed");
+                }
+        }
+
+	public Product addProduct(String name, String description, String category, boolean withdrawn, String tags) {
 		//Create the new product record using a prepared statement
 		PreparedStatementCreator psc = new PreparedStatementCreator() {
 			@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 					PreparedStatement ps = con.prepareStatement(
-							"insert into product(name, description, category, withdrawn, tags) values(?, ?, ?, ?, ?)",
+							"insert into product(name, description, category, withdrawn) values(?, ?, ?, ?)",
 							Statement.RETURN_GENERATED_KEYS
 							);
 					ps.setString(1, name);
 					ps.setString(2, description);
 					ps.setString(3, category);
 					ps.setBoolean(4, withdrawn);
-					ps.setString(5, tags);
 					return ps;
 				}
 		};
@@ -80,13 +108,17 @@ public class DataAccess {
 
 		if (cnt == 1) {
 			//New row has been added
+			List<String> product_tags= new ArrayList<String>();
+			for (String tag: tags.split(",")) {
+     		        	product_tags.add(addProduct_tag(keyHolder.getKey().longValue(),tag));
+			}
 			Product product = new Product(
 					keyHolder.getKey().longValue(), //the newly created project id
 					name,
 					description,
 					category,
 					withdrawn,
-					tags
+					product_tags
 					);
 			return product;
 
@@ -125,16 +157,16 @@ public class DataAccess {
 	public Optional<Product> fullUpdateProduct(long id, String name, String description, String category, boolean withdrawn, String tags) {
 		//Long[] params = new Long[]{id};
 		long params = id;
-		int res = jdbcTemplate.update("update product set name = ?, description = ?, category = ?, withdrawn = ?, tags = ? where id = ?", name, description, category, withdrawn, tags, params);
+		int res = jdbcTemplate.update("update product set name = ?, description = ?, category = ?, withdrawn = ? where id = ?", name, description, category, withdrawn, params);
 		if (res==1){
-			/*List<Product> products = jdbcTemplate.query("select * from product where id = ?", params, new ProductRowMapper());
-			  if (products.size() == 1)  {
-			  return Optional.of(products.get(0));
-			  }
-			  else {
-			  return Optional.empty();
-			  }	*/
+			List<String> product_tags= new ArrayList<String>();
+			res = jdbcTemplate.update("delete from product_tag where pid = ?", params);
+                        for (String tag: tags.split(",")) {
+				product_tags.add(addProduct_tag(id,tag));
+       			}
 			return getProduct(id);
+			//pr.setTags(product_tags);
+			//return pr;
 		}
 		return Optional.empty();
 	}
@@ -146,12 +178,19 @@ public class DataAccess {
 		if(field.equals("name"))res = jdbcTemplate.update("update product set name = ? where id = ?", value, params);
 		else if(field.equals("description"))res = jdbcTemplate.update("update product set description = ? where id = ?", value, params);
 		else if(field.equals("category"))res = jdbcTemplate.update("update product set category = ? where id = ?", value, params);
-		else if(field.equals("withdrawn"))res = jdbcTemplate.update("update product set withdrawn = ? where id = ?", Boolean.valueOf(value), params);
-		else res = jdbcTemplate.update("update product set tags = ? where id = ?", value, params);
-		if (res==1){
-			return getProduct(id);
+		//else if(field.equals("withdrawn"))res = jdbcTemplate.update("update product set withdrawn = ? where id = ?", Boolean.valueOf(value), params);
+		else{
+			 //res = jdbcTemplate.update("update product set tags = ? where id = ?", value, params);
+                        List<String> product_tags= new ArrayList<String>();
+                        res = jdbcTemplate.update("delete from product_tag where pid = ?", params);
+                        for (String tag: value.split(",")) {
+                                product_tags.add(addProduct_tag(id,tag));
+                        }
+                       // return getProduct(id);
+			//pr.setTags(product_tags);
 		}
-		return Optional.empty();
+		if(res!=0)return getProduct(id);
+		else return Optional.empty();
 	}
 
 
@@ -164,13 +203,40 @@ public class DataAccess {
 				limits.getStart() + "," + limits.getCount() + "", new ShopRowMapper());
 	}
 
+	public List<String> getShop_tags(long id) {
+                return jdbcTemplate.query("SELECT tag FROM shop_tag WHERE sid=" + id + "", new StringRowMapper());
+        }
+
+	public String addShop_tag(long id, String tag) {
+                //Create the new shop_tag record using a prepared statement
+                PreparedStatementCreator psc = new PreparedStatementCreator() {
+                        @Override
+                                public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                                        PreparedStatement ps = con.prepareStatement(
+                                                "insert into shop_tag(sid,tag) values(?, ?)",Statement.RETURN_GENERATED_KEYS);
+                                        ps.setLong(1, id);
+                                        ps.setString(2, tag);
+                                        return ps;
+                                }
+                };
+                GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+                int cnt = jdbcTemplate.update(psc, keyHolder);
+
+                if (cnt == 1) {
+                        return tag;
+                }
+                else {
+                        throw new RuntimeException("Creation of Shop_tag failed");
+                }
+        }
+
 	public Shop addShop(String name, String address, double lng, double lat, boolean withdrawn, String tags ) {
 		//Create the new shop record using a prepared statement
 		PreparedStatementCreator psc = new PreparedStatementCreator() {
 			@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 					PreparedStatement ps = con.prepareStatement(
-							"insert into shop(name, address, lng, lat, withdrawn, tags) values(?, ?, ?, ?, ?, ?)",
+							"insert into shop(name, address, lng, lat, withdrawn) values(?, ?, ?, ?, ?)",
 							Statement.RETURN_GENERATED_KEYS
 							);
 					ps.setString(1, name);
@@ -178,7 +244,6 @@ public class DataAccess {
 					ps.setDouble(3, lng);
 					ps.setDouble(4, lat);
 					ps.setBoolean(5, withdrawn);
-					ps.setString(6, tags);
 					return ps;
 				}
 		};
@@ -187,6 +252,10 @@ public class DataAccess {
 
 		if (cnt == 1) {
 			//New row has been added
+			List<String> shop_tags= new ArrayList<String>();
+                        for (String tag: tags.split(",")) {
+                                shop_tags.add(addShop_tag(keyHolder.getKey().longValue(),tag));
+                        }
 			Shop shop = new Shop(
 					keyHolder.getKey().longValue(), //the newly created project id
 					name,
@@ -194,7 +263,7 @@ public class DataAccess {
 					lng,
 					lat,
 					withdrawn,
-					tags
+					shop_tags
 					);
 			return shop;
 
@@ -233,16 +302,16 @@ public class DataAccess {
 	public Optional<Shop> fullUpdateShop(long id, String name, String address, double lng, double lat, boolean withdrawn, String tags ) {
 		//Long[] params = new Long[]{id};
 		long params = id;
-		int res = jdbcTemplate.update("update shop set name = ?, address = ?, lng = ?, lat = ?, withdrawn = ?, tags = ? where id = ?", name, address, lng, lat,  withdrawn, tags, params);
+		int res = jdbcTemplate.update("update shop set name = ?, address = ?, lng = ?, lat = ?, withdrawn = ? where id = ?", name, address, lng, lat,  withdrawn, params);
 		if (res==1){
-			/*List<Shop> shops = jdbcTemplate.query("select * from shop where id = ?", params, new ShopRowMapper());
-			  if (shops.size() == 1)  {
-			  return Optional.of(shops.get(0));
-			  }
-			  else {
-			  return Optional.empty();
-			  }	*/
-			return getShop(id);
+			List<String> shop_tags= new ArrayList<String>();
+                        res = jdbcTemplate.update("delete from shop_tag where sid = ?", params);
+                        for (String tag: tags.split(",")) {
+                                shop_tags.add(addShop_tag(id,tag));
+                        }
+                        //Shop sh = getShop(id);
+                        //sh.setTags(shop_tags);
+                        return getShop(id);
 		}
 		return Optional.empty();
 	}
@@ -254,12 +323,17 @@ public class DataAccess {
 		else if(field.equals("address"))res = jdbcTemplate.update("update shop set address = ? where id = ?", value, params);
 		else if(field.equals("lng"))res = jdbcTemplate.update("update shop set lng = ? where id = ?", Long.valueOf(value), params);
 		else if(field.equals("lat"))res = jdbcTemplate.update("update shop set lat = ? where id = ?", Long.valueOf(value), params);
-		else if(field.equals("withdrawn"))res = jdbcTemplate.update("update shop set withdrawn = ? where id = ?", Boolean.valueOf(value), params);
-		else res = jdbcTemplate.update("update shop set tags = ? where id = ?", value, params);
-		if (res==1){
-			return getShop(id);
+		//else if(field.equals("withdrawn"))res = jdbcTemplate.update("update shop set withdrawn = ? where id = ?", Boolean.valueOf(value), params);
+		else{
+			List<String> shop_tags= new ArrayList<String>();
+                        res = jdbcTemplate.update("delete from shop_tag where sid = ?", params);
+                        for (String tag: value.split(",")) {
+                                shop_tags.add(addShop_tag(id,tag));
+                        }
 		}
-		return Optional.empty();
+		
+		if(res!=0)return getShop(id);
+                else return Optional.empty();
 	}
 
 	public Price addPrice(double value, Date dateFrom, Date dateTo, long productId, long shopId) {
@@ -396,14 +470,14 @@ public class DataAccess {
 		int count;
 		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + "", Integer.class);
 		limits.setTotal(count);
-		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, product.tags, shop.id, shop.name, shop.tags, shop.address, dist from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new ShowPriceRowMapper());
+		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address, dist from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new ShowPriceRowMapper());
 	}
 	
 public List<NoDistShowPrice> getPrices2(Limits limits,String sort,String shops,String products, String tgs) {
 		int count;
 		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + "", Integer.class);
 		limits.setTotal(count);
-		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, product.tags, shop.id, shop.name, shop.tags, shop.address from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new NoDistShowPriceRowMapper());
+		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new NoDistShowPriceRowMapper());
 	}
 	
 }

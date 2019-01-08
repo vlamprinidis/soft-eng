@@ -55,8 +55,8 @@ public class ShopResource extends ServerResource {
 			}
 
 			int success;
-			boolean User_Volunt = false;
-			boolean root = true;
+			boolean User_Volunt = true;
+			boolean root = false;
 			if (User_Volunt){
 				success = dataAccess.withdrawShop(id);
 				if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Shop not found - id: " + idAttr);

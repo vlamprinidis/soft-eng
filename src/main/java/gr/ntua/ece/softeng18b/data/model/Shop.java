@@ -1,5 +1,5 @@
 package gr.ntua.ece.softeng18b.data.model;
-
+import java.util.List;
 import java.util.Objects;
 
 public class Shop {
@@ -10,9 +10,9 @@ public class Shop {
 	private final double lng;
 	private final double lat;
 	private final boolean withdrawn;
-	private final String tags;
+	private final List<String> tags;
 
-	public Shop(long id, String name, String address, double lng, double lat, boolean withdrawn, String tags) {
+	public Shop(long id, String name, String address, double lng, double lat, boolean withdrawn, List<String> tags) {
 		this.id          = id;
 		this.name        = name;
 		this.address     = address;
@@ -46,7 +46,7 @@ public class Shop {
 		return withdrawn;
 	}
 
-	public String getTags() {
+	public List<String> getTags(){
                 return tags;
         }
 

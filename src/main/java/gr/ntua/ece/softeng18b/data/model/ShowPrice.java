@@ -2,6 +2,7 @@ package gr.ntua.ece.softeng18b.data.model;
 
 import java.util.Objects;
 import java.util.Date;
+import java.util.List;
 //import java.time.LocalDate;
 
 public class ShowPrice {
@@ -10,14 +11,14 @@ public class ShowPrice {
 	private final Date date;
 	private final String productName;
 	private final long productId;
-	private final String productTags;
+	private final List<String> productTags;
 	private final long shopId;
 	private final String shopName;
-	private final String shopTags;
+	private final List<String> shopTags;
 	private final String shopAddress;
 	private final double shopDist;
 	
-	public ShowPrice(double price, Date date, String productName, long productId, String productTags, long shopId, String shopName, String shopTags, String shopAddress, double shopDist) {
+	public ShowPrice(double price, Date date, String productName, long productId, List<String> productTags, long shopId, String shopName, List<String> shopTags, String shopAddress, double shopDist) {
 		this.price          = price;
 		this.date   = date;
 		this.productName = productName;
@@ -46,7 +47,7 @@ public class ShowPrice {
 		return productId;
 	}
 
-	public String getproductTags() {
+	public List<String> getproductTags() {
 		return productTags;
 	}
 	
@@ -58,7 +59,7 @@ public class ShowPrice {
 		return shopName;
 	}
 
-	public String getshopTags() {
+	public List<String> getshopTags() {
 		return shopTags;
 	}
 	

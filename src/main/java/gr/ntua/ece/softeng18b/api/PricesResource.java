@@ -109,7 +109,7 @@ public class PricesResource extends ServerResource {
 	else{
 		for(int i=0; i<tags.length; i++){
 			if (i!=0) tgs = tgs + " OR ";
-			tgs = tgs + " product.tags LIKE '%" + tags[i] + "%' OR  shop.tags LIKE '%" + tags[i] + "%' ";
+			tgs = tgs + " product.id in (select pid from product_tag where tag LIKE '%" + tags[i] + "%') OR  shop.id in (select sid from shop_tag where tag LIKE '%" + tags[i] + "%') ";
 		}
 		tgs = tgs + ") ";
 	}

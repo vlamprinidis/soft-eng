@@ -5,9 +5,12 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import gr.ntua.ece.softeng18b.conf.Configuration;
+import gr.ntua.ece.softeng18b.data.DataAccess;
 
 public class ShopRowMapper implements RowMapper {
-
+	 private final DataAccess dataAccess = Configuration.getInstance().getDataAccess();
 	@Override
 		public Shop mapRow(ResultSet rs, int rowNum) throws SQLException {
 
@@ -17,7 +20,7 @@ public class ShopRowMapper implements RowMapper {
 			double lng    = rs.getDouble("lng");
 			double lat    = rs.getDouble("lat");
 			boolean withdrawn  = rs.getBoolean("withdrawn");
-			String tags        = rs.getString("tags");
+			List<String> tags   = dataAccess.getShop_tags(id);
 
 			return new Shop(id, name, address, lng, lat, withdrawn, tags);
 		}

@@ -9,7 +9,8 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.restlet.data.Form;
-
+import org.restlet.util.Series;
+//import org.restlet.engine.header.Header;
 import java.util.Optional;
 
 public class ProductResource extends ServerResource {
@@ -56,8 +57,13 @@ public class ProductResource extends ServerResource {
 			}
 
 			int success;
-			boolean User_Volunt = false;
-			boolean root = true;
+			boolean User_Volunt = true;
+			boolean root = false;
+			//Form headers = (Form) getRequest().getAttributes().get("org.restlet.http.headers");
+			//String user_token = headers.getFirstValue("X-OBSERVATORY-AUTH");
+			//Series<Header> series = (Series<Header>)getRequestAttributes().get("org.restlet.http.headers");
+    			//System.out.println(series.getFirst("X-OBSERVATORY-AUTH"));
+			//System.out.println(user_token);
 			if (User_Volunt){
 				success = dataAccess.withdrawProduct(id);
 				if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
