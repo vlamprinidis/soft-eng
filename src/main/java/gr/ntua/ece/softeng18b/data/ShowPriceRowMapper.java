@@ -17,12 +17,12 @@ public class ShowPriceRowMapper implements RowMapper {
 		
 			double price = rs.getDouble("value");
 			Date date = rs.getDate("tempdate");
-			String productName = rs.getString("product.name");
-			long productId = rs.getLong("product.id");
+			String productName = rs.getString("pname");
+			long productId = rs.getLong("productId");
 			//String productTags = rs.getString("product.tags");
 			List<String> prod_tags = dataAccess.getProduct_tags(productId);
-			long shopId = rs.getLong("shop.id");
-			String shopName = rs.getString("shop.name");
+			long shopId = rs.getLong("shopId");
+			String shopName = rs.getString("sname");
 			//String shopTags = rs.getString("shop.tags");
 			List<String> shop_tags = dataAccess.getShop_tags(shopId);
 			String shopAddress = rs.getString("shop.address");

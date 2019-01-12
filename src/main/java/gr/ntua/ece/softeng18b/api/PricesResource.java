@@ -83,7 +83,7 @@ public class PricesResource extends ServerResource {
 		sh = "";
 	}
 	else{
-		sh = " AND shop.id in (" ;
+		sh = " AND shoId in (" ;
 		for(int i=0; i<shops.length; i++){
 			if(i!=0)sh = sh + ",";
 			sh = sh + Long.valueOf(shops[i]);
@@ -97,7 +97,7 @@ public class PricesResource extends ServerResource {
 		pr = "";
 	}
 	else{
-		pr = " AND product.id in (" ;
+		pr = " AND productId in (" ;
 		for(int i=0; i<products.length; i++){
 			if(i!=0)pr = pr + ",";
 			pr = pr + Long.valueOf(products[i]);
@@ -113,7 +113,7 @@ public class PricesResource extends ServerResource {
 	else{
 		for(int i=0; i<tags.length; i++){
 			if (i!=0) tgs = tgs + " OR ";
-			tgs = tgs + " product.id in (select pid from product_tag where tag LIKE '%" + tags[i] + "%') OR  shop.id in (select sid from shop_tag where tag LIKE '%" + tags[i] + "%') ";
+			tgs = tgs + " productId in (select pid from product_tag where tag LIKE '%" + tags[i] + "%') OR  shopId in (select sid from shop_tag where tag LIKE '%" + tags[i] + "%') ";
 		}
 		tgs = tgs + ") ";
 	}
