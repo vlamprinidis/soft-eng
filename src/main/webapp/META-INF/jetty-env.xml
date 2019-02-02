@@ -6,4 +6,5 @@
         <Arg>org.eclipse.jetty.server.webapp.WebInfIncludeJarPattern</Arg>
         <Arg>nothing</Arg>
     </Call>
+
 </Configure>

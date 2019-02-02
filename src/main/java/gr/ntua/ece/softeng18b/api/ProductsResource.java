@@ -4,6 +4,7 @@ import gr.ntua.ece.softeng18b.conf.Configuration;
 import gr.ntua.ece.softeng18b.data.DataAccess;
 import gr.ntua.ece.softeng18b.data.Limits;
 import gr.ntua.ece.softeng18b.data.model.Product;
+import gr.ntua.ece.softeng18b.data.model.User;
 import org.restlet.data.Form;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
@@ -12,6 +13,9 @@ import org.restlet.data.Status;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.restlet.util.Series;
+import javax.mail.Header;
+import java.util.Optional;
 
 public class ProductsResource extends ServerResource {
 
@@ -19,6 +23,7 @@ public class ProductsResource extends ServerResource {
 
     @Override
     protected Representation get() throws ResourceException {
+	
 	
 	String format = getQueryValue("format");
 	if(format!=null && format.equals("xml"))
@@ -82,7 +87,15 @@ public class ProductsResource extends ServerResource {
     @Override
     protected Representation post(Representation entity) throws ResourceException {
 	
-	String format = getQueryValue("format");
+		Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
+		String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
+		if(auth==null)
+			throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to add new product");
+		
+		Optional<User> optional = dataAccess.getUserByToken(auth);
+		User user = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to add new product"));
+		
+		String format = getQueryValue("format");
         if(format!=null && format.equals("xml"))
                 throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
@@ -97,6 +110,8 @@ public class ProductsResource extends ServerResource {
 
         //validate the values (in the general case)
         //...
+		if(name==null||category==null||tags==null)
+			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
 
         Product product = dataAccess.addProduct(name, description, category, withdrawn, tags);
 

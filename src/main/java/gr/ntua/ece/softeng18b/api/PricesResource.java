@@ -19,7 +19,10 @@ import org.restlet.data.Status;
 import java.time.LocalDate;
 import java.util.*;
 import java.time.ZoneId;
-//import java.time.format.DateTimeFormatter;
+import org.restlet.util.Series;
+import javax.mail.Header;
+import java.util.Optional;
+import gr.ntua.ece.softeng18b.data.model.User;
 
 public class PricesResource extends ServerResource {
 
@@ -83,7 +86,7 @@ public class PricesResource extends ServerResource {
 		sh = "";
 	}
 	else{
-		sh = " AND shoId in (" ;
+		sh = " AND shop.id in (" ;
 		for(int i=0; i<shops.length; i++){
 			if(i!=0)sh = sh + ",";
 			sh = sh + Long.valueOf(shops[i]);
@@ -97,7 +100,7 @@ public class PricesResource extends ServerResource {
 		pr = "";
 	}
 	else{
-		pr = " AND productId in (" ;
+		pr = " AND product.id in (" ;
 		for(int i=0; i<products.length; i++){
 			if(i!=0)pr = pr + ",";
 			pr = pr + Long.valueOf(products[i]);
@@ -113,7 +116,7 @@ public class PricesResource extends ServerResource {
 	else{
 		for(int i=0; i<tags.length; i++){
 			if (i!=0) tgs = tgs + " OR ";
-			tgs = tgs + " productId in (select pid from product_tag where tag LIKE '%" + tags[i] + "%') OR  shopId in (select sid from shop_tag where tag LIKE '%" + tags[i] + "%') ";
+			tgs = tgs + " product.id in (select pid from product_tag where tag LIKE '%" + tags[i] + "%') OR  shop.id in (select sid from shop_tag where tag LIKE '%" + tags[i] + "%') ";
 		}
 		tgs = tgs + ") ";
 	}
@@ -179,23 +182,53 @@ public class PricesResource extends ServerResource {
 	@Override
 		protected Representation post(Representation entity) throws ResourceException {
 
+			Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
+			String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
+			if(auth==null)
+				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to add new price");
+		
+			Optional<User> optional = dataAccess.getUserByToken(auth);
+			User user = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to add new price"));
+		
 			String format = getQueryValue("format");
        			if(format!=null && format.equals("xml"))
                 		throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			//Create a new restlet form
+			Date dateFrom,dateTo;
+			LocalDate datefrom, dateto;
+			
 			Form form = new Form(entity);
 			//Read the parameters
-			double value = Double.valueOf(form.getFirstValue("value"));
-			Date dateFrom = java.sql.Date.valueOf(form.getFirstValue("dateFrom"));
-			Date dateTo = java.sql.Date.valueOf(form.getFirstValue("dateTo"));
-			long productId = Long.valueOf(form.getFirstValue("productId"));
-			long shopId = Long.valueOf(form.getFirstValue("shopId"));
+			String value = form.getFirstValue("value");
+			//String date1 = form.getFirstValue("dateFrom");
+			String date2 = form.getFirstValue("dateTo");
+			//if(date1==null){
+			datefrom = LocalDate.now(ZoneId.of("Europe/Athens"));
+			dateFrom = java.sql.Date.valueOf(datefrom);
+			//}
+			//else
+				//dateFrom = java.sql.Date.valueOf(date1);
+			
+			if(date2==null || date2.equals("")){
+				dateto = LocalDate.now(ZoneId.of("Europe/Athens"));
+				dateTo = java.sql.Date.valueOf(dateto);
+			}
+			else
+				dateTo = java.sql.Date.valueOf(date2);
+			
+			String productId = form.getFirstValue("productId");
+			String shopId = form.getFirstValue("shopId");
 
 			//validate the values (in the general case)
 			//...
-
-			Price price = dataAccess.addPrice(value, dateFrom, dateTo, productId, shopId);
+			if(value==null||productId==null||shopId==null)
+				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Value,productId and shopId are compulsory fields");
+			
+			double val = Double.valueOf(value);
+			long prodId = Long.valueOf(productId);
+			long shId = Long.valueOf(shopId);
+			Price price = dataAccess.addPrice(val, dateFrom, dateTo, prodId, shId);
 
 			return new JsonPriceRepresentation(price);
 		}

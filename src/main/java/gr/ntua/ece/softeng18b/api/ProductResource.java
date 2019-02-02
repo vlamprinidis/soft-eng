@@ -9,9 +9,10 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.restlet.data.Form;
-import org.restlet.util.Series;
-//import org.restlet.engine.header.Header;
 import java.util.Optional;
+import org.restlet.util.Series;
+import javax.mail.Header;
+import gr.ntua.ece.softeng18b.data.model.User;
 
 public class ProductResource extends ServerResource {
 
@@ -46,10 +47,18 @@ public class ProductResource extends ServerResource {
 
 	@Override
 		protected Representation delete() throws ResourceException {
+			
+			Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
+			String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
+			if(auth==null)
+				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to delete product");
+		
+			Optional<User> optional = dataAccess.getUserByToken(auth);
+			User user = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to delete product"));
 
 			String format = getQueryValue("format");
-                        if(format!=null && format.equals("xml"))
-                                 throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+            if(format!=null && format.equals("xml"))
+                throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			String idAttr = getAttribute("id");
 
@@ -66,24 +75,17 @@ public class ProductResource extends ServerResource {
 			}
 
 			int success;
-			boolean User_Volunt = true;
-			boolean root = false;
-			//Form headers = (Form) getRequest().getAttributes().get("org.restlet.http.headers");
-			//String user_token = headers.getFirstValue("X-OBSERVATORY-AUTH");
-			//Series<Header> series = (Series<Header>)getRequestAttributes().get("org.restlet.http.headers");
-    			//System.out.println(series.getFirst("X-OBSERVATORY-AUTH"));
-			//System.out.println(user_token);
-			if (User_Volunt){
+			boolean admin = user.isAdmin();
+
+			if (admin == false){
 				success = dataAccess.withdrawProduct(id);
 				if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
 			}
-			else if (root){
+			else{
 				success = dataAccess.deleteProduct(id);
 				if(success==0) throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Product not found - id: " + idAttr);
 			}
-			else {
-				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
-			}
+
 			Message message = new Message("OK");
 			return new JsonMessageRepresentation(message);
 		}
@@ -92,9 +94,17 @@ public class ProductResource extends ServerResource {
 	@Override
 		protected Representation put(Representation entity) throws ResourceException {
 
+			Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
+			String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
+			if(auth==null)
+				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to alter product");
+		
+			Optional<User> optional2 = dataAccess.getUserByToken(auth);
+			User user = optional2.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to alter product"));
+		
 			String format = getQueryValue("format");
-                        if(format!=null && format.equals("xml"))
-                                 throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+                if(format!=null && format.equals("xml"))
+                   throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			String idAttr = getAttribute("id");
 
@@ -109,29 +119,26 @@ public class ProductResource extends ServerResource {
 			catch(Exception e) {
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Invalid product id: " + idAttr);
 			}
-			boolean authorized = true;
+
 			Product product;
-			if (authorized){
 
-				//Create a new restlet form
-				Form form = new Form(entity);
-				//Read the parameters
-				String name = form.getFirstValue("name");
-				String description = form.getFirstValue("description");
-				String category = form.getFirstValue("category");
-				String withdrawn = form.getFirstValue("withdrawn");
-				String tags = form.getFirstValue("tags");
-				boolean with = Boolean.valueOf(withdrawn);
+			//Create a new restlet form
+			Form form = new Form(entity);
+			//Read the parameters
+			String name = form.getFirstValue("name");
+			String description = form.getFirstValue("description");
+			String category = form.getFirstValue("category");
+			String withdrawn = form.getFirstValue("withdrawn");
+			String tags = form.getFirstValue("tags");
+			boolean with = Boolean.valueOf(withdrawn);
+			
+			if(name==null||category==null||tags==null)
+				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
+			
+			Optional<Product> optional;
+			optional = dataAccess.fullUpdateProduct(id,name, description, category, with, tags);
+			product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
 
-				String param = new String();
-				Optional<Product> optional;
-
-				optional = dataAccess.fullUpdateProduct(id,name, description, category, with, tags);
-				product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
-			}
-				else {
-					throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
-				}
 
 				return new JsonProductRepresentation(product);
 			}
@@ -140,6 +147,14 @@ public class ProductResource extends ServerResource {
 			@Override
 				protected Representation patch(Representation entity) throws ResourceException {
 
+					Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
+					String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
+					if(auth==null)
+						throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to alter product");
+		
+					Optional<User> optional2 = dataAccess.getUserByToken(auth);
+					User user = optional2.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to alter product"));
+				
 					String format = getQueryValue("format");
 		                        if(format!=null && format.equals("xml"))
                 		                 throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
@@ -157,56 +172,50 @@ public class ProductResource extends ServerResource {
 					catch(Exception e) {
 						throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Invalid product id: " + idAttr);
 					}
-					boolean authorized = true;
-					if (authorized){
-						//Create a new restlet form
-						Form form = new Form(entity);
-						//Read the parameters
-						String name = form.getFirstValue("name");
-						String description = form.getFirstValue("description");
-						String category = form.getFirstValue("category");
-						String withdrawn = form.getFirstValue("withdrawn");
-						String tags = form.getFirstValue("tags");
-						boolean with = Boolean.valueOf(withdrawn);
-						Product product;
-						String param = new String();
-						Optional<Product> optional;
-						if (name!= null) {
-							param = "name";
-							optional = dataAccess.partialUpdateProduct(id,param,name);
+
+					//Create a new restlet form
+					Form form = new Form(entity);
+					//Read the parameters
+					String name = form.getFirstValue("name");
+					String description = form.getFirstValue("description");
+					String category = form.getFirstValue("category");
+					String withdrawn = form.getFirstValue("withdrawn");
+					String tags = form.getFirstValue("tags");
+					boolean with = Boolean.valueOf(withdrawn);
+					Product product;
+					String param = new String();
+					Optional<Product> optional;
+					if (name!= null) {
+						param = "name";
+						optional = dataAccess.partialUpdateProduct(id,param,name);
+						product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+					}
+					else if(description!=null){
+						param = "description";
+							optional = dataAccess.partialUpdateProduct(id,param,description);
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
-						}
-						else if(description!=null){
-							param = "description";
-							optional = dataAccess.partialUpdateProduct(id,param,description)
-								;
-							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
-						}
-						else if(category!=null){
+					}
+					else if(category!=null){
 							param = "category";
 							optional = dataAccess.partialUpdateProduct(id,param,category);
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
-						}
-						else if(withdrawn!=null){
+					}
+					else if(withdrawn!=null){
 							param = "withdrawn";
 							optional = dataAccess.partialUpdateProduct(id,param,withdrawn);
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
-						}
-						else if(tags!=null){
+					}
+					else if(tags!=null){
 							param = "tags";
 							optional = dataAccess.partialUpdateProduct(id,param,tags);
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
-						}
-						else{
+					}
+					else{
 							param = "description";
 							optional = dataAccess.partialUpdateProduct(id,param, "");
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
-						}
-						return new JsonProductRepresentation(product);
 					}
-					else {
-						throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Cannot alter data");
-					}
+					return new JsonProductRepresentation(product);
 
 				}
 		}

@@ -3,13 +3,14 @@ package gr.ntua.ece.softeng18b.api;
 import gr.ntua.ece.softeng18b.conf.Configuration;
 import gr.ntua.ece.softeng18b.data.DataAccess;
 import gr.ntua.ece.softeng18b.data.Limits;
-import gr.ntua.ece.softeng18b.data.model.Volunt;
+import gr.ntua.ece.softeng18b.data.model.User;
 import org.restlet.data.Form;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import org.restlet.data.Status;
 
 import java.security.MessageDigest;
 
@@ -29,7 +30,11 @@ public class SignupResource extends ServerResource {
         String password = form.getFirstValue("password");
         String name = form.getFirstValue("name");
         String email = form.getFirstValue("email");
-
+		boolean admin = Boolean.valueOf(form.getFirstValue("admin"));
+		
+		boolean exists = dataAccess.userExists(username);
+		if (exists) 
+			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "User already exists - username: " + username);
         //validate the values (in the general case)
         //...
 	try {
@@ -50,8 +55,8 @@ public class SignupResource extends ServerResource {
 	
 		//String sha256hex = //org.apache.commons.codec.digest.DigestUtils.sha256Hex(stringText); 
 		
-        Volunt volunt = dataAccess.addVolunt(username, password, name, email);
+        User user = dataAccess.addUser(username, password, name, email, admin, "");
 
-        return new JsonVoluntRepresentation(volunt);
+        return new JsonUserRepresentation(user);
     }
 }

@@ -4,7 +4,7 @@ import gr.ntua.ece.softeng18b.data.model.NoDistShowPrice;
 import gr.ntua.ece.softeng18b.data.model.ShowPrice;
 import gr.ntua.ece.softeng18b.data.model.Product;
 import gr.ntua.ece.softeng18b.data.model.Shop;
-import gr.ntua.ece.softeng18b.data.model.Volunt;
+import gr.ntua.ece.softeng18b.data.model.User;
 import gr.ntua.ece.softeng18b.data.model.Price;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -374,19 +374,21 @@ public class DataAccess {
 		}
 	}
 
-	public Volunt addVolunt(String username, String password, String name, String email) {
+	public User addUser(String username, String password, String name, String email, boolean admin, String token) {
 		//Create the new price record using a prepared statement
 		PreparedStatementCreator psc = new PreparedStatementCreator() {
 			@Override
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 					PreparedStatement ps = con.prepareStatement(
-							"insert into volunts(username, password, name, email) values(?, ?, ?, ?)",
+							"insert into users(username, password, name, email,admin,token) values(?, ?, ?, ?, ?, ?)",
 							Statement.RETURN_GENERATED_KEYS
 							);
 					ps.setString(1, username);
 					ps.setString(2, password);
 					ps.setString(3,name);
 					ps.setString(4, email);
+					ps.setBoolean(5,admin);
+					ps.setString(6,token);
 					return ps;
 				}
 		};
@@ -395,14 +397,16 @@ public class DataAccess {
 
 		if (cnt == 1) {
 			//New row has been added
-			Volunt volunt = new Volunt(
+			User user = new User(
 					//keyHolder.getKey().longValue(), //the newly created project id
 					username,
 					password,
 					name,
-					email
+					email,
+					admin,
+					token
 					);
-			return volunt;
+			return user;
 
 		}
 		else {
@@ -415,31 +419,32 @@ public class DataAccess {
 		return jdbcTemplate.query("select * from price order by id", EMPTY_ARGS, new PriceRowMapper());
 	}
 
-	public String getVolunt(String username) {
+	public Optional<String> getUser(String username) {
 		String[] params = new String[]{username};
-		String sql = "select password from volunts where username = '";
-		List<String> volunt  = jdbcTemplate.query(sql + username + "'", new StringRowMapper());
+		String sql = "select password from users where username = '";
+		List<String> user  = jdbcTemplate.query(sql + username + "'", new StringRowMapper());
 		
-		if (volunt.size() == 1)  {
-			return volunt.get(0);
+		if (user.size() == 1)  {
+			return Optional.of(user.get(0));
 		}
 		else {
-			return null;
+			return Optional.empty();
+		}
+	}
+	
+	public boolean userExists(String username) {
+		String[] params = new String[]{username};
+		String sql = "select password from users where username = '";
+		List<String> user  = jdbcTemplate.query(sql + username + "'", new StringRowMapper());
+		
+		if (user.size() == 1)  {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
-	public String getAdmin(String username) {
-                String[] params = new String[]{username};
-                String sql = "select password from admins where username = '";
-                List<String> admin  = jdbcTemplate.query(sql + username + "'", new StringRowMapper());
-
-                if (admin.size() == 1)  {
-                        return admin.get(0);
-                }
-                else {
-                        return null;
-                }
-        }
 
 	 public int deletetDate() {
 		jdbcTemplate.execute("DROP TABLE IF EXISTS tdate");
@@ -491,6 +496,22 @@ public List<NoDistShowPrice> getPrices2(Limits limits,String sort,String shops,S
 		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + "", Integer.class);
 		limits.setTotal(count);
 		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new NoDistShowPriceRowMapper());
+	}
+	
+	public Optional<User> getUserByToken(String auth) {
+		String[] params = new String[]{auth};
+		List<User> users = jdbcTemplate.query("select * from users where token = ?", params, new UserRowMapper());
+		if (users.size() == 1)  {
+			return Optional.of(users.get(0));
+		}
+		else {
+			return Optional.empty();
+		}
+	}
+	
+	public int changeToken(String username, String token) {
+		int res = jdbcTemplate.update("update users set token = ? where username = ?", token, username);
+		return res;
 	}
 	
 }

@@ -12,6 +12,10 @@ import org.restlet.data.Status;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.restlet.util.Series;
+import javax.mail.Header;
+import java.util.Optional;
+import gr.ntua.ece.softeng18b.data.model.User;
 
 public class ShopsResource extends ServerResource {
 
@@ -82,9 +86,17 @@ public class ShopsResource extends ServerResource {
 	@Override
 		protected Representation post(Representation entity) throws ResourceException {
 			
+			Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
+			String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
+			if(auth==null)
+				throw new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to add new shop");
+		
+			Optional<User> optional = dataAccess.getUserByToken(auth);
+			User user = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_FORBIDDEN,  "Please log in to add new shop"));
+		
 			String format = getQueryValue("format");
-                        if(format!=null && format.equals("xml"))
-                                throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
+                if(format!=null && format.equals("xml"))
+                    throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Only Json format provided");
 
 			//Create a new restlet form
 			Form form = new Form(entity);
@@ -98,6 +110,8 @@ public class ShopsResource extends ServerResource {
 
 			//validate the values (in the general case)
 			//...
+			if(name==null||address==null||form.getFirstValue("lng")==null||form.getFirstValue("lat")==null||tags==null)
+				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,address,lng,lat and tags are compulsory fields");
 
 			Shop shop = dataAccess.addShop(name, address, lng, lat, withdrawn, tags);
 

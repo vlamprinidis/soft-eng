@@ -17,11 +17,11 @@ public class NoDistShowPriceRowMapper implements RowMapper {
 		
 			double price = rs.getDouble("value");
 			Date date = rs.getDate("tempdate");
-			String productName = rs.getString("pname");
-			long productId = rs.getLong("productId");
+			String productName = rs.getString("product.name");
+			long productId = rs.getLong("product.id");
 			List<String> productTags = dataAccess.getProduct_tags(productId);
-			long shopId = rs.getLong("shopId");
-			String shopName = rs.getString("sname");
+			long shopId = rs.getLong("shop.id");
+			String shopName = rs.getString("shop.name");
 			List<String> shopTags = dataAccess.getShop_tags(shopId);
 			String shopAddress = rs.getString("shop.address");
 

@@ -26,6 +26,7 @@ repositories {
 dependencies {
     compile "javax.servlet:javax.servlet-api:3.1.0"              //the Java servlet libraries
     //compile "org.codehaus.groovy:groovy-all:2.4.15"            //the Groovy lang
+	compile "javax.mail:mail:1.4.7"
 
     compile "org.restlet.jee:org.restlet:2.3.12"                 //for writing RESTful APIs
     compile "com.google.code.gson:gson:2.8.2"                    //json library
@@ -44,9 +45,15 @@ dependencies {
 
 gretty {
     //scanInterval = 0 //disable hot deployment
-    httpEnabled = true
-    httpsEnabled = false
-    httpPort = 8765
+    httpEnabled = false
+    httpsEnabled = true
+    httpsPort = 8765
+	//httpPort = 8765
     contextPath = ''
+    sslKeyStorePath = './keystore'
+    sslKeyStorePassword = 'password'
+    sslKeyManagerPassword = 'password'
+    sslTrustStorePath = './keystore'
+    sslTrustStorePassword = 'password'
     //servletContainer = 'tomcat8' //use the default (jetty)
 }
