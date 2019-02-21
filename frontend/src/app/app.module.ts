@@ -16,6 +16,7 @@ import { NewprodComponent } from './newprod/newprod.component';
 import { LoginComponent } from './login/login.component';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { LoginhomeComponent } from './loginhome/loginhome.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
     ShowprodComponent,
     NewprodComponent,
     LoginComponent,
+    LoginhomeComponent,
   ],
   imports: [
     BrowserModule,

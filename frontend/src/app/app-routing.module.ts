@@ -9,6 +9,7 @@ import { ShowprodComponent} from './showprod/showprod.component';
 import { NewprodComponent} from './newprod/newprod.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards';
+import { LoginhomeComponent } from './loginhome/loginhome.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },//, canActivate: [AuthGuard] },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'showprod', component: ShowprodComponent },
   { path: 'newprod', component: NewprodComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'loginhome', component: LoginhomeComponent},
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
