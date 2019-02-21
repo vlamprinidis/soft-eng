@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ShopsComponent } from './shops/shops.component';
 import { ShowprodComponent } from './showprod/showprod.component';
 import { NewprodComponent } from './newprod/newprod.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { NewprodComponent } from './newprod/newprod.component';
     ShopsComponent,
     ShowprodComponent,
     NewprodComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
