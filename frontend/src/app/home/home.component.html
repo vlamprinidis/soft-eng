@@ -36,13 +36,15 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor ="let prod of prods.products | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total } ">
+  <tr *ngFor ="let prod of prods.products | paginate: { itemsPerPage: numItems, currentPage: p, totalItems: total } ">
     <td>{{ prod.id }}</td>
     <td>{{ prod.name }}</td>
     <td>{{ prod.description }}</td>
     <td>{{ prod.category }}</td>
     <td>{{ prod.tags }}</td>
   </tr>
+  <input #box type="number" name="quantity" min="1" (change)= "numItems = box.value">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 </table>
 
