@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShopsComponent } from './shops/shops.component';
 import { ShowprodComponent } from './showprod/showprod.component';
+import { NewprodComponent } from './newprod/newprod.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ShowprodComponent } from './showprod/showprod.component';
     HomeComponent,
     ShopsComponent,
     ShowprodComponent,
+    NewprodComponent,
   ],
   imports: [
     BrowserModule,

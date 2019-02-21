@@ -21,6 +21,6 @@ export class DataService {
   }
 
   getProduct(id) {
-    return this.http.get('http://localhost:8765/observatory/api/product' + id);
+    return this.http.get('http://localhost:8765/observatory/api/products/' + id);
   }
 }
