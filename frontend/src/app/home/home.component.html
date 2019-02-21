@@ -1,0 +1,53 @@
+<h1>Προιόντα</h1>
+
+<p>Φίλτρα Προβολής: </p>
+
+<label>
+  Εμφάνισε:
+  <select id="st" (change)="onStatusSelect($event)" >
+    <option *ngFor="let st of status" [value]="st">
+      {{ st }}
+    </option>
+  </select>
+</label>
+
+<label>
+  Ταξινόμησε:
+  <select id="so" (change)="onSortSelect($event)" >
+    <option *ngFor="let so of sort" [value]="so">
+      {{ so }}
+    </option>
+  </select>
+</label>
+
+
+<br>
+<br>
+
+
+<table *ngIf="prods">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Όνομα</th>
+    <th>Περιγραφή</th>
+    <th>Κατηγορία</th>
+    <th>Tags</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor ="let prod of prods.products | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total } ">
+    <td>{{ prod.id }}</td>
+    <td>{{ prod.name }}</td>
+    <td>{{ prod.description }}</td>
+    <td>{{ prod.category }}</td>
+    <td>{{ prod.tags }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<br>
+<br>
+<!--<button (click)="firstClick()">Πρόσθεσε Προιόν</button> -->
+<a routerLink="/about"><button class="btn btn-success pull-right" >Πρόσθεσε Προιόν</button></a>
+
