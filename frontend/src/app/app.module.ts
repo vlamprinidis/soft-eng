@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShopsComponent } from './shops/shops.component';
+import { ShowprodComponent } from './showprod/showprod.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ShopsComponent } from './shops/shops.component';
     ContactComponent,
     HomeComponent,
     ShopsComponent,
+    ShowprodComponent,
   ],
   imports: [
     BrowserModule,

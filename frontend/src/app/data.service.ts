@@ -19,4 +19,8 @@ export class DataService {
     let params = new HttpParams().set('sort', sort).set('status', status);
     return this.http.get('http://localhost:8765/observatory/api/products', { params: params});
   }
+
+  getProduct(id) {
+    return this.http.get('http://localhost:8765/observatory/api/product' + id);
+  }
 }

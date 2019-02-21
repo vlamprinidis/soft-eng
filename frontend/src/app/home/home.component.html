@@ -33,6 +33,7 @@
     <th>Περιγραφή</th>
     <th>Κατηγορία</th>
     <th>Tags</th>
+    <th>Επίλεξε ενέργεια</th>
   </tr>
   </thead>
   <tbody>
@@ -42,8 +43,9 @@
     <td>{{ prod.description }}</td>
     <td>{{ prod.category }}</td>
     <td>{{ prod.tags }}</td>
+    <td><a [routerLink] ="['/showprod']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}"><button (click)="ShowClick( prod.id)">Εμφάνιση</button></a><button (click)="UpdateClick()">Ενημέρωση</button><button (click)="DeleteClick()">Διαγραφή</button></td>
   </tr>
-  <input #box type="number" name="quantity" min="1" (change)= "numItems = box.value">
+  <input #box type="number" name="quantity" min="1" max="20" (change)= "numItems = box.value">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 </table>

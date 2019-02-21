@@ -9,6 +9,7 @@ import { DataService } from '../data.service';
 export class HomeComponent implements OnInit {
   // h1Style: boolean = false;
   prods: Object;
+  prod: Object;
   submitted = false;
 
   constructor(private data: DataService) { }
@@ -64,9 +65,33 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  firstClick() {
-    this.data.firstClick();
+  ShowClick(id) {
+    console.log('clicked');
+    this.data.getProduct(id).subscribe(data => {
+        this.prod = data;
+        console.log(this.prod);
+      }
+    );
   }
+
+  /*
+    UpdateClick() {
+      console.log('clicked');
+      this.data.getProducts(this.getsort, this.getstatus ).subscribe(data => {
+          this.prods = data;
+          console.log(this.prods);
+        }
+      );
+    }
+
+    DeleteClick() {
+      console.log('clicked');
+      this.data.getProducts(this.getsort, this.getstatus ).subscribe(data => {
+          this.prods = data;
+          console.log(this.prods);
+        }
+      );
+    }*/
 
   onSubmit() {
     this.submitted = true;
