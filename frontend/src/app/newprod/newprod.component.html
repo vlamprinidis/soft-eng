@@ -41,9 +41,10 @@
 </form>
 
 <div *ngIf="submitted" class="results">
-  <strong>Όνομα:</strong>
+  <!--<strong>Όνομα:</strong>
   <span>{{ messageForm.controls.name.value }}</span>
 
   <strong>Περιγραφή:</strong>
   <span>{{ messageForm.controls.description.value }}</span>
+  <a [routerLink] ="['/showprod']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}"></a>-->
 </div>
