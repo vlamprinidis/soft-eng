@@ -41,3 +41,24 @@ label {
     display: block;
   }
 }
+
+.gray {
+  color: gray;
+}
+
+.large {
+  font-size: 4em;
+}
+
+table, td, th {
+  border: 1px solid black;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  height: 50px;
+}

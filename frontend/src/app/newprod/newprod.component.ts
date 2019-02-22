@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataService} from '../data.service';
-import { Router } from '@angular/router';
 
 
 
@@ -18,7 +17,7 @@ export class NewprodComponent implements OnInit {
   success = false;
 
 
-  constructor(private formBuilder: FormBuilder, private data: DataService, router: Router) { }
+  constructor(private formBuilder: FormBuilder, private data: DataService) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({

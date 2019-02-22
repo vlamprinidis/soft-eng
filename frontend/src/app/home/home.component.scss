@@ -19,3 +19,15 @@ table {
 th {
   height: 50px;
 }
+
+.cta {
+  background: #7700FF;
+  border: none;
+  color: white;
+
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 1em;
+  cursor: pointer;
+  font-family: 'Montserrat';
+}
