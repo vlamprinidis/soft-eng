@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataService} from '../data.service';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-newprod',
@@ -15,7 +18,7 @@ export class NewprodComponent implements OnInit {
   success = false;
 
 
-  constructor(private formBuilder: FormBuilder, private data: DataService) { }
+  constructor(private formBuilder: FormBuilder, private data: DataService, router: Router) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
@@ -49,6 +52,9 @@ export class NewprodComponent implements OnInit {
         console.log(this.prod);
       }
     );
+    // router.navigateByUrl('../showprod',{ d1: this.prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags,
+    // d6: prod.withdrawn}"
+
   }
 
 

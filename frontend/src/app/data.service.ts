@@ -31,10 +31,19 @@ export class DataService {
     console.log(description);
     console.log(category);
     console.log(tags);
+    /*const body = new FormData();
+    body.append('name', name);
+    body.append('description', description);
+    body.append('category', category);
+    body.append('tags', tags); */
+    const data = {'name': name, 'description': description, 'category': category, 'tags': tags};
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     // const product = [name, description, category, tags];
-    return this.http.post('http://localhost:8765/observatory/api/products',
-      {name: name, description: description, category: category, tags: tags}, {headers: headers});
+     return this.http.post('http://localhost:8765/observatory/api/products',
+      {'name': name, 'description': description, 'category': category, 'tags': tags}, {headers: headers});
+    // return this.http.post('http://localhost:8765/observatory/api/products',
+    //  JSON.stringify({data: data}), {headers: headers});
   }
+  // application/x-www-form-urlencoded
 }
