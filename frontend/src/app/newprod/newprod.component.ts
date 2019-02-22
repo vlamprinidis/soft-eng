@@ -52,8 +52,8 @@ export class NewprodComponent implements OnInit {
         console.log(this.prod);
       }
     );
-    // router.navigateByUrl('../showprod',{ d1: this.prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags,
-    // d6: prod.withdrawn}"
+     // router.navigateByUrl('../showprod', {d1: this.prod.id, d2: this.prod.name, d3: this.prod.description, d4: this.prod.category,
+       // d5: this.prod.tags, d6: this.prod.withdrawn}"
 
   }
 

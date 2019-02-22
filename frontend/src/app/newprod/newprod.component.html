@@ -1,9 +1,6 @@
 <h1>Χαρακτηριστικά Προιόντος</h1>
 
 <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-
-  <h5 *ngIf="success">Επιτυχής Προσθήκη</h5>
-
   <label>
     Όνομα:
     <input type="text" name="name" formControlName="name">
@@ -40,11 +37,20 @@
 
 </form>
 
-<div *ngIf="submitted" class="results">
-  <!--<strong>Όνομα:</strong>
-  <span>{{ messageForm.controls.name.value }}</span>
 
+<div *ngIf="success" class="results">
+  <h1 *ngIf="success"><strong>Επιτυχής Προσθήκη</strong></h1>
+  <strong>Όνομα:</strong>
+  <span>{{ messageForm.controls.name.value }}</span>
   <strong>Περιγραφή:</strong>
   <span>{{ messageForm.controls.description.value }}</span>
-  <a [routerLink] ="['/showprod']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}"></a>-->
+  <strong>Κατηγορία:</strong>
+  <span>{{ messageForm.controls.category.value }}</span>
+  <strong>Tags:</strong>
+  <span>{{ messageForm.controls.tags.value }}</span>
 </div>
+
+<!--<p *ngIf="success"><a [routerLink] ="['/showprod']" [queryParams]="{ d1: 0, d2: messageForm.controls.name.value, d3: messageForm.controls.description.value, d4: messageForm.controls.category.value, d5: messageForm.controls.tags.value, d6: false}"></a></p>
+-->
+
+

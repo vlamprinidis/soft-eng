@@ -31,11 +31,11 @@ export class DataService {
     console.log(description);
     console.log(category);
     console.log(tags);
+    // token = blah blah;
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.post('http://localhost:8765/observatory/api/products',
      body, {headers: headers});
   }
-  // application/x-www-form-urlencoded
 }
