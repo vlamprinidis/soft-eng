@@ -6,7 +6,7 @@
 
   <label>
     Όνομα:
-    <input type="text" formControlName="name">
+    <input type="text" name="name" formControlName="name">
     <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
       <div *ngIf="messageForm.controls.name.errors.required">Το όνομα είναι απαραίτητο</div>
     </div>
@@ -14,7 +14,7 @@
 
   <label>
     Περιγραφή:
-    <textarea formControlName="description"></textarea>
+    <input type="text" name="description" formControlName="description">
     <div *ngIf="submitted && messageForm.controls.description.errors" class="error">
       <div *ngIf="messageForm.controls.description.errors.required">Η περιγραφή είναι απαραίτητη</div>
     </div>
@@ -22,7 +22,7 @@
 
   <label>
     Κατηγορία:
-    <input type="text" formControlName="category">
+    <input type="text" name="category" formControlName="category">
     <div *ngIf="submitted && messageForm.controls.category.errors" class="error">
       <div *ngIf="messageForm.controls.category.errors.required">Η κατηγορία είναι απαραίτητη</div>
     </div>
@@ -30,7 +30,7 @@
 
   <label>
     Tags(παραθέστε στη μορφή α,β,γ):
-    <input type="text" formControlName="tags">
+    <input type="text" name="tags" formControlName="tags">
     <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
       <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
     </div>
