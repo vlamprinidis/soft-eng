@@ -1,27 +1,35 @@
-<h1>Προϊόν:</h1>
-<table>
-  <tr>
-    <td>Id</td>
-    <td>{{ id }}</td>
-  </tr>
-  <tr>
-    <td>Όνομα</td>
-    <td>{{name }}</td>
-  </tr>
-  <tr>
-    <td>Περιγραφή</td>
-    <td>{{description }}</td>
-  </tr>
-  <tr>
-    <td>Κατηγορία</td>
-    <td>{{category }}</td>
-  </tr>
-  <tr>
-    <td>Ανενεργό</td>
-    <td>{{withdrawn }}</td>
-  </tr>
-  <tr>
-    <td>Tags</td>
-    <td>{{tags }}</td>
-  </tr>
-</table>
+<div class="ibox">
+  <div class="ibox-head">
+    <h1 class="ibox-title">Προϊόν:</h1>
+  </div>
+  <div class="ibox-body">
+    <table class="table table-striped table-bordered table-hover" id="product-table" cellspacing="0" width="30%">
+      <tbody>
+      <tr>
+        <td>Id</td>
+        <td>{{ id }}</td>
+      </tr>
+      <tr>
+        <td>Όνομα</td>
+        <td>{{name }}</td>
+      </tr>
+      <tr>
+        <td>Περιγραφή</td>
+        <td>{{description }}</td>
+      </tr>
+      <tr>
+        <td>Κατηγορία</td>
+        <td>{{category }}</td>
+      </tr>
+      <tr>
+        <td>Ανενεργό</td>
+        <td>{{withdrawn }}</td>
+      </tr>
+      <tr>
+        <td>Tags</td>
+        <td>{{tags }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

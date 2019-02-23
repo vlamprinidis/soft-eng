@@ -11,11 +11,15 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards';
 import { LoginhomeComponent } from './loginhome/loginhome.component';
 import { UpdateprodComponent} from './updateprod/updateprod.component';
+import {ProductsComponent} from './products/products.component';
+import {PricesComponent} from './prices/prices.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },//, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'prices', component: PricesComponent },
   { path: 'shops', component: ShopsComponent },
   { path: 'showprod', component: ShowprodComponent },
   { path: 'newprod', component: NewprodComponent },

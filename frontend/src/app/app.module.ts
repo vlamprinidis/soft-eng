@@ -18,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginhomeComponent } from './loginhome/loginhome.component';
 import { UpdateprodComponent } from './updateprod/updateprod.component';
+import { PricesComponent } from './prices/prices.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { UpdateprodComponent } from './updateprod/updateprod.component';
     LoginComponent,
     LoginhomeComponent,
     UpdateprodComponent,
+    PricesComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
