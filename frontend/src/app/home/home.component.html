@@ -32,6 +32,7 @@
     <th>Όνομα</th>
     <th>Περιγραφή</th>
     <th>Κατηγορία</th>
+    <th>Ανενεργό</th>
     <th>Tags</th>
     <th>Επίλεξε ενέργεια</th>
   </tr>
@@ -42,8 +43,9 @@
     <td>{{ prod.name }}</td>
     <td>{{ prod.description }}</td>
     <td>{{ prod.category }}</td>
+    <td>{{ prod.withdrawn }}</td>
     <td>{{ prod.tags }}</td>
-    <td><a [routerLink] ="['/showprod']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}"><button (click)="ShowClick( prod.id)">Εμφάνιση</button></a><button (click)="UpdateClick()">Ενημέρωση</button><button (click)="DeleteClick()">Διαγραφή</button></td>
+    <td><a [routerLink] ="['/showprod']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}"><button (click)="ShowClick( prod.id)">Εμφάνιση</button></a><a [routerLink] ="['/updateprod']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}"><button (click)="ShowClick(prod.id)">Ενημέρωση</button></a><button (click)="DeleteClick(prod.id)">Διαγραφή</button><!--<a [routerLink] ="['/deleteprod']" [queryParams]="{ d1: prod.id}"><button (click)="ShowClick(prod.id)">Διαγραφή</button></a>--></td>
   </tr>
   <input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>

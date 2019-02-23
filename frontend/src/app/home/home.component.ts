@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import {Observable} from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,7 @@ export class HomeComponent implements OnInit {
   prods: Object;
   prod: Object;
   submitted = false;
+  delmes: Object;
 
   constructor(private data: DataService) { }
 
@@ -67,31 +70,31 @@ export class HomeComponent implements OnInit {
 
   ShowClick(id) {
     console.log('clicked');
-    this.data.getProduct(id).subscribe(data => {
+    /*this.data.getProduct(id).subscribe(data => {
         this.prod = data;
         console.log(this.prod);
       }
-    );
+    );*/
   }
 
-  /*
-    UpdateClick() {
-      console.log('clicked');
-      this.data.getProducts(this.getsort, this.getstatus ).subscribe(data => {
-          this.prods = data;
-          console.log(this.prods);
-        }
-      );
-    }
 
-    DeleteClick() {
+    DeleteClick(id) {
       console.log('clicked');
-      this.data.getProducts(this.getsort, this.getstatus ).subscribe(data => {
-          this.prods = data;
-          console.log(this.prods);
-        }
+      this.data.deleteProduct(id).subscribe(data => {
+          this.delmes = data;
+          console.log(this.delmes);
+        },
+        error => { if (error.status > 300 ) {
+          return Observable.throw(new Error(error.status));
+        }}
       );
-    }*/
+         alert('Η εγγραφή διεγράφη επιτυχώς');
+        this.data.getProducts(this.getsort, this.getstatus ).subscribe(data => {
+            this.prods = data;
+            console.log(this.prods);
+          }
+        );
+    }
 
   onSubmit() {
     this.submitted = true;

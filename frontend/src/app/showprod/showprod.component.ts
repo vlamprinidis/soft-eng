@@ -16,7 +16,6 @@ export class ShowprodComponent implements OnInit, OnDestroy {
   withdrawn = false;
   tags = '';
   private sub: any;
-  post = false;
 
   constructor(private data: DataService, private route: ActivatedRoute, private router: Router) { }
 

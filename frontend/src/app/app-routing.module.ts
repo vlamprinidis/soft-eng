@@ -11,7 +11,6 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards';
 import { LoginhomeComponent } from './loginhome/loginhome.component';
 import { UpdateprodComponent} from './updateprod/updateprod.component';
-import { DeleteprodComponent} from './deleteprod/deleteprod.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },//, canActivate: [AuthGuard] },
@@ -21,7 +20,6 @@ const routes: Routes = [
   { path: 'showprod', component: ShowprodComponent },
   { path: 'newprod', component: NewprodComponent },
   { path: 'updateprod', component: UpdateprodComponent },
-  { path: 'deleteprod', component: DeleteprodComponent },
   { path: 'login', component: LoginComponent },
   { path: 'loginhome', component: LoginhomeComponent},
 
