@@ -4,14 +4,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import { ShopsComponent } from './shops/shops.component';
-import { ShowprodComponent} from './showprod/showprod.component';
-import { NewprodComponent} from './newprod/newprod.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards';
 import { LoginhomeComponent } from './loginhome/loginhome.component';
-import { UpdateprodComponent} from './updateprod/updateprod.component';
+
 import {ProductsComponent} from './products/products.component';
+import { ProdNewComponent} from './prod-new/prod-new.component';
+import { ProdShowComponent} from './prod-show/prod-show.component';
+import { ProdUpdateComponent} from './prod-update/prod-update.component';
+import { ShopsComponent } from './shops/shops.component';
+import { ShopNewComponent } from './shop-new/shop-new.component';
+import { ShopShowComponent } from './shop-show/shop-show.component';
+import { ShopUpdateComponent } from './shop-update/shop-update.component';
 import {PricesComponent} from './prices/prices.component';
 
 const routes: Routes = [
@@ -19,11 +23,14 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'prices', component: PricesComponent },
+  { path: 'prod-show', component: ProdShowComponent },
+  { path: 'prod-new', component: ProdNewComponent },
+  { path: 'prod-update', component: ProdUpdateComponent },
   { path: 'shops', component: ShopsComponent },
-  { path: 'showprod', component: ShowprodComponent },
-  { path: 'newprod', component: NewprodComponent },
-  { path: 'updateprod', component: UpdateprodComponent },
+  { path: 'shop-new', component: ShopNewComponent },
+  { path: 'shop-show', component: ShopShowComponent },
+  { path: 'shop-update', component: ShopUpdateComponent },
+  { path: 'prices', component: PricesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'loginhome', component: LoginhomeComponent},
 

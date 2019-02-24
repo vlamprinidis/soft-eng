@@ -3,11 +3,11 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-showprod',
-  templateUrl: './showprod.component.html',
-  styleUrls: ['./showprod.component.scss']
+  selector: 'app-prod-show',
+  templateUrl: './prod-show.component.html',
+  styleUrls: ['./prod-show.component.scss']
 })
-export class ShowprodComponent implements OnInit, OnDestroy {
+export class ProdShowComponent implements OnInit, OnDestroy {
 
   id: number;
   name = '';

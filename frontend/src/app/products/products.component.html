@@ -3,7 +3,7 @@
     <h1 class="ibox-title">Προϊόντα</h1>
   </div>
   <div class="ibox-body">
-    <p>Φίλτρα Προβολής:</p>
+    <h4 style="text-decoration: underline;">Φίλτρα προβολής:</h4>
 
     <label>
       Εμφάνισε:
@@ -26,41 +26,43 @@
     <br>
     <br>
 
-    <table *ngIf="prods" class="table table-striped table-bordered table-hover" id="product-table" cellspacing="0" width="100%">
+    <table *ngIf="prods" class="table table-striped table-bordered center" id="product-table" cellspacing="0" width="100%">
       <thead>
       <tr>
-        <th>Id</th>
+        <th style="text-align: center; width:60px;">Id</th>
         <th>Όνομα</th>
         <th>Περιγραφή</th>
         <th>Κατηγορία</th>
         <th>Ανενεργό</th>
         <th>Tags</th>
-        <th>Επίλεξε ενέργεια</th>
+        <th style="width:100px;">Επίλεξε ενέργεια</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor ="let prod of prods.products | paginate: { itemsPerPage: numItems, currentPage: p, totalItems: total } ">
-        <td>{{ prod.id }}</td>
+        <td style="text-align: center; width:60px;">{{ prod.id }}</td>
         <td>{{ prod.name }}</td>
         <td>{{ prod.description }}</td>
         <td>{{ prod.category }}</td>
         <td>{{ prod.withdrawn }}</td>
         <td>{{ prod.tags }}</td>
-        <td><a [routerLink] ="['/showprod']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}" class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Προβολή"><i class="fas fa-search-plus font-14"></i></a>
-          <a [routerLink] ="['/updateprod']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}" class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Ενημέρωση"><i class="fas fa-pencil-alt font-14"></i></a>
+        <td style="text-align: center; width:100px;"><a [routerLink] ="['/prod-show']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}" class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Προβολή"><i class="fas fa-search-plus font-14"></i></a>
+          <a [routerLink] ="['/prod-update']" [queryParams]="{ d1: prod.id, d2:prod.name, d3: prod.description, d4: prod.category, d5: prod.tags, d6: prod.withdrawn}" class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Ενημέρωση"><i class="fas fa-pencil-alt font-14"></i></a>
           <a (click)="DeleteClick(prod.id)"  class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Διαγραφή"><i class="fa fa-trash font-14"></i></a>
         </td>
       </tr>
-      <input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </tbody>
     </table>
+    <div>
+      <div style="float: left; width: 10%;"><input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value"></div>
+      <div style="float: left; width: 90%;"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+    </div>
   </div>
-</div>
 
-<br>
-<br>
-<!--<button (click)="firstClick()">Πρόσθεσε Προιόν</button> -->
-<a routerLink="/newprod"><button class="btn btn-success pull-right" class="cta">Πρόσθεσε Προιόν</button></a>
+  <br>
+  <br>
+
+  <a routerLink="/prod-new"><button class="btn btn-success pull-right" class="cta" style="margin: 20px;">Πρόσθεσε Προϊόν</button></a>
+</div>
 
 

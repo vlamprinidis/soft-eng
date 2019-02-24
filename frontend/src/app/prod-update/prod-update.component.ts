@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-updateprod',
-  templateUrl: './updateprod.component.html',
-  styleUrls: ['./updateprod.component.scss']
+  selector: 'app-prod-update',
+  templateUrl: './prod-update.component.html',
+  styleUrls: ['./prod-update.component.scss']
 })
-export class UpdateprodComponent implements OnInit, OnDestroy {
+export class ProdUpdateComponent implements OnInit, OnDestroy {
   id: number;
   name = '';
   description = '';

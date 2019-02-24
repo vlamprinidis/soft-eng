@@ -3,15 +3,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataService} from '../data.service';
 
 
-
 @Component({
-  selector: 'app-newprod',
-  templateUrl: './newprod.component.html',
-  styleUrls: ['./newprod.component.scss']
+  selector: 'app-shop-new',
+  templateUrl: './shop-new.component.html',
+  styleUrls: ['./shop-new.component.scss']
 })
-export class NewprodComponent implements OnInit {
+export class ShopNewComponent implements OnInit {
 
-  prod: Object;
+  shop: Object;
   messageForm: FormGroup;
   submitted = false;
   success = false;
@@ -30,9 +29,9 @@ export class NewprodComponent implements OnInit {
 
   ShowClick(id) {
     console.log('clicked');
-    this.data.getProduct(id).subscribe(data => {
-        this.prod = data;
-        console.log(this.prod);
+    this.data.getShop(id).subscribe(data => {
+        this.shop = data;
+        console.log(this.shop);
       }
     );
   }
@@ -45,16 +44,13 @@ export class NewprodComponent implements OnInit {
     }
 
     this.success = true;
-    this.data.addProduct(this.messageForm.controls.name.value, this.messageForm.controls.description.value,
-      this.messageForm.controls.category.value, this.messageForm.controls.tags.value).subscribe(data => {
-        this.prod = data;
-        console.log(this.prod);
+    this.data.addShop(this.messageForm.controls.name.value, this.messageForm.controls.address.value, this.messageForm.controls.lng.value,
+      this.messageForm.controls.lat.value, this.messageForm.controls.tags.value).subscribe(data => {
+        this.shop = data;
+        console.log(this.shop);
       }
     );
-     // router.navigateByUrl('../showprod', {d1: this.prod.id, d2: this.prod.name, d3: this.prod.description, d4: this.prod.category,
-       // d5: this.prod.tags, d6: this.prod.withdrawn}"
 
   }
-
 
 }

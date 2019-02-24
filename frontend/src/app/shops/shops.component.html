@@ -1,3 +1,68 @@
-<p>
-  shops works!
-</p>
+<div class="ibox">
+  <div class="ibox-head">
+    <h1 class="ibox-title">Καταστήματα</h1>
+  </div>
+  <div class="ibox-body">
+    <h4 style="text-decoration: underline;">Φίλτρα προβολής:</h4>
+
+    <label>
+      Εμφάνισε:
+      <select id="st" (change)="onStatusSelect($event)" >
+        <option *ngFor="let st of status" [value]="st">
+          {{ st }}
+        </option>
+      </select>
+    </label>
+
+    <label>
+      Ταξινόμησε:
+      <select id="so" (change)="onSortSelect($event)" >
+        <option *ngFor="let so of sort" [value]="so">
+          {{ so }}
+        </option>
+      </select>
+    </label>
+
+    <br>
+    <br>
+
+    <table *ngIf="shops" class="table table-striped table-bordered center" id="shop-table" cellspacing="0" width="100%">
+      <thead>
+      <tr>
+        <th style="width:60px;">Id</th>
+        <th>Όνομα</th>
+        <th>Διεύθυνση</th>
+        <th>Γεωγραφικό μήκος</th>
+        <th>Γεωγραφικό πλάτος</th>
+        <th>Ανενεργό</th>
+        <th>Tags</th>
+        <th style="width:100px;">Επίλεξε ενέργεια</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor ="let shop of shops.shops | paginate: { itemsPerPage: numItems, currentPage: p, totalItems: total } ">
+        <td style="text-align: center; width:60px;">{{ shop.id }}</td>
+        <td>{{ shop.name }}</td>
+        <td class="td-wrap">{{ shop.address }}</td>
+        <td>{{ shop.lng }}</td>
+        <td>{{ shop.lat }}</td>
+        <td>{{ shop.withdrawn }}</td>
+        <td>{{ shop.tags }}</td>
+        <td style="text-align: center; width:100px;"><a [routerLink] ="['/shop-show']" [queryParams]="{ d1: shop.id, d2:shop.name, d3: shop.address, d4: shop.lng, d5: shop.lat, d6: shop.tags, d7: shop.withdrawn}" class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Προβολή"><i class="fas fa-search-plus font-14"></i></a>
+          <a [routerLink] ="['/shop-update']" [queryParams]="{ d1: shop.id, d2:shop.name, d3: shop.address, d4: shop.lng, d5: shop.lat, d6: shop.tags, d7: shop.withdrawn}" class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Ενημέρωση"><i class="fas fa-pencil-alt font-14"></i></a>
+          <a (click)="DeleteClick(shop.id)"  class="btn btn-default btn-xs m-r-5" data-toggle="tooltip" data-original-title="Διαγραφή"><i class="fa fa-trash font-14"></i></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <div style="float: left; width: 10%;"><input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value"></div>
+      <div style="float: left; width: 90%;"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <a routerLink="/shop-new"><button class="btn btn-success pull-right" class="cta" style="margin: 20px;">Πρόσθεσε κατάστημα</button></a>
+</div>

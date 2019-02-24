@@ -10,16 +10,22 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ShopsComponent } from './shops/shops.component';
-import { ShowprodComponent } from './showprod/showprod.component';
-import { NewprodComponent } from './newprod/newprod.component';
-import { LoginComponent } from './login/login.component';
 
+import { LoginComponent } from './login/login.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginhomeComponent } from './loginhome/loginhome.component';
-import { UpdateprodComponent } from './updateprod/updateprod.component';
+
 import { PricesComponent } from './prices/prices.component';
+
 import { ProductsComponent } from './products/products.component';
+import { ProdNewComponent } from './prod-new/prod-new.component';
+import { ProdShowComponent } from './prod-show/prod-show.component';
+import { ProdUpdateComponent } from './prod-update/prod-update.component';
+
+import { ShopsComponent } from './shops/shops.component';
+import { ShopNewComponent } from './shop-new/shop-new.component';
+import { ShopShowComponent } from './shop-show/shop-show.component';
+import { ShopUpdateComponent } from './shop-update/shop-update.component';
 
 
 @NgModule({
@@ -29,14 +35,17 @@ import { ProductsComponent } from './products/products.component';
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    ShopsComponent,
-    ShowprodComponent,
-    NewprodComponent,
     LoginComponent,
     LoginhomeComponent,
-    UpdateprodComponent,
     PricesComponent,
     ProductsComponent,
+    ProdNewComponent,
+    ProdShowComponent,
+    ProdUpdateComponent,
+    ShopsComponent,
+    ShopNewComponent,
+    ShopShowComponent,
+    ShopUpdateComponent,
   ],
   imports: [
     BrowserModule,

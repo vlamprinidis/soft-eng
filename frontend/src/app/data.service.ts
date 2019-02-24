@@ -59,11 +59,53 @@ export class DataService {
     return this.http.delete('http://localhost:8765/observatory/api/products/' + id, {headers: headers});
   }
 
+//SHOP TIME
+
   getShops(sort, status) {
     const params = new HttpParams().set('sort', sort).set('status', status);
     return this.http.get('http://localhost:8765/observatory/api/shops', {params: params});
   }
 
+  getShop(id) {
+    return this.http.get('http://localhost:8765/observatory/api/shops/' + id);
+  }
+
+  addShop(name, address, lng, lat, tags) {
+    console.log(name);
+    console.log(address);
+    console.log(lng);
+    console.log(lat);
+    console.log(tags);
+    // token = blah blah;
+    const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+    return this.http.post('http://localhost:8765/observatory/api/shops',
+      body, {headers: headers});
+  }
+
+  updateShop(name, address, lng, lat, tags, id) {
+    console.log(name);
+    console.log(address);
+    console.log(lng);
+    console.log(lat);
+    console.log(tags);
+    // token = blah blah;
+    const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+    return this.http.put('http://localhost:8765/observatory/api/shops/' + id,
+      body, {headers: headers});
+  }
+
+  deleteShop(id) {
+    console.log(id);
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
+    return this.http.delete('http://localhost:8765/observatory/api/shops/' + id, {headers: headers});
+  }
+
+  //PRICE TIME
   getPrices(sort, geoDist, geoLng, geoLat, dateFrom, dateTo, products, shops, tags) {
     console.log('dist is' + geoDist);
     let params = new HttpParams();

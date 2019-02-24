@@ -28,6 +28,71 @@ section {
   padding: 2em;
 }
 
+.table {
+  text-align: left;
+  table-layout: fixed;}
+
+td, th {
+  border-right: 1px solid #e8e8e8;
+}
+
+.table td, th{
+  padding: 0.5em;
+  word-wrap: break-word;
+}
+
+.center th{
+  text-align: center;
+}
+
+/*add to long td's to wrap and appear only on hover
+.td-wrap {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.td-wrap:hover {
+  z-index: 1;
+  width: auto;
+  background-color: #FAE2EF;
+}*/
+
+label {
+  display: block;
+
+  input, textarea {
+    display: block;
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 1em;
+  }
+
+  .error {
+    margin-top: -20px;
+    background: lightpink;
+    padding: .5em;
+    display: inline-block;
+    font-size: .9em;
+    margin-bottom: 20px;
+  }
+}
+
+.results {
+  margin-top: 50px;
+
+  strong {
+    display: block;
+  }
+  span {
+    margin-bottom: 20px;
+    display: block;
+  }
+}
+
+
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
 .clf:after, .clf:before {
@@ -1953,10 +2018,6 @@ body.fullscreen-mode {
 .table > tbody > tr > th, .table > tbody > tr > td,
 .table > tfoot > tr > th, .table > tfoot > tr > td {
   border-top: 1px solid #e8e8e8; }
-
-.table {
-  text-align: left;
-  table-layout: fixed;}
 
 .table thead th {
   border-bottom: 1px solid #ddd !important;

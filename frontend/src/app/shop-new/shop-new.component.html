@@ -1,0 +1,91 @@
+<div class="ibox">
+  <div class="ibox-head">
+    <h1 class="ibox-title">Προσθήκη νέου καταστήματος</h1>
+  </div>
+  <div class="ibox-body">
+
+    <div *ngIf="!success" >
+      <h3>Χαρακτηριστικά καταστήματος</h3>
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <label>
+          Όνομα:
+          <input type="text" name="name" formControlName="name">
+          <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+            <div *ngIf="messageForm.controls.name.errors.required">Το όνομα είναι απαραίτητο</div>
+          </div>
+        </label>
+
+        <label>
+          Διεύθυνση:
+          <input type="text" name="address" value="{{address}}" formControlName="address">
+          <div *ngIf="submitted && messageForm.controls.address.errors" class="error">
+            <div *ngIf="messageForm.controls.address.errors.required">Η διεύθυνση είναι απαραίτητη</div>
+          </div>
+        </label>
+
+        <label>
+          Γεωγραφικό μήκος:
+          <input type="text" name="lng" value="{{lng}}" formControlName="lng">
+          <div *ngIf="submitted && messageForm.controls.lng.errors" class="error">
+            <div *ngIf="messageForm.controls.lng.errors.required">Το γεωγραφικό μήκος είναι απαραίτητο</div>
+          </div>
+        </label>
+
+        <label>
+          Γεωγραφικό πλάτος:
+          <input type="text" name="lat" value="{{lat}}" formControlName="lat">
+          <div *ngIf="submitted && messageForm.controls.lat.errors" class="error">
+            <div *ngIf="messageForm.controls.lat.errors.required">Το γεωγραφικό πλάτος είναι απαραίτητο</div>
+          </div>
+        </label>
+
+        <label>
+          Tags(παραθέστε στη μορφή α,β,γ):
+          <input type="text" name="tags" formControlName="tags">
+          <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
+            <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
+          </div>
+        </label>
+
+        <input type="submit" value="Προσθήκη" class="cta">
+
+      </form>
+    </div>
+
+
+    <div *ngIf="success" class="results">     <h1 *ngIf="success"><strong>Προσθήκη επιτυχής!</strong></h1>
+      <h3>Προϊόν:</h3>
+      <table class="table table-striped table-bordered table-hover" id="shop-table" cellspacing="0" width="30%">
+        <tr>
+          <th>Id</th>
+          <td>{{shop.id }}</td>
+        </tr>
+        <tr>
+          <th>Όνομα</th>
+          <td>{{shop.name }}</td>
+        </tr>
+        <tr>
+          <th>Διεύθυνση</th>
+          <td>{{shop.address }}</td>
+        </tr>
+        <tr>
+          <th>Γεωγραφικό μήκος</th>
+          <td>{{shop.lng }}</td>
+        </tr>
+        <tr>
+          <th>Γεωγραφικό πλάτος</th>
+          <td>{{shop.lat }}</td>
+        </tr>
+        <tr>
+          <th>Ανενεργό</th>
+          <td>{{shop.withdrawn }}</td>
+        </tr>
+        <tr>
+          <th>Tags</th>
+          <td>{{shop.tags }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+

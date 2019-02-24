@@ -1,6 +1,6 @@
 <div class="ibox">
   <div class="ibox-head">
-    <h1 class="ibox-title">Ενημέρωση προϊόντος</h1>
+    <h1 class="ibox-title">Προσθήκη νέου προϊόντος</h1>
   </div>
   <div class="ibox-body">
 
@@ -8,15 +8,8 @@
       <h3>Χαρακτηριστικά προϊόντος</h3>
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <label>
-          Id:
-          <input type="text" name="id" value="{{id}}" readonly formControlName="id">
-          <div *ngIf="submitted && messageForm.controls.id.errors" class="error">
-            <div *ngIf="messageForm.controls.id.errors.required">Το id είναι απαραίτητο</div>
-          </div>
-        </label>
-        <label>
           Όνομα:
-          <input type="text" name="name" value="{{name}}" formControlName="name">
+          <input type="text" name="name" formControlName="name">
           <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
             <div *ngIf="messageForm.controls.name.errors.required">Το όνομα είναι απαραίτητο</div>
           </div>
@@ -24,7 +17,7 @@
 
         <label>
           Περιγραφή:
-          <input type="text" name="description" value="{{description}}" formControlName="description">
+          <input type="text" name="description" formControlName="description">
           <div *ngIf="submitted && messageForm.controls.description.errors" class="error">
             <div *ngIf="messageForm.controls.description.errors.required">Η περιγραφή είναι απαραίτητη</div>
           </div>
@@ -32,23 +25,15 @@
 
         <label>
           Κατηγορία:
-          <input type="text" name="category" value="{{category}}" formControlName="category">
+          <input type="text" name="category" formControlName="category">
           <div *ngIf="submitted && messageForm.controls.category.errors" class="error">
             <div *ngIf="messageForm.controls.category.errors.required">Η κατηγορία είναι απαραίτητη</div>
           </div>
         </label>
 
         <label>
-          Ανενεργό:
-          <input type="text" name="withdrawn" value="{{withdrawn}}" readonly formControlName="withdrawn">
-          <div *ngIf="submitted && messageForm.controls.withdrawn.errors" class="error">
-            <div *ngIf="messageForm.controls.withdrawn.errors.required">Η withdrawn είναι απαραίτητη</div>
-          </div>
-        </label>
-
-        <label>
           Tags(παραθέστε στη μορφή α,β,γ):
-          <input type="text" name="tags" value="{{tags}}" formControlName="tags">
+          <input type="text" name="tags" formControlName="tags">
           <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
             <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
           </div>
@@ -60,41 +45,35 @@
     </div>
 
 
-    <div *ngIf="success" class="results">
-      <h1 *ngIf="success"><strong>Επιτυχής Τροποποίηση</strong></h1>
-      <h1>Προϊόν:</h1>
-      <table>
+    <div *ngIf="success" class="results">     <h1 *ngIf="success"><strong>Προσθήκη επιτυχής!</strong></h1>
+      <h3>Προϊόν:</h3>
+      <table class="table table-striped table-bordered table-hover" id="product-table" cellspacing="0" width="30%">
         <tr>
-          <td>Id</td>
+          <th>Id</th>
           <td>{{ prod.id }}</td>
         </tr>
         <tr>
-          <td>Όνομα</td>
+          <th>Όνομα</th>
           <td>{{prod.name }}</td>
         </tr>
         <tr>
-          <td>Περιγραφή</td>
+          <th>Περιγραφή</th>
           <td>{{prod.description }}</td>
         </tr>
         <tr>
-          <td>Κατηγορία</td>
+          <th>Κατηγορία</th>
           <td>{{prod.category }}</td>
         </tr>
         <tr>
-          <td>Ανενεργό</td>
+          <th>Ανενεργό</th>
           <td>{{prod.withdrawn }}</td>
         </tr>
         <tr>
-          <td>Tags</td>
+          <th>Tags</th>
           <td>{{prod.tags }}</td>
         </tr>
       </table>
-
     </div>
   </div>
 </div>
-
-<!--<p *ngIf="success"><a [routerLink] ="['/showprod']" [queryParams]="{ d1: 0, d2: messageForm.controls.name.value, d3: messageForm.controls.description.value, d4: messageForm.controls.category.value, d5: messageForm.controls.tags.value, d6: false}"></a></p>
--->
-
 
