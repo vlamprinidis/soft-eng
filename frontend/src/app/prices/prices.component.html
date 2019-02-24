@@ -1,3 +1,163 @@
-<p>
-  prices works!
-</p>
+<h1>Τιμές</h1>
+
+<label>
+  Ταξινόμησε:
+  <select id="so" (change)="onSortSelect($event)" >
+    <option *ngFor="let so of sort" [value]="so">
+      {{ so }}
+    </option>
+  </select>
+</label>
+
+<br>
+<h4>Φίλτρα Αναζήτησης</h4>
+<p> Κάντε απλό κλικ σε όσα πεδία επιθυμείτε: </p>
+
+<div class="row">
+  <div class="col-*-*">
+  <label>
+    Προϊόντα:
+    <select *ngIf="myprods" id="prod" multiple (change)="onProdSelect($event)" >
+      <option *ngFor="let prod of myprods.products" [value]="prod.id">
+        {{ prod.id}}:{{ prod.name }}
+      </option>
+    </select>
+  </label>
+  </div>
+
+  <div class="col-*-*">
+  <label>
+    Καταστήματα:
+    <select *ngIf="myshops" id="shop" multiple (change)="onShopSelect($event)" >
+      <option *ngFor="let shop of myshops.shops" [value]="shop.id">
+        {{ shop.id}}:{{ shop.name }}
+      </option>
+    </select>
+  </label>
+  </div>
+</div>
+
+<br>
+IDs προϊόντων: {{ products}}
+<br>
+IDs καταστημάτων: {{ shops}}
+<br>
+<br>
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  <label>
+    Tags(παραθέστε στη μορφή α,β,γ):
+    <input type="text" name="tags" formControlName="tags">
+    <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
+      <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
+    </div>
+  </label>
+
+  <fieldset >
+  <legend>Τα 3 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα:</legend>
+  <label>
+    Μέγιστη ακτίνα απόστασης:
+    <input type="text" name="geoDist" formControlName="geoDist">
+    <div *ngIf="submitted && messageForm.controls.geoDist.errors" class="error">
+      <div *ngIf="messageForm.controls.geoDist.errors.required">Τα tags είναι απαραίτητα</div>
+    </div>
+  </label>
+
+  <label>
+    Γεωγρ. Μήκος:
+    <input type="text" name="geoLng" formControlName="geoLng">
+    <div *ngIf="submitted && messageForm.controls.geoLng.errors" class="error">
+      <div *ngIf="messageForm.controls.geoLng.errors.required">Τα tags είναι απαραίτητα</div>
+    </div>
+  </label>
+
+  <label>
+    Γεωγρ. Πλάτος:
+    <input type="text" name="geoLat" formControlName="geoLat">
+    <div *ngIf="submitted && messageForm.controls.geoLat.errors" class="error">
+      <div *ngIf="messageForm.controls.geoLat.errors.required">Τα tags είναι απαραίτητα</div>
+    </div>
+  </label>
+  </fieldset>
+
+  <fieldset >
+    <legend>Τα 2 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα(default η σημερινή ημερομηνία):</legend>
+    <label>
+      Ημερομηνία εκκίνησης:
+      <input type="text" name="dateFrom" formControlName="dateFrom">
+      <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
+        <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
+      </div>
+    </label>
+
+    <label>
+      Ημερομηνία Λήξης:
+      <input type="text" name="dateTo" formControlName="dateTo">
+      <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
+        <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
+      </div>
+    </label>
+
+  </fieldset>
+
+  <input type="submit" value="Εφαρμογή Φίλτρων" class="cta">
+
+</form>
+<br>
+<br>
+  <!--<label>
+    Tags(παραθέστε στη μορφή α,β,γ):
+    <input type="text" name="tags" formControlName="tags">
+    <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
+      <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
+    </div>
+  </label>
+  <fieldset formGroupName="distance">
+    <legend>Απόσταση</legend>
+    <div>
+      Μέγιστη ακτίνα: <input type="text" formControlName="maxim" />
+    </div>
+    <div>
+      Γεωγρ. Μήκος: <input type="text" formControlName="lng" />
+    </div>
+    <div>
+      Γεωγρ. Πλάτος: <input type="text" formControlName="lat" />
+    </div>
+  </fieldset>
+  <div class="error" *ngIf="messageForm.get('distance').touched && messageForm.get('distance').hasError('DistanceIncomplete')">
+    You have to provide all or none.
+  </div>-->
+
+
+
+<table *ngIf="pric">
+  <thead>
+  <tr>
+    <th>Τιμή</th>
+    <th>Ημερομηνία</th>
+    <th>Όνομα προϊόντος</th>
+    <th>Tags προϊόντος</th>
+    <th>Όνομα καταστήματος</th>
+    <th>Tags καταστήματος</th>
+    <th>Διεύθυνση καταστήματος</th>
+    <th>Απόσταση από προορισμό</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor ="let price of pric.prices | paginate: { itemsPerPage: numItems, currentPage: p, totalItems: total } ">
+    <td>{{ price.price }}</td>
+    <td>{{ price.date }}</td>
+    <td>{{ price.productName }}</td>
+    <td>{{ price.productTags }}</td>
+    <td>{{ price.shopName }}</td>
+    <td>{{ price.shopTags }}</td>
+    <td>{{ price.shopAddress }}</td>
+    <td>{{ price.shopDist || 0 }}</td>
+  </tr>
+  <input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </tbody>
+</table>
+
+<br>
+<br>
+<a routerLink="/newprod"><button class="btn btn-success pull-right" class="cta">Πρόσθεσε Τιμή</button></a>

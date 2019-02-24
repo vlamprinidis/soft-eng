@@ -81,6 +81,7 @@ export class ProductsComponent implements OnInit {
 
   DeleteClick(id) {
     console.log('clicked');
+    if(confirm("Είσαι σίγουρος ότι θέλεις να διαγράψεις αυτό το προϊόν;")) {
     this.data.deleteProduct(id).subscribe(data => {
         this.delmes = data;
         console.log(this.delmes);
@@ -94,7 +95,7 @@ export class ProductsComponent implements OnInit {
         this.prods = data;
         console.log(this.prods);
       }
-    );
+    );}
   }
 
   onSubmit() {

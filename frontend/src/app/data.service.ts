@@ -58,4 +58,51 @@ export class DataService {
       .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
     return this.http.delete('http://localhost:8765/observatory/api/products/' + id, {headers: headers});
   }
+
+  getShops(sort, status) {
+    const params = new HttpParams().set('sort', sort).set('status', status);
+    return this.http.get('http://localhost:8765/observatory/api/shops', {params: params});
+  }
+
+  getPrices(sort, geoDist, geoLng, geoLat, dateFrom, dateTo, products, shops, tags) {
+    console.log('dist is' + geoDist);
+    let params = new HttpParams();
+    params = params.set('sort', sort);
+    if (geoDist !== '' && geoLng !== '' && geoLat !== '') {
+      params = params.set('geoDist', geoDist);
+      params = params.set('geoLng', geoLng);
+      params = params.set('geoLat', geoLat);
+    }
+    if (dateFrom !== '' && dateTo !== '') {
+      params = params.set('dateFrom', dateFrom);
+      params = params.set('dateTo', dateTo);
+    }
+    if (products !== '') {
+      let str_array = products.split(',');
+      for(let i = 0; i < str_array.length; i++) {
+        params = params.set('products', str_array[i]);
+      }
+    }
+    if (shops !== '') {
+      let str_array = shops.split(',');
+      for(let i = 0; i < str_array.length; i++) {
+        params = params.set('shops', str_array[i]);
+      }
+    }
+    // console.log(tags);
+    if (tags !== '') {
+      let str_array = tags.split(',');
+      for(let i = 0; i < str_array.length; i++) {
+        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        if( i == 0){
+          params = params.set('tags', str_array[i]);
+        } else {
+          params = params.append('tags', str_array[i]);
+        }
+        // console.log(str_array[i]);
+      }
+    }
+    console.log(params);
+    return this.http.get('http://localhost:8765/observatory/api/prices', {params: params});
+  }
 }
