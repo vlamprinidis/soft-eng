@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f97a99-b9fd-482b-b546-8486dc1b311d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/.gradle/2.10/taskArtifacts/cache.properties.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.gradle/2.10/taskArtifacts/cache.properties.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/gretty_ports.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/gretty_ports.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/price-new/price-new.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/price-new/price-new.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/price-new/price-new.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/price-new/price-new.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/prod-new/prod-new.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/prod-new/prod-new.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -33,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/prod-new/prod-new.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+            <state relative-caret-position="204">
+              <caret line="12" column="61" lean-forward="true" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -45,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/shop-new/shop-new.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="88" selection-start-line="8" selection-start-column="88" selection-end-line="8" selection-end-column="88" />
+            <state relative-caret-position="272">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -54,7 +46,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/shop-new/shop-new.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="374">
               <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
@@ -87,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/data.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1483">
-              <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+            <state relative-caret-position="242">
+              <caret line="167" column="32" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -147,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/src/app/prices/prices.component.ts" />
         <option value="$PROJECT_DIR$/src/app/prices/prices.component.html" />
-        <option value="$PROJECT_DIR$/src/app/data.service.ts" />
         <option value="$PROJECT_DIR$/src/app/prices/prices.component.scss" />
         <option value="$PROJECT_DIR$/src/app/price-new/price-new.component.html" />
         <option value="$PROJECT_DIR$/src/app/price-new/price-new.component.ts" />
@@ -155,6 +146,7 @@
         <option value="$PROJECT_DIR$/src/app/shop-new/shop-new.component.ts" />
         <option value="$PROJECT_DIR$/src/app/shop-new/shop-new.component.html" />
         <option value="$PROJECT_DIR$/src/app/prod-new/prod-new.component.html" />
+        <option value="$PROJECT_DIR$/src/app/data.service.ts" />
       </list>
     </option>
   </component>
@@ -315,12 +307,12 @@
       <workItem from="1551006870244" duration="11764000" />
       <workItem from="1551047882877" duration="4759000" />
       <workItem from="1551083279885" duration="7044000" />
-      <workItem from="1551100110581" duration="3936000" />
+      <workItem from="1551100110581" duration="4716000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43373000" />
+    <option name="totallyTimeSpent" value="44153000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -606,16 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/price-new/price-new.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/price-new/price-new.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -636,19 +618,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/data.service.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/prod-new/prod-new.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1483">
-          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+        <state relative-caret-position="204">
+          <caret line="12" column="61" lean-forward="true" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/price-new/price-new.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/shop-new/shop-new.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="374">
           <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
@@ -658,15 +647,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/shop-new/shop-new.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="88" selection-start-line="8" selection-start-column="88" selection-end-line="8" selection-end-column="88" />
+        <state relative-caret-position="272">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/prod-new/prod-new.component.html">
+    <entry file="file://$PROJECT_DIR$/src/app/data.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        <state relative-caret-position="242">
+          <caret line="167" column="32" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

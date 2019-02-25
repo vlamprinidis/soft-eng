@@ -19,11 +19,11 @@ export class DataService {
 
   getProducts(sort, status) {
     const params = new HttpParams().set('sort', sort).set('status', status);
-    return this.http.get('http://localhost:8765/observatory/api/products', {params: params});
+    return this.http.get('https://localhost:8765/observatory/api/products', {params: params});
   }
 
   getProduct(id) {
-    return this.http.get('http://localhost:8765/observatory/api/products/' + id);
+    return this.http.get('https://localhost:8765/observatory/api/products/' + id);
   }
 
   addProduct(name, description, category, tags) {
@@ -35,7 +35,7 @@ export class DataService {
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
-    return this.http.post('http://localhost:8765/observatory/api/products',
+    return this.http.post('https://localhost:8765/observatory/api/products',
      body, {headers: headers});
   }
 
@@ -48,7 +48,7 @@ export class DataService {
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
-    return this.http.put('http://localhost:8765/observatory/api/products/' + id,
+    return this.http.put('https://localhost:8765/observatory/api/products/' + id,
       body, {headers: headers});
   }
 
@@ -56,18 +56,18 @@ export class DataService {
     console.log(id);
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
-    return this.http.delete('http://localhost:8765/observatory/api/products/' + id, {headers: headers});
+    return this.http.delete('https://localhost:8765/observatory/api/products/' + id, {headers: headers});
   }
 
 //SHOP TIME
 
   getShops(sort, status) {
     const params = new HttpParams().set('sort', sort).set('status', status);
-    return this.http.get('http://localhost:8765/observatory/api/shops', {params: params});
+    return this.http.get('https://localhost:8765/observatory/api/shops', {params: params});
   }
 
   getShop(id) {
-    return this.http.get('http://localhost:8765/observatory/api/shops/' + id);
+    return this.http.get('https://localhost:8765/observatory/api/shops/' + id);
   }
 
   addShop(name, address, lng, lat, tags) {
@@ -80,7 +80,7 @@ export class DataService {
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
-    return this.http.post('http://localhost:8765/observatory/api/shops',
+    return this.http.post('https://localhost:8765/observatory/api/shops',
       body, {headers: headers});
   }
 
@@ -94,7 +94,7 @@ export class DataService {
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
-    return this.http.put('http://localhost:8765/observatory/api/shops/' + id,
+    return this.http.put('https://localhost:8765/observatory/api/shops/' + id,
       body, {headers: headers});
   }
 
@@ -102,7 +102,7 @@ export class DataService {
     console.log(id);
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
-    return this.http.delete('http://localhost:8765/observatory/api/shops/' + id, {headers: headers});
+    return this.http.delete('https://localhost:8765/observatory/api/shops/' + id, {headers: headers});
   }
 
   //PRICE TIME
@@ -153,7 +153,7 @@ export class DataService {
       }
     }
     console.log(params);
-    return this.http.get('http://localhost:8765/observatory/api/prices', {params: params});
+    return this.http.get('https://localhost:8765/observatory/api/prices', {params: params});
   }
 
   addPrice(price, dateTo, productId, shopId) {
@@ -165,7 +165,7 @@ export class DataService {
     const body = `value=${price}&dateTo=${dateTo}&productId=${productId}&shopId=${shopId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
-    return this.http.post('http://localhost:8765/observatory/api/prices',
+    return this.http.post('https://localhost:8765/observatory/api/prices',
       body, {headers: headers});
   }
 }
