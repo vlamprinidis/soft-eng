@@ -5,9 +5,9 @@
   <div class="ibox-body">
     <h4 style="text-decoration: underline;">Φίλτρα αναζήτησης</h4>
 
-     <p> Κάνε απλό κλικ σε όσα πεδία επιθυμείς: <b>Ή ΒΑΛΕ CHECKBOX! ΑΥΤΟ ΜΠΕΡΔΕΥΕΙ ΠΟΛΥ</b> </p>
+     <p> Επίλεξε τα καταστήματα και προϊόντα που επιθυμείς </p>
 
-    <div style="height: 80px;">
+   <!-- <div style="height: 80px;">
       <div style="float: left; width: 20%;">
         <label>
           Προϊόντα:
@@ -17,19 +17,6 @@
             </option>
           </select>
         </label>
-        <!--<div class="container">
-        <label *ngIf="myprods" >
-          <label ng-repeat="prod in myprods.products">
-            <input
-              type="checkbox"
-              name="selectedProds[]"
-              value="{{prod.id}}"
-              ng-checked="selection.indexOf(prod.id) > -1"
-              ng-click="toggleSelection(prod.id)"
-            > {{prod.id}}
-          </label>
-        </label>
-        </div>-->
       </div>
 
       <div style="float: left; width: 80%;">
@@ -37,19 +24,42 @@
           Καταστήματα:
           <select *ngIf="myshops" id="shop" multiple (change)="onShopSelect($event)" >
             <option *ngFor="let shop of myshops.shops" [value]="shop.id">
-              {{ shop.id}}:{{ shop.name }}
+              {{ shop.id}}:{{ shop.name }}-{{shop.address}}
             </option>
           </select>
         </label>
       </div>
     </div>
 
-    <div><p>
-    IDs επιλεγμένων προϊόντων: {{ products}}
-    <br>
-    IDs επιλεγμένων καταστημάτων: {{ shops}}
-    </p></div>
+-->
 
+
+    <table>
+      <label *ngIf="myprods" class="container">
+        <tr>
+          <label *ngFor="let prod of myprods.products" >{{ prod.id}}:{{ prod.name }}
+            <input  type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)">
+          </label>
+        </tr>
+      </label>
+    </table>
+
+    <table>
+    <label *ngIf="myshops" class="container">
+      <tr>
+      <label *ngFor="let shop of myshops.shops" >{{ shop.id}}:{{ shop.name }}-{{shop.address}}
+        <input  type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)">
+      </label>
+      </tr>
+    </label>
+    </table>
+
+    <br>
+    <div><p>
+      IDs επιλεγμένων προϊόντων: {{ products}}
+      <br>
+      IDs επιλεγμένων καταστημάτων: {{ shops}}
+    </p></div>
     <br>
     <br>
 
@@ -155,7 +165,7 @@
     <table *ngIf="pric" class="table table-striped table-bordered center" id="price-table" cellspacing="0" width="100%">
       <thead>
       <tr>
-        <th style="width:60px;">Τιμή</th>
+        <th style="width:60px;">Αξία</th>
         <th>Ημερομηνία</th>
         <th>Όνομα προϊόντος</th>
         <th>Tags προϊόντος</th>

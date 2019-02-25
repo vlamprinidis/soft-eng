@@ -6,15 +6,42 @@
 
     <div *ngIf="!success" >
       <h3>Χαρακτηριστικά Τιμών</h3>
+      <div style="height: 80px;">
+        <div style="float: left; width: 20%;">
+          <label>
+            Προϊόν:
+            <select *ngIf="myprods" id="prod" (change)="onProdSelect($event)" >
+              <option selected="selected" disabled="disabled">Επίλεξε προϊόν</option>
+              <option *ngFor="let prod of myprods.products" [value]="prod.id">
+                {{ prod.id}}:{{ prod.name }}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div style="float: left; width: 80%;">
+          <label>
+            Κατάστημα:
+            <select *ngIf="myshops" id="shop" (change)="onShopSelect($event)" >
+              <option selected="selected" disabled="disabled">Επίλεξε κατάστημα</option>
+              <option *ngFor="let shop of myshops.shops" [value]="shop.id">
+                {{ shop.id}}:{{ shop.name }}-{{shop.address}}
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <label>
           Τιμή:
           <input type="text" name="value" formControlName="value">
           <div *ngIf="submitted && messageForm.controls.value.errors" class="error">
-            <div *ngIf="messageForm.controls.value.errors.required">Η τιμή είναι απαραίτητη</div>
+            <div *ngIf="messageForm.controls.value.errors.min">Η τιμή είναι απαραίτητη και θετικός αριθμός</div>
           </div>
         </label>
 
+        <fieldset >
+          <legend>Για ισχύ εντός της σημερινής ημέρας να αφεθούν κενά:</legend>
         <label>
           Ημερομηνία έναρξης:
           <input type="date" name="dateFrom" formControlName="dateFrom">
@@ -30,14 +57,7 @@
             <div *ngIf="messageForm.controls.dateTo.errors.required">Η κατηγορία είναι απαραίτητη</div>
           </div>
         </label>
-
-        <label>
-          Tags(παραθέστε στη μορφή α,β,γ):
-          <input type="text" name="tags" formControlName="tags">
-          <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
-            <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
-          </div>
-        </label>
+        </fieldset>
 
         <input type="submit" value="Προσθήκη" class="cta">
 
@@ -46,31 +66,31 @@
 
 
     <div *ngIf="success" class="results">     <h1 *ngIf="success"><strong>Προσθήκη επιτυχής!</strong></h1>
-      <h3>Προϊόν:</h3>
+      <h3>Τιμή:</h3>
       <table class="table table-striped table-bordered table-hover" id="product-table" cellspacing="0" width="30%">
         <tr>
           <th>Id</th>
-          <td>{{ prod.id }}</td>
+          <td>{{ pric.id }}</td>
         </tr>
         <tr>
-          <th>Όνομα</th>
-          <td>{{prod.name }}</td>
+          <th>Αξία</th>
+          <td>{{pric.price }}</td>
         </tr>
         <tr>
-          <th>Περιγραφή</th>
-          <td>{{prod.description }}</td>
+          <th>Ημερομηνία έναρξης</th>
+          <td>{{pric.dateFrom }}</td>
         </tr>
         <tr>
-          <th>Κατηγορία</th>
-          <td>{{prod.category }}</td>
+          <th>Ημερομηνία λήξης</th>
+          <td>{{pric.dateTo }}</td>
         </tr>
         <tr>
-          <th>Ανενεργό</th>
-          <td>{{prod.withdrawn }}</td>
+          <th>Προϊόν</th>
+          <td>{{pric.productId }}</td>
         </tr>
         <tr>
-          <th>Tags</th>
-          <td>{{prod.tags }}</td>
+          <th>Κατάστημα</th>
+          <td>{{pric.shopId }}</td>
         </tr>
       </table>
     </div>

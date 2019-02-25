@@ -74,34 +74,104 @@ export class PricesComponent  implements OnInit {
 
   }
 
-  onProdSelect(event) {
-    console.log(event.target.value);
+  /* onProdSelect(event) {
+     console.log(event.target.value);
+     if(this.cntprod === 0){
+       this.products = event.target.value;
+       this.prodfirst = event.target.value;
+     } else {
+       if(!this.products.includes(','+ event.target.value + ',') && event.target.value !== this.prodfirst && event.target.value !== this.prodlast){
+         this.products = this.products + ',' + event.target.value;
+         this.prodlast = event.target.value;
+       }
+     }
+     this.cntprod ++;
+     console.log(this.products);
+   }
+
+   onShopSelect(event) {
+     console.log(event.target.value);
+     if(this.cntshop === 0){
+       this.shops = event.target.value;
+       this.shopfirst = event.target.value;
+     } else {
+       if(!this.shops.includes(','+ event.target.value + ',') && event.target.value !== this.shopfirst && event.target.value !== this.shoplast){
+         this.shops = this.shops + ',' + event.target.value;
+         this.shoplast = event.target.value;
+       }
+     }
+     this.cntshop ++;
+     console.log(this.shops);
+   }*/
+
+  onProdSelect(id,event) {
+    // console.log(event.target.value);
     if(this.cntprod === 0){
       this.products = event.target.value;
       this.prodfirst = event.target.value;
-    } else {
+      this.cntprod ++;
+    }else {
       if(!this.products.includes(','+ event.target.value + ',') && event.target.value !== this.prodfirst && event.target.value !== this.prodlast){
-        this.products = this.products + ',' + event.target.value;
-        this.prodlast = event.target.value;
+          this.products = this.products + ',' + event.target.value;
+          this.prodlast = event.target.value;
+          this.cntprod ++;
+      } else if(this.products.includes(','+ event.target.value + ',')) {
+          this.products = this.products.replace(',' + event.target.value +',', ',');
+          this.cntprod --;
+      } else if(event.target.value === this.prodfirst) {
+          if(this.cntprod === 1) {
+            this.products = this.products.replace(event.target.value, '');
+          } else {
+            this.products = this.products.replace(event.target.value + ',', '');
+          }
+          // console.log('begin ' + this.shops);
+          const str_array = this.products.split(',');
+          this.prodfirst = str_array[0];
+          this.cntprod --;
+      } else {
+          this.products = this.products.replace(',' + event.target.value, '');
+          const str_array = this.products.split(',');
+          this.prodlast = str_array[str_array.length - 1];
+          this.cntprod --;
       }
     }
-    this.cntprod ++;
     console.log(this.products);
+
   }
 
-  onShopSelect(event) {
-    console.log(event.target.value);
+  onShopSelect(id,event) {
+    // console.log(event.target.value);
     if(this.cntshop === 0){
       this.shops = event.target.value;
       this.shopfirst = event.target.value;
-    } else {
+      this.cntshop ++;
+    }else {
       if(!this.shops.includes(','+ event.target.value + ',') && event.target.value !== this.shopfirst && event.target.value !== this.shoplast){
         this.shops = this.shops + ',' + event.target.value;
         this.shoplast = event.target.value;
+        this.cntshop ++;
+      } else if(this.shops.includes(','+ event.target.value + ',')) {
+        this.shops = this.shops.replace(',' + event.target.value +',', ',');
+        this.cntshop --;
+      } else if(event.target.value === this.shopfirst) {
+        if(this.cntshop === 1) {
+          this.shops = this.shops.replace(event.target.value, '');
+        } else {
+          this.shops = this.shops.replace(event.target.value + ',', '');
+        }
+        // console.log('begin ' + this.shops);
+        const str_array = this.shops.split(',');
+        this.shopfirst = str_array[0];
+        this.cntshop --;
+      } else {
+        this.shops = this.shops.replace(',' + event.target.value, '');
+        const str_array = this.shops.split(',');
+        this.shoplast = str_array[str_array.length - 1];
+        this.cntshop --;
       }
     }
-    this.cntshop ++;
     console.log(this.shops);
+
   }
 
   onSortSelect(event) {
