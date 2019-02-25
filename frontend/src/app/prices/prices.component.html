@@ -5,18 +5,7 @@
   <div class="ibox-body">
     <h4 style="text-decoration: underline;">Φίλτρα αναζήτησης</h4>
 
-    <label>
-      Ταξινόμησε:
-      <select id="so" (change)="onSortSelect($event)" >
-        <option *ngFor="let so of sort" [value]="so">
-          {{ so }}
-        </option>
-      </select>
-    </label>
-
-    <br>
-
-    <p> Κάνε απλό κλικ σε όσα πεδία επιθυμείς: <b>Ή ΒΑΛΕ CHECKBOX! ΑΥΤΟ ΜΠΕΡΔΕΥΕΙ ΠΟΛΥ</b> </p>
+     <p> Κάνε απλό κλικ σε όσα πεδία επιθυμείς: <b>Ή ΒΑΛΕ CHECKBOX! ΑΥΤΟ ΜΠΕΡΔΕΥΕΙ ΠΟΛΥ</b> </p>
 
     <div style="height: 80px;">
       <div style="float: left; width: 20%;">
@@ -28,6 +17,19 @@
             </option>
           </select>
         </label>
+        <!--<div class="container">
+        <label *ngIf="myprods" >
+          <label ng-repeat="prod in myprods.products">
+            <input
+              type="checkbox"
+              name="selectedProds[]"
+              value="{{prod.id}}"
+              ng-checked="selection.indexOf(prod.id) > -1"
+              ng-click="toggleSelection(prod.id)"
+            > {{prod.id}}
+          </label>
+        </label>
+        </div>-->
       </div>
 
       <div style="float: left; width: 80%;">
@@ -63,7 +65,7 @@
       <fieldset >
         <legend>Τα 3 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα:</legend>
         <label>
-          Μέγιστη ακτίνα απόστασης:
+          Μέγιστη ακτίνα απόστασης(km):
           <input type="text" name="geoDist" formControlName="geoDist">
           <div *ngIf="submitted && messageForm.controls.geoDist.errors" class="error">
             <div *ngIf="messageForm.controls.geoDist.errors.required">Τα tags είναι απαραίτητα</div>
@@ -93,7 +95,7 @@
         <legend>Τα 2 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα(default η σημερινή ημερομηνία):</legend>
         <label>
           Ημερομηνία εκκίνησης:
-          <input type="text" name="dateFrom" formControlName="dateFrom">
+          <input type="date" name="dateFrom" formControlName="dateFrom">
           <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
             <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
           </div>
@@ -101,7 +103,7 @@
 
         <label>
           Ημερομηνία Λήξης:
-          <input type="text" name="dateTo" formControlName="dateTo">
+          <input type="date" name="dateTo" formControlName="dateTo">
           <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
             <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
           </div>
@@ -112,6 +114,9 @@
       <input type="submit" value="Εφαρμογή Φίλτρων" class="cta" style="margin: 20px;">
 
     </form>
+    <br>
+
+    <button (click)="refresh()">Εκκαθάριση φίλτρων</button>
     <br>
     <br>
     <!--<label>
@@ -137,7 +142,15 @@
       You have to provide all or none.
     </div>-->
 
-
+    <label>
+      Ταξινόμησε:
+      <select id="so" (change)="onSortSelect($event)" >
+        <option *ngFor="let so of sort" [value]="so">
+          {{ so }}
+        </option>
+      </select>
+    </label>
+    <br>
 
     <table *ngIf="pric" class="table table-striped table-bordered center" id="price-table" cellspacing="0" width="100%">
       <thead>
@@ -174,5 +187,5 @@
     <br>
     <br>
 
-    <a routerLink="/newprod"><button class="btn btn-success pull-right" class="cta" style="margin: 20px;">Πρόσθεσε Τιμή</button></a>
+    <a routerLink="/price-new"><button class="btn btn-success pull-right" class="cta" style="margin: 20px;">Πρόσθεσε Τιμή</button></a>
 </div>

@@ -17,6 +17,7 @@ import { ShopNewComponent } from './shop-new/shop-new.component';
 import { ShopShowComponent } from './shop-show/shop-show.component';
 import { ShopUpdateComponent } from './shop-update/shop-update.component';
 import {PricesComponent} from './prices/prices.component';
+import {PriceNewComponent} from './price-new/price-new.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },//, canActivate: [AuthGuard] },
@@ -33,7 +34,7 @@ const routes: Routes = [
   { path: 'prices', component: PricesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'loginhome', component: LoginhomeComponent},
-
+  { path: 'price-new', component: PriceNewComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

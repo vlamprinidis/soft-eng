@@ -122,13 +122,17 @@ export class PricesComponent  implements OnInit {
     }
   }
 
+  refresh(){
+    window.location.reload();
+  }
+
   onSubmit() {
     this.submitted = true;
 
-    if (((this.messageForm.controls.geoDist.value === null && this.messageForm.controls.geoLng.value === null && this.messageForm.controls.geoLat.value === null)
-    || (this.messageForm.controls.geoDist.value !== null && this.messageForm.controls.geoLng.value !== null && this.messageForm.controls.geoLat.value !== null))&&
-      ((this.messageForm.controls.dateFrom.value === null && this.messageForm.controls.dateTo.value === null )
-        || (this.messageForm.controls.dateFrom.value !== null && this.messageForm.controls.dateTo.value !== null ))){
+    if (((this.messageForm.controls.geoDist.value === '' && this.messageForm.controls.geoLng.value === '' && this.messageForm.controls.geoLat.value === '')
+    || (this.messageForm.controls.geoDist.value !== '' && this.messageForm.controls.geoLng.value !== '' && this.messageForm.controls.geoLat.value !== ''))&&
+      ((this.messageForm.controls.dateFrom.value === '' && this.messageForm.controls.dateTo.value === '' )
+        || (this.messageForm.controls.dateFrom.value !== '' && this.messageForm.controls.dateTo.value !== '' ))){
 
       this.success = true;
       console.log(this.messageForm.controls.tags.value);

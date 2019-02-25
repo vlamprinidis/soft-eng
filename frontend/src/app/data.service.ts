@@ -122,13 +122,21 @@ export class DataService {
     if (products !== '') {
       let str_array = products.split(',');
       for(let i = 0; i < str_array.length; i++) {
-        params = params.set('products', str_array[i]);
+        if( i == 0){
+          params = params.set('products', str_array[i]);
+        } else {
+          params = params.append('products', str_array[i]);
+        }
       }
     }
     if (shops !== '') {
       let str_array = shops.split(',');
       for(let i = 0; i < str_array.length; i++) {
-        params = params.set('shops', str_array[i]);
+        if( i == 0){
+          params = params.set('shops', str_array[i]);
+        } else {
+          params = params.append('shops', str_array[i]);
+        }
       }
     }
     // console.log(tags);

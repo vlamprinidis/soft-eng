@@ -1,0 +1,79 @@
+<div class="ibox">
+  <div class="ibox-head">
+    <h1 class="ibox-title">Προσθήκη νέου προϊόντος</h1>
+  </div>
+  <div class="ibox-body">
+
+    <div *ngIf="!success" >
+      <h3>Χαρακτηριστικά Τιμών</h3>
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <label>
+          Τιμή:
+          <input type="text" name="value" formControlName="value">
+          <div *ngIf="submitted && messageForm.controls.value.errors" class="error">
+            <div *ngIf="messageForm.controls.value.errors.required">Η τιμή είναι απαραίτητη</div>
+          </div>
+        </label>
+
+        <label>
+          Ημερομηνία έναρξης:
+          <input type="date" name="dateFrom" formControlName="dateFrom">
+          <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
+            <div *ngIf="messageForm.controls.dateFrom.errors.required">Η περιγραφή είναι απαραίτητη</div>
+          </div>
+        </label>
+
+        <label>
+          Ημερομηνία λήξης:
+          <input type="date" name="dateTo" formControlName="dateTo">
+          <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
+            <div *ngIf="messageForm.controls.dateTo.errors.required">Η κατηγορία είναι απαραίτητη</div>
+          </div>
+        </label>
+
+        <label>
+          Tags(παραθέστε στη μορφή α,β,γ):
+          <input type="text" name="tags" formControlName="tags">
+          <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
+            <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
+          </div>
+        </label>
+
+        <input type="submit" value="Προσθήκη" class="cta">
+
+      </form>
+    </div>
+
+
+    <div *ngIf="success" class="results">     <h1 *ngIf="success"><strong>Προσθήκη επιτυχής!</strong></h1>
+      <h3>Προϊόν:</h3>
+      <table class="table table-striped table-bordered table-hover" id="product-table" cellspacing="0" width="30%">
+        <tr>
+          <th>Id</th>
+          <td>{{ prod.id }}</td>
+        </tr>
+        <tr>
+          <th>Όνομα</th>
+          <td>{{prod.name }}</td>
+        </tr>
+        <tr>
+          <th>Περιγραφή</th>
+          <td>{{prod.description }}</td>
+        </tr>
+        <tr>
+          <th>Κατηγορία</th>
+          <td>{{prod.category }}</td>
+        </tr>
+        <tr>
+          <th>Ανενεργό</th>
+          <td>{{prod.withdrawn }}</td>
+        </tr>
+        <tr>
+          <th>Tags</th>
+          <td>{{prod.tags }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+

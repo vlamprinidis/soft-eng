@@ -26,6 +26,7 @@ import { ShopsComponent } from './shops/shops.component';
 import { ShopNewComponent } from './shop-new/shop-new.component';
 import { ShopShowComponent } from './shop-show/shop-show.component';
 import { ShopUpdateComponent } from './shop-update/shop-update.component';
+import { PriceNewComponent } from './price-new/price-new.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ShopUpdateComponent } from './shop-update/shop-update.component';
     ShopNewComponent,
     ShopShowComponent,
     ShopUpdateComponent,
+    PriceNewComponent,
   ],
   imports: [
     BrowserModule,
