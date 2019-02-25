@@ -13,8 +13,8 @@ export class PriceNewComponent implements OnInit {
   messageForm: FormGroup;
   submitted = false;
   success = false;
-  productId: number;
-  shopId: number;
+  productId = -1;
+  shopId = -1;
   myprods: Object;
   myshops: Object;
 
@@ -22,8 +22,7 @@ export class PriceNewComponent implements OnInit {
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
-      price: ['', Validators.min(0)],
-      dateFrom: [''],
+      price: ['', Validators.required],
       dateTo: [''],
     });
     this.data.getProducts('id|ASC', 'ACTIVE' ).subscribe(data => {
@@ -36,7 +35,6 @@ export class PriceNewComponent implements OnInit {
         console.log(this.myshops);
       }
     );
-    // this.productId = this.myprods. Get default value
   }
 
   onProdSelect(event) {
@@ -55,9 +53,23 @@ export class PriceNewComponent implements OnInit {
     if (this.messageForm.invalid) {
       return;
     }
+    if (this.productId === -1 || this.shopId === -1) {
+      alert('Πρέπει να επιλέξετε προϊόν και κατάστημα υποχρεωτικά');
+      return;
+    }
+
+    if(isNaN(parseFloat(this.messageForm.controls.price.value))){
+      alert('Η τιμή πρέπει να είναι αριθμός');
+      return;
+    }
+
+    if(this.messageForm.controls.price.value.includes(',')){
+      alert('Χρησιμοποιείστε "." για υποδιαστολή');
+      return;
+    }
 
     this.success = true;
-    this.data.addPrice(this.messageForm.controls.price.value, this.messageForm.controls.dateFrom.value,
+    this.data.addPrice(this.messageForm.controls.price.value,
       this.messageForm.controls.dateTo.value, this.productId, this.shopId).subscribe(data => {
         this.pric = data;
         console.log(this.pric);

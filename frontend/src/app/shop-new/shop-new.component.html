@@ -6,7 +6,7 @@
 
     <div *ngIf="!success" >
       <h3>Χαρακτηριστικά καταστήματος</h3>
-      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" accept-charset="ISO-8859-1">
         <label>
           Όνομα:
           <input type="text" name="name" formControlName="name">

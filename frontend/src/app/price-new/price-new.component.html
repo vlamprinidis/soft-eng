@@ -1,6 +1,6 @@
 <div class="ibox">
   <div class="ibox-head">
-    <h1 class="ibox-title">Προσθήκη νέου προϊόντος</h1>
+    <h1 class="ibox-title">Προσθήκη νέας τιμής</h1>
   </div>
   <div class="ibox-body">
 
@@ -34,30 +34,20 @@
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <label>
           Τιμή:
-          <input type="text" name="value" formControlName="value">
-          <div *ngIf="submitted && messageForm.controls.value.errors" class="error">
-            <div *ngIf="messageForm.controls.value.errors.min">Η τιμή είναι απαραίτητη και θετικός αριθμός</div>
-          </div>
-        </label>
-
-        <fieldset >
-          <legend>Για ισχύ εντός της σημερινής ημέρας να αφεθούν κενά:</legend>
-        <label>
-          Ημερομηνία έναρξης:
-          <input type="date" name="dateFrom" formControlName="dateFrom">
-          <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
-            <div *ngIf="messageForm.controls.dateFrom.errors.required">Η περιγραφή είναι απαραίτητη</div>
+          <input type="text" name="price" formControlName="price">
+          <div *ngIf="submitted && messageForm.controls.price.errors" class="error">
+            <div *ngIf="messageForm.controls.price.errors.required">Η τιμή είναι απαραίτητη και θετικός αριθμός</div>
           </div>
         </label>
 
         <label>
-          Ημερομηνία λήξης:
+          Ημερομηνία λήξης(Για ισχύ εντός της σημερινής ημέρας να αφεθεί κενό):
           <input type="date" name="dateTo" formControlName="dateTo">
           <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
             <div *ngIf="messageForm.controls.dateTo.errors.required">Η κατηγορία είναι απαραίτητη</div>
           </div>
         </label>
-        </fieldset>
+
 
         <input type="submit" value="Προσθήκη" class="cta">
 
@@ -74,7 +64,7 @@
         </tr>
         <tr>
           <th>Αξία</th>
-          <td>{{pric.price }}</td>
+          <td>{{pric.value }}</td>
         </tr>
         <tr>
           <th>Ημερομηνία έναρξης</th>

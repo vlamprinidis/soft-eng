@@ -156,14 +156,13 @@ export class DataService {
     return this.http.get('http://localhost:8765/observatory/api/prices', {params: params});
   }
 
-  addPrice(price, dateFrom, dateTo, productId, shopId) {
+  addPrice(price, dateTo, productId, shopId) {
     console.log(price);
-    console.log(dateFrom);
     console.log(dateTo);
     console.log(productId);
     console.log(shopId);
     // token = blah blah;
-    const body = `price=${price}&dateFrom=${dateFrom}&dateTo=${dateTo}&productId=${productId}&shopId=${shopId}`;
+    const body = `value=${price}&dateTo=${dateTo}&productId=${productId}&shopId=${shopId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.post('http://localhost:8765/observatory/api/prices',

@@ -21,8 +21,9 @@ export class ShopNewComponent implements OnInit {
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
       name: ['', Validators.required],
-      description: [''],
-      category: ['', Validators.required],
+      address: ['', Validators.required],
+      lng: ['', Validators.required],
+      lat: ['', Validators.required],
       tags: ['', Validators.required]
     });
   }
