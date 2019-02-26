@@ -2,55 +2,52 @@
   <div class="ibox-head">
     <h1 class="ibox-title">Εγγραφή</h1>
   </div>
-  <div class="ibox-body"  style="width:30%">
-
-    Αυτή η σελίδα δεν είναι ετοιμη!!! (Ο κωδικας .ts είναι αντιγραφή από το login.*.ts)
-
-    <br><br>
-
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="input-container">
-        <input class="input-field" type="text" placeholder="Όνομα" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" >
-        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-          <div *ngIf="f.name.errors.required">Το όνομα είναι απαραίτητο</div>
+  <div class="ibox-body">
+    <div *ngIf="!success" >
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="input-container">
+          <input class="input-field" type="text" placeholder="Όνομα" formControlName="name">
         </div>
-      </div>
 
-      <div class="input-container">
-        <input class="input-field" type="text" placeholder="Όνομα χρήστη" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" >
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-          <div *ngIf="f.username.errors.required">Το όνομα χρήστη είναι απαραίτητο</div>
-        </div>
-      </div>
+        <label class="input-container">
+          <input type="text" placeholder="Όνομα χρήστη" formControlName="username" class="input-field">
+          <div *ngIf="submitted && registerForm.controls.username.errors" class="error">
+            <div *ngIf="registerForm.controls.username.errors.required">Το όνομα χρήστη είναι απαραίτητο</div>
+          </div>
+        </label>
 
-      <div class="input-container">
-        <input class="input-field" type="password" placeholder="Κωδικός" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Ο κωδικός είναι απαραίτητος</div>
-        </div>
-      </div>
+        <label class="input-container">
+          <input class="input-field" type="text" placeholder="Email" formControlName="email">
+          <div *ngIf="submitted && registerForm.controls.email.errors" class="error">
+            <div *ngIf="registerForm.controls.email.errors.required">Το email είναι απαραίτητο</div>
+          </div>
+        </label>
 
-      <div class="input-container">
-        <input class="input-field" type="password" placeholder="Επιβεβαίωση κωδικού" formControlName="repass" [ngClass]="{ 'is-invalid': submitted && f.repass.errors }" >
-        <div *ngIf="submitted && f.repass.errors" class="invalid-feedback">
-          <div *ngIf="f.repass.errors.required">Παρακαλώ επιβεβαίωσε τον κωδικό σου</div>
-        </div>
-      </div>
+        <label class="input-container">
+          <input class="input-field" type="password" placeholder="Κωδικός" formControlName="password">
+          <div *ngIf="submitted && registerForm.controls.password.errors" class="error">
+            <div *ngIf="registerForm.controls.password.errors.required">Ο κωδικός είναι απαραίτητος</div>
+          </div>
+        </label>
 
-      <div class="form-group text-left" style="margin-bottom: 15px;">
-        <input type="checkbox" name="agree"> &nbsp; Συμφωνώ με τους όρους χρήσης
-      </div>
+        <label class="form-group text-left" style="margin-bottom: 15px;">
+          <input type="checkbox" formControlName="agree"> &nbsp; Συμφωνώ με τους όρους χρήσης
+          <div *ngIf="submitted && registerForm.controls.agree.errors" class="error">
+            <div *ngIf="registerForm.controls.agree.errors.required">Παρακαλώ συμφώνησε με τους όρους χρήσης για να συνεχίσεις</div>
+          </div>
+        </label>
 
-      <div>
-        <button [disabled]="loading" class="cta" style="width: 100%;">Εγγραφή</button>
-        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-      </div>
-    </form>
+        <input type="submit" value="Εγγραφή" class="cta" style="width: 30%;">
+      </form>
 
-    <div style="text-align: center; margin-top:20px;">
-      Είσαι ήδη χρήστης;
-      <a [routerLink]="['/login']" style="color:#4E022A;">Συνδέσου!</a>
+      <div style="text-align: center; margin-top:20px; width: 30%;">
+        Είσαι ήδη χρήστης;
+        <a [routerLink]="['/login']" style="color:#4E022A;">Συνδέσου!</a>
+      </div>
     </div>
 
+    <div *ngIf="success" class="results" style="width: 30%;">
+      <h1 *ngIf="success"><strong>Καλώς όρισες, {{user.username}}!</strong></h1>
+    </div>
   </div>
 </div>
