@@ -3,22 +3,6 @@ import { DataService } from '../data.service';
 import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl, } from '@angular/forms';
 
 
-/*const DistanceRequired = (control: AbstractControl) => {
-  const max = control.get('maxim');
-  const lng = control.get('lng');
-  const lat = control.get('lat');
-  const values = [
-    max.value,
-    lng.value,
-    lat.value
-  ];
-  if (values.every(x => x === '') || values.every(x => x !== '')) {
-    return null;
-  } else {
-    return {DistanceIncomplete: true};
-  }
-}; */
-
 @Component({
   selector: 'app-prices',
   templateUrl: './prices.component.html',
@@ -52,6 +36,7 @@ export class PricesComponent  implements OnInit {
   longitude: number = 23.7353989;
   map: any;
   ol: any;
+
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
@@ -104,36 +89,6 @@ export class PricesComponent  implements OnInit {
     });
 
   }
-
-  /* onProdSelect(event) {
-     console.log(event.target.value);
-     if(this.cntprod === 0){
-       this.products = event.target.value;
-       this.prodfirst = event.target.value;
-     } else {
-       if(!this.products.includes(','+ event.target.value + ',') && event.target.value !== this.prodfirst && event.target.value !== this.prodlast){
-         this.products = this.products + ',' + event.target.value;
-         this.prodlast = event.target.value;
-       }
-     }
-     this.cntprod ++;
-     console.log(this.products);
-   }
-
-   onShopSelect(event) {
-     console.log(event.target.value);
-     if(this.cntshop === 0){
-       this.shops = event.target.value;
-       this.shopfirst = event.target.value;
-     } else {
-       if(!this.shops.includes(','+ event.target.value + ',') && event.target.value !== this.shopfirst && event.target.value !== this.shoplast){
-         this.shops = this.shops + ',' + event.target.value;
-         this.shoplast = event.target.value;
-       }
-     }
-     this.cntshop ++;
-     console.log(this.shops);
-   }*/
 
   onProdSelect(id, event) {
     // console.log(event.target.value);
