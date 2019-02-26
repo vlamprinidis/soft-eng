@@ -5,18 +5,17 @@
   <div class="ibox-body">
 
     <div *ngIf="!success" >
-      <h3>Χαρακτηριστικά προϊόντος</h3>
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <label>
           Id:
-          <input type="text" name="id" value="{{id}}" readonly formControlName="id">
+          <input type="text" name="id" value="{{id}}" readonly formControlName="id" class="my-input">
           <div *ngIf="submitted && messageForm.controls.id.errors" class="error">
             <div *ngIf="messageForm.controls.id.errors.required">Το id είναι απαραίτητο</div>
           </div>
         </label>
         <label>
           Όνομα:
-          <input type="text" name="name" value="{{name}}" formControlName="name">
+          <input type="text" name="name" value="{{name}}" formControlName="name" class="my-input">
           <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
             <div *ngIf="messageForm.controls.name.errors.required">Το όνομα είναι απαραίτητο</div>
           </div>
@@ -24,7 +23,7 @@
 
         <label>
           Περιγραφή:
-          <input type="text" name="description" value="{{description}}" formControlName="description">
+          <input type="text" name="description" value="{{description}}" formControlName="description" class="my-input">
           <div *ngIf="submitted && messageForm.controls.description.errors" class="error">
             <div *ngIf="messageForm.controls.description.errors.required">Η περιγραφή είναι απαραίτητη</div>
           </div>
@@ -32,7 +31,7 @@
 
         <label>
           Κατηγορία:
-          <input type="text" name="category" value="{{category}}" formControlName="category">
+          <input type="text" name="category" value="{{category}}" formControlName="category" class="my-input">
           <div *ngIf="submitted && messageForm.controls.category.errors" class="error">
             <div *ngIf="messageForm.controls.category.errors.required">Η κατηγορία είναι απαραίτητη</div>
           </div>
@@ -40,7 +39,7 @@
 
         <label>
           Ανενεργό:
-          <input type="text" name="withdrawn" value="{{withdrawn}}" readonly formControlName="withdrawn">
+          <input type="text" name="withdrawn" value="{{withdrawn}}" readonly formControlName="withdrawn" class="my-input">
           <div *ngIf="submitted && messageForm.controls.withdrawn.errors" class="error">
             <div *ngIf="messageForm.controls.withdrawn.errors.required">Η withdrawn είναι απαραίτητη</div>
           </div>
@@ -48,7 +47,7 @@
 
         <label>
           Tags(παραθέστε στη μορφή α,β,γ):
-          <input type="text" name="tags" value="{{tags}}" formControlName="tags">
+          <input type="text" name="tags" value="{{tags}}" formControlName="tags" class="my-input">
           <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
             <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
           </div>

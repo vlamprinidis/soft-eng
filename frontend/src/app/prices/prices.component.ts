@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl,} from '@angular/forms';
 
+
 /*const DistanceRequired = (control: AbstractControl) => {
   const max = control.get('maxim');
   const lng = control.get('lng');
@@ -34,7 +35,7 @@ export class PricesComponent  implements OnInit {
   cntprod = 0;
   cntshop = 0;
 
-  constructor(private formBuilder: FormBuilder, private data: DataService) { }
+  constructor(private formBuilder: FormBuilder, private data: DataService) {}
 
   sort = ['Απόσταση αύξουσα', 'Απόσταση φθίνουσα', 'Τιμή αύξουσα', 'Τιμή φθίνουσα', 'Ημερομηνία αύξουσα', 'Ημερομηνία φθίνουσα'];
   getsort = 'price|ASC';

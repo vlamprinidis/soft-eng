@@ -3,154 +3,108 @@
     <h1 class="ibox-title">Τιμές</h1>
   </div>
   <div class="ibox-body">
-    <h4 style="text-decoration: underline;">Φίλτρα αναζήτησης</h4>
+    <div class="search-area">
+      <h4 style="text-decoration: underline; margin-top:0;">Φίλτρα αναζήτησης:</h4>
 
-     <p> Επίλεξε τα καταστήματα και προϊόντα που επιθυμείς </p>
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <mat-tab-group animationDuration="0ms">
+          <mat-tab label="Προϊόντα">
+            <div style="padding: 1em;">
+              <label *ngIf="myprods">
+                <label *ngFor="let prod of myprods.products" style="padding: 0.3em;">
+                  <input type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)"> &nbsp; {{ prod.id}} : {{ prod.name }}
+                </label>
+              </label>
+            </div>
+          </mat-tab>
 
-   <!-- <div style="height: 80px;">
-      <div style="float: left; width: 20%;">
-        <label>
-          Προϊόντα:
-          <select *ngIf="myprods" id="prod" multiple (change)="onProdSelect($event)" >
-            <option *ngFor="let prod of myprods.products" [value]="prod.id">
-              {{ prod.id}}:{{ prod.name }}
-            </option>
-          </select>
-        </label>
-      </div>
+          <mat-tab label="Καταστήματα">
+            <div style="padding: 1em;">
+              <label *ngIf="myshops">
+              <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
+                <input type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)"> &nbsp; {{ shop.id}} : {{ shop.name }} - {{shop.address}}
+              </label>
+            </label>
+            </div>
+          </mat-tab>
 
-      <div style="float: left; width: 80%;">
-        <label>
-          Καταστήματα:
-          <select *ngIf="myshops" id="shop" multiple (change)="onShopSelect($event)" >
-            <option *ngFor="let shop of myshops.shops" [value]="shop.id">
-              {{ shop.id}}:{{ shop.name }}-{{shop.address}}
-            </option>
-          </select>
-        </label>
-      </div>
+          <mat-tab label="Tags">
+            <div style="padding: 1em;">
+              <label>
+                <p>Tags(παραθέστε στη μορφή α,β,γ):</p>
+                <input type="text" name="tags" formControlName="tags" class="my-input">
+                <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
+                  <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
+                </div>
+              </label>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Απόσταση">
+            <div style="padding: 1em;">
+              <p>Τα 3 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα:</p>
+
+              <label>
+                Μέγιστη ακτίνα απόστασης(km):
+                <input type="text" name="geoDist" formControlName="geoDist" class="my-input">
+                <div *ngIf="submitted && messageForm.controls.geoDist.errors" class="error">
+                  <div *ngIf="messageForm.controls.geoDist.errors.required">Τα tags είναι απαραίτητα</div>
+                </div>
+              </label>
+
+              <label>
+                Γεωγραφικό μήκος:
+                <input type="text" name="geoLng" formControlName="geoLng" class="my-input">
+                <div *ngIf="submitted && messageForm.controls.geoLng.errors" class="error">
+                  <div *ngIf="messageForm.controls.geoLng.errors.required">Τα tags είναι απαραίτητα</div>
+                </div>
+              </label>
+
+              <label>
+                Γεωγραφικό πλάτος:
+                <input type="text" name="geoLat" formControlName="geoLat" class="my-input">
+                <div *ngIf="submitted && messageForm.controls.geoLat.errors" class="error">
+                  <div *ngIf="messageForm.controls.geoLat.errors.required">Τα tags είναι απαραίτητα</div>
+                </div>
+              </label>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Ημερομηνία">
+            <div style="padding: 1em;">
+              <p>Τα 2 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα(default η σημερινή ημερομηνία):</p>
+
+              <label>
+                Ημερομηνία εκκίνησης:
+                <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input">
+                <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
+                  <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
+                </div>
+              </label>
+
+              <label>
+                Ημερομηνία Λήξης:
+                <input type="date" name="dateTo" formControlName="dateTo" class="my-input">
+                <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
+                  <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
+                </div>
+              </label>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+
+        <div style="height:80px">
+          <div style="float: left;">
+            <input type="submit" value="Εφαρμογή Φίλτρων" class="cta" style="margin: 20px;">
+          </div>
+          <div style="float: right; padding-right: 20px;">
+            <button (click)="refresh()" class="cta" style="margin: 20px; background: #960516;">Εκκαθάριση φίλτρων</button>
+          </div>
+        </div>
+      </form>
     </div>
 
--->
-
-
-    <table>
-      <label *ngIf="myprods" class="container">
-        <tr>
-          <label *ngFor="let prod of myprods.products" >{{ prod.id}}:{{ prod.name }}
-            <input  type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)">
-          </label>
-        </tr>
-      </label>
-    </table>
-
-    <table>
-    <label *ngIf="myshops" class="container">
-      <tr>
-      <label *ngFor="let shop of myshops.shops" >{{ shop.id}}:{{ shop.name }}-{{shop.address}}
-        <input  type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)">
-      </label>
-      </tr>
-    </label>
-    </table>
-
-    <br>
-    <div><p>
-      IDs επιλεγμένων προϊόντων: {{ products}}
-      <br>
-      IDs επιλεγμένων καταστημάτων: {{ shops}}
-    </p></div>
-    <br>
-    <br>
-
-    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-      <label>
-        Tags(παραθέστε στη μορφή α,β,γ):
-        <input type="text" name="tags" formControlName="tags">
-        <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
-          <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
-        </div>
-      </label>
-
-      <fieldset >
-        <legend>Τα 3 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα:</legend>
-        <label>
-          Μέγιστη ακτίνα απόστασης(km):
-          <input type="text" name="geoDist" formControlName="geoDist">
-          <div *ngIf="submitted && messageForm.controls.geoDist.errors" class="error">
-            <div *ngIf="messageForm.controls.geoDist.errors.required">Τα tags είναι απαραίτητα</div>
-          </div>
-        </label>
-
-        <label>
-          Γεωγραφικό μήκος:
-          <input type="text" name="geoLng" formControlName="geoLng">
-          <div *ngIf="submitted && messageForm.controls.geoLng.errors" class="error">
-            <div *ngIf="messageForm.controls.geoLng.errors.required">Τα tags είναι απαραίτητα</div>
-          </div>
-        </label>
-
-        <label>
-          Γεωγραφικό πλάτος:
-          <input type="text" name="geoLat" formControlName="geoLat">
-          <div *ngIf="submitted && messageForm.controls.geoLat.errors" class="error">
-            <div *ngIf="messageForm.controls.geoLat.errors.required">Τα tags είναι απαραίτητα</div>
-          </div>
-        </label>
-      </fieldset>
-
-      <br>
-
-      <fieldset >
-        <legend>Τα 2 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα(default η σημερινή ημερομηνία):</legend>
-        <label>
-          Ημερομηνία εκκίνησης:
-          <input type="date" name="dateFrom" formControlName="dateFrom">
-          <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
-            <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
-          </div>
-        </label>
-
-        <label>
-          Ημερομηνία Λήξης:
-          <input type="date" name="dateTo" formControlName="dateTo">
-          <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
-            <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
-          </div>
-        </label>
-
-      </fieldset>
-
-      <input type="submit" value="Εφαρμογή Φίλτρων" class="cta" style="margin: 20px;">
-
-    </form>
-    <br>
-
-    <button (click)="refresh()">Εκκαθάριση φίλτρων</button>
-    <br>
-    <br>
-    <!--<label>
-      Tags(παραθέστε στη μορφή α,β,γ):
-      <input type="text" name="tags" formControlName="tags">
-      <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
-        <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
-      </div>
-    </label>
-    <fieldset formGroupName="distance">
-      <legend>Απόσταση</legend>
-      <div>
-        Μέγιστη ακτίνα: <input type="text" formControlName="maxim" />
-      </div>
-      <div>
-        Γεωγρ. Μήκος: <input type="text" formControlName="lng" />
-      </div>
-      <div>
-        Γεωγρ. Πλάτος: <input type="text" formControlName="lat" />
-      </div>
-    </fieldset>
-    <div class="error" *ngIf="messageForm.get('distance').touched && messageForm.get('distance').hasError('DistanceIncomplete')">
-      You have to provide all or none.
-    </div>-->
+    <br> <br> <br>
 
     <label>
       Ταξινόμησε:
@@ -166,7 +120,7 @@
       <thead>
       <tr>
         <th style="width:60px;">Αξία</th>
-        <th>Ημερομηνία</th>
+        <th>Ημερομηνία λήξης</th>
         <th>Όνομα προϊόντος</th>
         <th>Tags προϊόντος</th>
         <th>Όνομα καταστήματος</th>

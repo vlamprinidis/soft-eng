@@ -14,8 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginhomeComponent } from './loginhome/loginhome.component';
-
-import { PricesComponent } from './prices/prices.component';
+import { RegisterComponent } from './register/register.component';
 
 import { ProductsComponent } from './products/products.component';
 import { ProdNewComponent } from './prod-new/prod-new.component';
@@ -26,8 +25,12 @@ import { ShopsComponent } from './shops/shops.component';
 import { ShopNewComponent } from './shop-new/shop-new.component';
 import { ShopShowComponent } from './shop-show/shop-show.component';
 import { ShopUpdateComponent } from './shop-update/shop-update.component';
+
+import { PricesComponent } from './prices/prices.component';
 import { PriceNewComponent } from './price-new/price-new.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { PriceNewComponent } from './price-new/price-new.component';
     ShopShowComponent,
     ShopUpdateComponent,
     PriceNewComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,8 @@ import { PriceNewComponent } from './price-new/price-new.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],

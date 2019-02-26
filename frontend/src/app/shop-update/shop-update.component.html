@@ -5,18 +5,17 @@
   <div class="ibox-body">
 
     <div *ngIf="!success" >
-      <h3>Χαρακτηριστικά καταστήματος</h3>
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <label>
           Id:
-          <input type="text" name="id" value="{{id}}" readonly formControlName="id">
+          <input type="text" name="id" value="{{id}}" readonly formControlName="id" class="my-input">
           <div *ngIf="submitted && messageForm.controls.id.errors" class="error">
             <div *ngIf="messageForm.controls.id.errors.required">Το id είναι απαραίτητο</div>
           </div>
         </label>
         <label>
           Όνομα:
-          <input type="text" name="name" value="{{name}}" formControlName="name">
+          <input type="text" name="name" value="{{name}}" formControlName="name" class="my-input">
           <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
             <div *ngIf="messageForm.controls.name.errors.required">Το όνομα είναι απαραίτητο</div>
           </div>
@@ -24,7 +23,7 @@
 
         <label>
           Διεύθυνση:
-          <input type="text" name="address" value="{{address}}" formControlName="address">
+          <input type="text" name="address" value="{{address}}" formControlName="address" class="my-input">
           <div *ngIf="submitted && messageForm.controls.address.errors" class="error">
             <div *ngIf="messageForm.controls.address.errors.required">Η διεύθυνση είναι απαραίτητη</div>
           </div>
@@ -32,7 +31,7 @@
 
         <label>
           Γεωγραφικό μήκος:
-          <input type="text" name="lng" value="{{lng}}" formControlName="lng">
+          <input type="text" name="lng" value="{{lng}}" formControlName="lng" class="my-input">
           <div *ngIf="submitted && messageForm.controls.lng.errors" class="error">
             <div *ngIf="messageForm.controls.lng.errors.required">Το γεωγραφικό μήκος είναι απαραίτητο</div>
           </div>
@@ -40,7 +39,7 @@
 
         <label>
           Γεωγραφικό πλάτος:
-          <input type="text" name="lat" value="{{lat}}" formControlName="lat">
+          <input type="text" name="lat" value="{{lat}}" formControlName="lat" class="my-input">
           <div *ngIf="submitted && messageForm.controls.lat.errors" class="error">
             <div *ngIf="messageForm.controls.lat.errors.required">Το γεωγραφικό πλάτος είναι απαραίτητο</div>
           </div>
@@ -48,7 +47,7 @@
 
         <label>
           Ανενεργό:
-          <input type="text" name="withdrawn" value="{{withdrawn}}" readonly formControlName="withdrawn">
+          <input type="text" name="withdrawn" value="{{withdrawn}}" readonly formControlName="withdrawn" class="my-input">
           <div *ngIf="submitted && messageForm.controls.withdrawn.errors" class="error">
             <div *ngIf="messageForm.controls.withdrawn.errors.required">Η withdrawn είναι απαραίτητη</div>
           </div>
@@ -56,7 +55,7 @@
 
         <label>
           Tags(παραθέστε στη μορφή α,β,γ):
-          <input type="text" name="tags" value="{{tags}}" formControlName="tags">
+          <input type="text" name="tags" value="{{tags}}" formControlName="tags" class="my-input">
           <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
             <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
           </div>

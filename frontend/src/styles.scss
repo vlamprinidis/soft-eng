@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+* {font-family: 'Open Sans', sans-serif;}
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -15,11 +21,14 @@
   background: #4E022A;
   border: none;
   color: white;
-
   text-transform: uppercase;
   border-radius: 4px;
   padding: 1em;
   cursor: pointer;
+}
+
+.cta:hover {
+  opacity: 0.95;
 }
 
 section {
@@ -60,12 +69,26 @@ td, th {
   background-color: #FAE2EF;
 }*/
 
+.my-input {
+  display: block;
+  width: 50%;
+  margin-bottom: 20px;
+  padding: 1em;
+}
+
 label {
   display: block;
 
-  input, textarea {
+  textarea {
     display: block;
     width: 50%;
+    margin-bottom: 20px;
+    padding: 1em;
+  }
+
+  .new-sel {
+    width: 52.6%;
+    display: block;
     margin-bottom: 20px;
     padding: 1em;
   }
@@ -93,8 +116,9 @@ label {
 }
 
 
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+
+
+
 .clf:after, .clf:before {
   content: '';
   display: table; }

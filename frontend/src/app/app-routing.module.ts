@@ -18,6 +18,7 @@ import { ShopShowComponent } from './shop-show/shop-show.component';
 import { ShopUpdateComponent } from './shop-update/shop-update.component';
 import {PricesComponent} from './prices/prices.component';
 import {PriceNewComponent} from './price-new/price-new.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },//, canActivate: [AuthGuard] },
@@ -32,9 +33,10 @@ const routes: Routes = [
   { path: 'shop-show', component: ShopShowComponent },
   { path: 'shop-update', component: ShopUpdateComponent },
   { path: 'prices', component: PricesComponent },
+  { path: 'price-new', component: PriceNewComponent},
   { path: 'login', component: LoginComponent },
   { path: 'loginhome', component: LoginhomeComponent},
-  { path: 'price-new', component: PriceNewComponent},
+  { path: 'register', component: RegisterComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
