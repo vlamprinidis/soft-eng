@@ -106,12 +106,23 @@ public class ProductsResource extends ServerResource {
         String description = form.getFirstValue("description");
         String category = form.getFirstValue("category");
         boolean withdrawn = Boolean.valueOf(form.getFirstValue("withdrawn"));
-        String tags = form.getFirstValue("tags");
+		
+        String tags = "";
+		String[] mytags = form.getValuesArray("tags"); 
+		
+		if(name==null||category==null||mytags.length == 0)
+			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
+		
+		for(int i=0; i<mytags.length; i++){
+			if(i!=0)tags = tags + ",";
+			tags = tags + mytags[i];
+		}
+
+		//getNext value
 
         //validate the values (in the general case)
         //...
-		if(name==null||category==null||tags==null)
-			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
+		
 
         Product product = dataAccess.addProduct(name, description, category, withdrawn, tags);
 

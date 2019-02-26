@@ -129,11 +129,18 @@ public class ProductResource extends ServerResource {
 			String description = form.getFirstValue("description");
 			String category = form.getFirstValue("category");
 			String withdrawn = form.getFirstValue("withdrawn");
-			String tags = form.getFirstValue("tags");
 			boolean with = Boolean.valueOf(withdrawn);
 			
-			if(name==null||category==null||tags==null)
+			String tags = "";
+			String[] mytags = form.getValuesArray("tags");
+			
+			if(name==null||category==null||mytags.length == 0)
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
+			
+			for(int i=0; i<mytags.length; i++){
+				if(i!=0)tags = tags + ",";
+				tags = tags + mytags[i];
+			}
 			
 			Optional<Product> optional;
 			optional = dataAccess.fullUpdateProduct(id,name, description, category, with, tags);
@@ -180,8 +187,10 @@ public class ProductResource extends ServerResource {
 					String description = form.getFirstValue("description");
 					String category = form.getFirstValue("category");
 					String withdrawn = form.getFirstValue("withdrawn");
-					String tags = form.getFirstValue("tags");
 					boolean with = Boolean.valueOf(withdrawn);
+					String tags = "";
+					String[] mytags = form.getValuesArray("tags"); 
+					
 					Product product;
 					String param = new String();
 					Optional<Product> optional;
@@ -205,8 +214,12 @@ public class ProductResource extends ServerResource {
 							optional = dataAccess.partialUpdateProduct(id,param,withdrawn);
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
 					}
-					else if(tags!=null){
+					else if(mytags.length != 0){
 							param = "tags";
+							for(int i=0; i<mytags.length; i++){
+								if(i!=0)tags = tags + ",";
+								tags = tags + mytags[i];
+							}
 							optional = dataAccess.partialUpdateProduct(id,param,tags);
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
 					}

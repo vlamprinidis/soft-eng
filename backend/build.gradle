@@ -25,12 +25,16 @@ repositories {
 	maven { 
         url "https://jitpack.io"  /////
     }
+	
 }
 
 dependencies {
     compile "javax.servlet:javax.servlet-api:3.1.0"              //the Java servlet libraries
     //compile "org.codehaus.groovy:groovy-all:2.4.15"            //the Groovy lang
 	compile "javax.mail:mail:1.4.7"
+	compile "javax.json:javax.json-api:1.0"
+	compile "org.json:json:20171018"
+	compile "com.googlecode.json-simple:json-simple:1.1.1"
 
     compile "org.restlet.jee:org.restlet:2.3.12"                 //for writing RESTful APIs
     compile "com.google.code.gson:gson:2.8.2"                    //json library

@@ -128,10 +128,16 @@ public class ShopResource extends ServerResource {
 			double lng = Double.valueOf(form.getFirstValue("lng"));
 			double lat = Double.valueOf(form.getFirstValue("lat"));
 			boolean withdrawn = Boolean.valueOf(form.getFirstValue("withdrawn"));
-			String tags = form.getFirstValue("tags");
+			String tags = "";
+			String[] mytags = form.getValuesArray("tags"); 
 			
-			if(name==null||address==null||form.getFirstValue("lng")==null||form.getFirstValue("lat")==null||tags==null)
+			if(name==null||address==null||form.getFirstValue("lng")==null||form.getFirstValue("lat")==null||mytags.length == 0)
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,address,lng,lat and tags are compulsory fields");
+			
+			for(int i=0; i<mytags.length; i++){
+				if(i!=0)tags = tags + ",";
+				tags = tags + mytags[i];
+			}
 
 			Optional<Shop> optional = dataAccess.fullUpdateShop(id,name, address, lng, lat, withdrawn, tags);
 			shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
@@ -175,8 +181,9 @@ public class ShopResource extends ServerResource {
 			String lng = form.getFirstValue("lng");
 			String lat = form.getFirstValue("lat");
 			String withdrawn = form.getFirstValue("withdrawn");                                             
-			String tags = form.getFirstValue("tags");
-
+			String tags = "";
+			String[] mytags = form.getValuesArray("tags"); 
+			
 			Shop shop;
 			String param = new String();
 			Optional<Shop> optional;
@@ -205,8 +212,12 @@ public class ShopResource extends ServerResource {
 					optional = dataAccess.partialUpdateShop(id,param,withdrawn);
 					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
 			}
-			else if(tags!=null){
+			else if(mytags.length != 0){
 					param = "tags";
+					for(int i=0; i<mytags.length; i++){
+						if(i!=0)tags = tags + ",";
+						tags = tags + mytags[i];
+					}
 					optional = dataAccess.partialUpdateShop(id,param,tags);
 					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
 			}

@@ -106,12 +106,19 @@ public class ShopsResource extends ServerResource {
 			double lng = Double.valueOf(form.getFirstValue("lng"));
 			double lat = Double.valueOf(form.getFirstValue("lat"));
 			boolean withdrawn = Boolean.valueOf(form.getFirstValue("withdrawn"));
-			String tags = form.getFirstValue("tags");
+			
+			String tags = "";
+			String[] mytags = form.getValuesArray("tags"); 
 
 			//validate the values (in the general case)
 			//...
-			if(name==null||address==null||form.getFirstValue("lng")==null||form.getFirstValue("lat")==null||tags==null)
+			if(name==null||address==null||form.getFirstValue("lng")==null||form.getFirstValue("lat")==null||mytags.length == 0)
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,address,lng,lat and tags are compulsory fields");
+			
+			for(int i=0; i<mytags.length; i++){
+				if(i!=0)tags = tags + ",";
+				tags = tags + mytags[i];
+			}
 
 			Shop shop = dataAccess.addShop(name, address, lng, lat, withdrawn, tags);
 

@@ -15,13 +15,31 @@ import java.security.MessageDigest;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Base64;
+//import javax.json.*;
+//import org.restlet.ext.json.JsonRepresentation;
+//import org.json.simple.parser.*;
+//import org.json.*;
+//import com.google.gson.*;
+//import com.google.gson.JsonParser.*;
+//import com.google.api.client.json.JsonParser.*;
 
 public class LoginResource extends ServerResource {
 
     private final DataAccess dataAccess = Configuration.getInstance().getDataAccess();
-   
+   //@Post("json") 
     @Override
     protected Representation post(Representation entity) throws ResourceException {
+		//System.out.println("it is my" +entity); 
+		/*JsonRepresentation represent = new JsonRepresentation(entity);
+        JSONObject jsonobject = represent.toJsonObject();
+        JSONObject json  = jsonobject.getJSONObject("request");*/
+		
+		//JsonRepresentation represent = new JsonRepresentation(entity);
+		//String represent = entity.getText();
+        //JsonObject object = new JsonParser().parse(represent).getAsJsonObject();
+		//JSONObject object = represent.toJsonObject();
+		//String username = object.getString("username");
+		//String password = object.getString("password");
 	
 		String format = getQueryValue("format");
 		if(format!=null && format.equals("xml"))
@@ -32,6 +50,9 @@ public class LoginResource extends ServerResource {
         //Read the parameters
         String username = form.getFirstValue("username");
         String password = form.getFirstValue("password");
+		
+		//System.out.println("it is " + username + " " + password ); 
+		
 		String pass2= new String();
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -53,8 +74,9 @@ public class LoginResource extends ServerResource {
 		if(!mypass.equals(pass2)){
 			throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Invalid login. Please check your name and password");
 		}
-		String userCredentials = "username:" + username + ",password:" + password;
+		String userCredentials = username + "," + password;
 		String basicAuth = new String(Base64.getEncoder().encode(userCredentials.getBytes()));
+		//System.out.println("it is " +  basicAuth); 
 			
 		int success = dataAccess.changeToken(username,basicAuth);
 		if(success==0) 
