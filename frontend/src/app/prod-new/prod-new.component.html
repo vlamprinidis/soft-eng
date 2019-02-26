@@ -1,3 +1,11 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+</head>
+
+<body>
+
 <div class="ibox">
   <div class="ibox-head">
     <h1 class="ibox-title">Προσθήκη νέου προϊόντος</h1>
@@ -5,7 +13,7 @@
   <div class="ibox-body">
 
     <div *ngIf="!success" >
-      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" accept-charset="utf-8">
         <label>
           Όνομα:
           <input type="text" name="name" formControlName="name" class="my-input">
@@ -75,4 +83,7 @@
     </div>
   </div>
 </div>
+
+</body>
+</html>
 

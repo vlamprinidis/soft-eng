@@ -6,15 +6,15 @@ import java.util.Date;
 public class Price {
 
 	private final long id;
-	private final double value;
+	private final double price;
 	private final Date dateFrom;
 	private final Date dateTo;
 	private final long productId;
 	private final long shopId;
 
-	public Price(long id, double value, Date dateFrom, Date dateTo, long productId, long shopId) {
+	public Price(long id, double price, Date dateFrom, Date dateTo, long productId, long shopId) {
 		this.id          = id;
-		this.value       = value;
+		this.price       = price;
 		this.dateFrom   = dateFrom;
 		this.dateTo     = dateTo;
 		this.productId   = productId;
@@ -25,8 +25,8 @@ public class Price {
 		return id;
 	}
 
-	public double getValue(){
-		return value;
+	public double getPrice(){
+		return price;
 	}
 
 	public Date getDateFrom() {
@@ -49,8 +49,8 @@ public class Price {
 		public boolean equals(Object o) {
 			if (this == o) return true;
 			if (o == null || getClass() != o.getClass()) return false;
-			Price price = (Price) o;
-			return id == price.id;
+			Price pric = (Price) o;
+			return id == pric.id;
 		}
 
 	@Override

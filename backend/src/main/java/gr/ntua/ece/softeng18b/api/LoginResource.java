@@ -1,6 +1,6 @@
 package gr.ntua.ece.softeng18b.api;
 import org.restlet.data.Status;
-import gr.ntua.ece.softeng18b.data.model.Message;
+import gr.ntua.ece.softeng18b.data.model.Token;
 import gr.ntua.ece.softeng18b.conf.Configuration;
 import gr.ntua.ece.softeng18b.data.DataAccess;
 import gr.ntua.ece.softeng18b.data.model.User;
@@ -53,14 +53,14 @@ public class LoginResource extends ServerResource {
 		if(!mypass.equals(pass2)){
 			throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "Invalid login. Please check your name and password");
 		}
-		String userCredentials = username + ":" + password;
+		String userCredentials = "username:" + username + ",password:" + password;
 		String basicAuth = new String(Base64.getEncoder().encode(userCredentials.getBytes()));
 			
 		int success = dataAccess.changeToken(username,basicAuth);
 		if(success==0) 
 			throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND,  "User not found - username: " + username);
 		
-		Message message = new Message(basicAuth);
-		return new JsonMessageRepresentation(message);
+		Token token = new Token(basicAuth);
+		return new JsonTokenRepresentation(token);
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gr.ntua.ece.softeng18b.RestAPISpecification" tests="2" skipped="1" failures="1" errors="0" timestamp="2019-02-25T19:14:26" hostname="DESKTOP-3A5GUF9" time="1.114">
+  <properties/>
+  <testcase name="User logins" classname="gr.ntua.ece.softeng18b.RestAPISpecification" time="1.113">
+    <failure message="java.lang.RuntimeException: Error 404: Not Found" type="java.lang.RuntimeException">java.lang.RuntimeException: Error 404: Not Found
+	at gr.ntua.ece.softeng18b.client.rest.RestResponseHandler.handleResponse(RestResponseHandler.groovy:25)
+	at org.apache.http.client.fluent.Response.handleResponse(Response.java:90)
+	at gr.ntua.ece.softeng18b.client.rest.LowLevelAPI.execute(LowLevelAPI.groovy:66)
+	at gr.ntua.ece.softeng18b.client.rest.LowLevelAPI.login(LowLevelAPI.groovy:74)
+	at gr.ntua.ece.softeng18b.client.RestAPI.login(RestAPI.groovy:22)
+	at gr.ntua.ece.softeng18b.RestAPISpecification.User logins(RestAPISpecification.groovy:22)
+</failure>
+  </testcase>
+  <testcase name="User adds product" classname="gr.ntua.ece.softeng18b.RestAPISpecification" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -32,9 +32,18 @@ export class DataService {
     console.log(category);
     console.log(tags);
     // token = blah blah;
+    /*try{
+      // If the string is UTF-8, this will work and not throw an error.
+       name=unescape(encodeURIComponent(name));;
+      console.log('decoded' + name);
+    }catch(e){
+      // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
+      name=name;
+      console.log(name);
+    }*/
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
+      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
     return this.http.post('https://localhost:8765/observatory/api/products',
      body, {headers: headers});
   }
@@ -47,7 +56,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
     return this.http.put('https://localhost:8765/observatory/api/products/' + id,
       body, {headers: headers});
   }
@@ -79,7 +88,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
     return this.http.post('https://localhost:8765/observatory/api/shops',
       body, {headers: headers});
   }
@@ -93,7 +102,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
     return this.http.put('https://localhost:8765/observatory/api/shops/' + id,
       body, {headers: headers});
   }
@@ -162,9 +171,9 @@ export class DataService {
     console.log(productId);
     console.log(shopId);
     // token = blah blah;
-    const body = `value=${price}&dateTo=${dateTo}&productId=${productId}&shopId=${shopId}`;
+    const body = `price=${price}&dateTo=${dateTo}&productId=${productId}&shopId=${shopId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
     return this.http.post('https://localhost:8765/observatory/api/prices',
       body, {headers: headers});
   }

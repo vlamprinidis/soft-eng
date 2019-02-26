@@ -98,6 +98,7 @@ export class ProductsComponent implements OnInit {
     );}
   }
 
+
   onSubmit() {
     this.submitted = true;
     this.data.getProducts('id|ASC', 'ALL' ).subscribe(data => {

@@ -488,14 +488,14 @@ public class DataAccess {
 		int count;
 		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + "", Integer.class);
 		limits.setTotal(count);
-		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address, dist from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new ShowPriceRowMapper());
+		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address, dist from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where product.withdrawn = 0 and shop.withdrawn = 0 and productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new ShowPriceRowMapper());
 	}
 	
 public List<NoDistShowPrice> getPrices2(Limits limits,String sort,String shops,String products, String tgs) {
 		int count;
 		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + "", Integer.class);
 		limits.setTotal(count);
-		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address from price,product,shop,tdate where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new NoDistShowPriceRowMapper());
+		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address from price,product,shop,tdate where product.withdrawn = 0 and shop.withdrawn = 0 and productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new NoDistShowPriceRowMapper());
 	}
 	
 	public Optional<User> getUserByToken(String auth) {

@@ -13,7 +13,7 @@ public class PriceRowMapper implements RowMapper {
 		public Price mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 			long id            = rs.getLong("id");
-			double value = rs.getDouble("value");
+			double value = rs.getDouble("price");
 			Date dateFrom        = rs.getDate("dateFrom");
 			Date dateTo = rs.getDate("dateTo");
 			long productId            = rs.getLong("productId");

@@ -43,7 +43,7 @@ export class ProdNewComponent implements OnInit {
     if (this.messageForm.invalid) {
       return;
     }
-
+    console.log(this.messageForm.controls.name.value);
     this.success = true;
     this.data.addProduct(this.messageForm.controls.name.value, this.messageForm.controls.description.value,
       this.messageForm.controls.category.value, this.messageForm.controls.tags.value).subscribe(data => {

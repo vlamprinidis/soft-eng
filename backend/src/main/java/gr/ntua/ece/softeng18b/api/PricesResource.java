@@ -200,7 +200,7 @@ public class PricesResource extends ServerResource {
 			
 			Form form = new Form(entity);
 			//Read the parameters
-			String value = form.getFirstValue("value");
+			String value = form.getFirstValue("price");
 			//String date1 = form.getFirstValue("dateFrom");
 			String date2 = form.getFirstValue("dateTo");
 			//if(date1==null){
@@ -223,7 +223,7 @@ public class PricesResource extends ServerResource {
 			//validate the values (in the general case)
 			//...
 			if(value==null||productId==null||shopId==null)
-				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Value,productId and shopId are compulsory fields");
+				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Price,productId and shopId are compulsory fields");
 			
 			double val = Double.valueOf(value);
 			long prodId = Long.valueOf(productId);
