@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl,} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl, } from '@angular/forms';
 
 
 /*const DistanceRequired = (control: AbstractControl) => {
@@ -47,6 +47,12 @@ export class PricesComponent  implements OnInit {
   shopfirst = '';
   shoplast = '';
 
+  // MAP STUFF
+  latitude: number = 37.9758788;
+  longitude: number = 23.7353989;
+  map: any;
+  ol: any;
+
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
       tags: [''],
@@ -72,6 +78,30 @@ export class PricesComponent  implements OnInit {
         console.log(this.pric);
       }
     );
+
+    // MAP CODE
+    this.map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([this.longitude, this.latitude]),
+        zoom: 16
+      })
+    });
+
+    this.map.on('click', function (args) {
+      console.log(args.coordinate);
+      const lonlat = ol.proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
+      console.log(lonlat);
+
+      const lon = lonlat[0];
+      const lat = lonlat[1];
+      alert(`lat: ${lat} long: ${lon}`);
+    });
 
   }
 
@@ -105,22 +135,22 @@ export class PricesComponent  implements OnInit {
      console.log(this.shops);
    }*/
 
-  onProdSelect(id,event) {
+  onProdSelect(id, event) {
     // console.log(event.target.value);
-    if(this.cntprod === 0){
+    if (this.cntprod === 0) {
       this.products = event.target.value;
       this.prodfirst = event.target.value;
       this.cntprod ++;
-    }else {
-      if(!this.products.includes(','+ event.target.value + ',') && event.target.value !== this.prodfirst && event.target.value !== this.prodlast){
+    } else {
+      if (!this.products.includes(',' + event.target.value + ',') && event.target.value !== this.prodfirst && event.target.value !== this.prodlast) {
           this.products = this.products + ',' + event.target.value;
           this.prodlast = event.target.value;
           this.cntprod ++;
-      } else if(this.products.includes(','+ event.target.value + ',')) {
-          this.products = this.products.replace(',' + event.target.value +',', ',');
+      } else if (this.products.includes(',' + event.target.value + ',')) {
+          this.products = this.products.replace(',' + event.target.value + ',', ',');
           this.cntprod --;
-      } else if(event.target.value === this.prodfirst) {
-          if(this.cntprod === 1) {
+      } else if (event.target.value === this.prodfirst) {
+          if (this.cntprod === 1) {
             this.products = this.products.replace(event.target.value, '');
           } else {
             this.products = this.products.replace(event.target.value + ',', '');
@@ -140,22 +170,22 @@ export class PricesComponent  implements OnInit {
 
   }
 
-  onShopSelect(id,event) {
+  onShopSelect(id, event) {
     // console.log(event.target.value);
-    if(this.cntshop === 0){
+    if (this.cntshop === 0) {
       this.shops = event.target.value;
       this.shopfirst = event.target.value;
       this.cntshop ++;
-    }else {
-      if(!this.shops.includes(','+ event.target.value + ',') && event.target.value !== this.shopfirst && event.target.value !== this.shoplast){
+    } else {
+      if (!this.shops.includes(',' + event.target.value + ',') && event.target.value !== this.shopfirst && event.target.value !== this.shoplast) {
         this.shops = this.shops + ',' + event.target.value;
         this.shoplast = event.target.value;
         this.cntshop ++;
-      } else if(this.shops.includes(','+ event.target.value + ',')) {
-        this.shops = this.shops.replace(',' + event.target.value +',', ',');
+      } else if (this.shops.includes(',' + event.target.value + ',')) {
+        this.shops = this.shops.replace(',' + event.target.value + ',', ',');
         this.cntshop --;
-      } else if(event.target.value === this.shopfirst) {
-        if(this.cntshop === 1) {
+      } else if (event.target.value === this.shopfirst) {
+        if (this.cntshop === 1) {
           this.shops = this.shops.replace(event.target.value, '');
         } else {
           this.shops = this.shops.replace(event.target.value + ',', '');
@@ -193,7 +223,7 @@ export class PricesComponent  implements OnInit {
     }
   }
 
-  refresh(){
+  refresh() {
     window.location.reload();
   }
 
@@ -201,9 +231,9 @@ export class PricesComponent  implements OnInit {
     this.submitted = true;
 
     if (((this.messageForm.controls.geoDist.value === '' && this.messageForm.controls.geoLng.value === '' && this.messageForm.controls.geoLat.value === '')
-    || (this.messageForm.controls.geoDist.value !== '' && this.messageForm.controls.geoLng.value !== '' && this.messageForm.controls.geoLat.value !== ''))&&
+    || (this.messageForm.controls.geoDist.value !== '' && this.messageForm.controls.geoLng.value !== '' && this.messageForm.controls.geoLat.value !== '')) &&
       ((this.messageForm.controls.dateFrom.value === '' && this.messageForm.controls.dateTo.value === '' )
-        || (this.messageForm.controls.dateFrom.value !== '' && this.messageForm.controls.dateTo.value !== '' ))){
+        || (this.messageForm.controls.dateFrom.value !== '' && this.messageForm.controls.dateTo.value !== '' ))) {
 
       this.success = true;
       console.log(this.messageForm.controls.tags.value);

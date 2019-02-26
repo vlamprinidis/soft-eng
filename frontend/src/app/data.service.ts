@@ -43,7 +43,7 @@ export class DataService {
     }*/
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
-      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.post('https://localhost:8765/observatory/api/products',
      body, {headers: headers});
   }
@@ -56,7 +56,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.put('https://localhost:8765/observatory/api/products/' + id,
       body, {headers: headers});
   }
@@ -64,7 +64,7 @@ export class DataService {
   deleteProduct(id) {
     console.log(id);
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.delete('https://localhost:8765/observatory/api/products/' + id, {headers: headers});
   }
 
@@ -88,7 +88,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.post('https://localhost:8765/observatory/api/shops',
       body, {headers: headers});
   }
@@ -102,7 +102,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.put('https://localhost:8765/observatory/api/shops/' + id,
       body, {headers: headers});
   }
@@ -110,7 +110,7 @@ export class DataService {
   deleteShop(id) {
     console.log(id);
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.delete('https://localhost:8765/observatory/api/shops/' + id, {headers: headers});
   }
 
@@ -173,8 +173,28 @@ export class DataService {
     // token = blah blah;
     const body = `price=${price}&dateTo=${dateTo}&productId=${productId}&shopId=${shopId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'dXNlcm5hbWU6cm9vdGtva28scGFzc3dvcmQ6cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.post('https://localhost:8765/observatory/api/prices',
       body, {headers: headers});
+  }
+
+
+  // REGISTER
+  addUser(username, password, name, email, admin) {
+    console.log(username);
+    console.log(password);
+    console.log(name);
+    console.log(email);
+    console.log(admin);
+
+    const body = `username=${username}&password=${password}&name=${name}&email=${email}&admin=${admin}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
+      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+    return this.http.post('https://localhost:8765/observatory/api/signup',
+      body, {headers: headers});
+  }
+
+  getUser() {
+    return this.http.get('https://localhost:8765/observatory/api/signup/');
   }
 }

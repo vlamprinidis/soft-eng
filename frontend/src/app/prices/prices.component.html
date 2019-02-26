@@ -7,91 +7,100 @@
       <h4 style="text-decoration: underline; margin-top:0;">Φίλτρα αναζήτησης:</h4>
 
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-        <mat-tab-group animationDuration="0ms">
-          <mat-tab label="Προϊόντα">
-            <div style="padding: 1em;">
-              <label *ngIf="myprods">
-                <label *ngFor="let prod of myprods.products" style="padding: 0.3em;">
-                  <input type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)"> &nbsp; {{ prod.id}} : {{ prod.name }}
+        <div style="height:350px;">
+          <div style="float:left; height:350px; width: 35%; background-color: black;">
+            <div id="map" class="map" style="width:100%; height:100%"></div>
+          </div>
+
+          <div style="float:left; margin-left: 30px;">
+            <mat-tab-group animationDuration="0ms">
+              <mat-tab label="Προϊόντα">
+                <div class="search-tab">
+                  <label *ngIf="myprods">
+                    <label *ngFor="let prod of myprods.products" style="padding: 0.3em;">
+                      <input type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)"> &nbsp; {{ prod.id}} : {{ prod.name }}
+                    </label>
+                  </label>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="Καταστήματα">
+                <div class="search-tab">
+                  <label *ngIf="myshops">
+                  <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
+                    <input type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)"> &nbsp; {{ shop.id}} : {{ shop.name }} - {{shop.address}}
+                  </label>
                 </label>
-              </label>
-            </div>
-          </mat-tab>
-
-          <mat-tab label="Καταστήματα">
-            <div style="padding: 1em;">
-              <label *ngIf="myshops">
-              <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
-                <input type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)"> &nbsp; {{ shop.id}} : {{ shop.name }} - {{shop.address}}
-              </label>
-            </label>
-            </div>
-          </mat-tab>
-
-          <mat-tab label="Tags">
-            <div style="padding: 1em;">
-              <label>
-                <p>Tags(παραθέστε στη μορφή α,β,γ):</p>
-                <input type="text" name="tags" formControlName="tags" class="my-input">
-                <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
-                  <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
                 </div>
-              </label>
-            </div>
-          </mat-tab>
+              </mat-tab>
 
-          <mat-tab label="Απόσταση">
-            <div style="padding: 1em;">
-              <p>Τα 3 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα:</p>
-
-              <label>
-                Μέγιστη ακτίνα απόστασης(km):
-                <input type="text" name="geoDist" formControlName="geoDist" class="my-input">
-                <div *ngIf="submitted && messageForm.controls.geoDist.errors" class="error">
-                  <div *ngIf="messageForm.controls.geoDist.errors.required">Τα tags είναι απαραίτητα</div>
+              <mat-tab label="Tags">
+                <div class="search-tab">
+                  <label>
+                    <p>Tags(παραθέστε στη μορφή α,β,γ):</p>
+                    <input type="text" name="tags" formControlName="tags" class="my-input">
+                    <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
+                      <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
+                    </div>
+                  </label>
                 </div>
-              </label>
+              </mat-tab>
 
-              <label>
-                Γεωγραφικό μήκος:
-                <input type="text" name="geoLng" formControlName="geoLng" class="my-input">
-                <div *ngIf="submitted && messageForm.controls.geoLng.errors" class="error">
-                  <div *ngIf="messageForm.controls.geoLng.errors.required">Τα tags είναι απαραίτητα</div>
+              <!--<mat-tab label="Απόσταση">
+                <div class="search-tab">
+                  <p>Τα 3 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα:</p>
+
+                  <label>
+                    Μέγιστη ακτίνα απόστασης(km):
+                    <input type="text" name="geoDist" formControlName="geoDist" class="my-input">
+                    <div *ngIf="submitted && messageForm.controls.geoDist.errors" class="error">
+                      <div *ngIf="messageForm.controls.geoDist.errors.required">Τα tags είναι απαραίτητα</div>
+                    </div>
+                  </label>
+
+                  <label>
+                    Γεωγραφικό μήκος:
+                    <input type="text" name="geoLng" formControlName="geoLng" class="my-input">
+                    <div *ngIf="submitted && messageForm.controls.geoLng.errors" class="error">
+                      <div *ngIf="messageForm.controls.geoLng.errors.required">Τα tags είναι απαραίτητα</div>
+                    </div>
+                  </label>
+
+                  <label>
+                    Γεωγραφικό πλάτος:
+                    <input type="text" name="geoLat" formControlName="geoLat" class="my-input">
+                    <div *ngIf="submitted && messageForm.controls.geoLat.errors" class="error">
+                      <div *ngIf="messageForm.controls.geoLat.errors.required">Τα tags είναι απαραίτητα</div>
+                    </div>
+                  </label>
                 </div>
-              </label>
+              </mat-tab>
+              -->
 
-              <label>
-                Γεωγραφικό πλάτος:
-                <input type="text" name="geoLat" formControlName="geoLat" class="my-input">
-                <div *ngIf="submitted && messageForm.controls.geoLat.errors" class="error">
-                  <div *ngIf="messageForm.controls.geoLat.errors.required">Τα tags είναι απαραίτητα</div>
+              <mat-tab label="Ημερομηνία">
+                <div class="search-tab">
+                  <p>Τα 2 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα(default η σημερινή ημερομηνία):</p>
+
+                  <label>
+                    Ημερομηνία εκκίνησης:
+                    <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input">
+                    <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
+                      <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
+                    </div>
+                  </label>
+
+                  <label>
+                    Ημερομηνία λήξης:
+                    <input type="date" name="dateTo" formControlName="dateTo" class="my-input">
+                    <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
+                      <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
+                    </div>
+                  </label>
                 </div>
-              </label>
-            </div>
-          </mat-tab>
-
-          <mat-tab label="Ημερομηνία">
-            <div style="padding: 1em;">
-              <p>Τα 2 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα(default η σημερινή ημερομηνία):</p>
-
-              <label>
-                Ημερομηνία εκκίνησης:
-                <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input">
-                <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
-                  <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
-                </div>
-              </label>
-
-              <label>
-                Ημερομηνία Λήξης:
-                <input type="date" name="dateTo" formControlName="dateTo" class="my-input">
-                <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
-                  <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
-                </div>
-              </label>
-            </div>
-          </mat-tab>
-        </mat-tab-group>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
 
         <div style="height:80px">
           <div style="float: left;">
