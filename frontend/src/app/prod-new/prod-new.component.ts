@@ -14,8 +14,7 @@ export class ProdNewComponent implements OnInit {
   submitted = false;
   success = false;
 
-  category = ['Βραχυπρόθεσμο', 'Μακρυπρόθεσμο'];
-
+  category = ['Βραχυπρόθεσμο', 'Μακροπρόθεσμο (1 ημέρα και πάνω)'];
 
   constructor(private formBuilder: FormBuilder, private data: DataService) { }
 
