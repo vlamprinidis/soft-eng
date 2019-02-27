@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataService} from '../data.service';
 
-
-
 @Component({
   selector: 'app-prod-new',
   templateUrl: './prod-new.component.html',
@@ -15,6 +13,8 @@ export class ProdNewComponent implements OnInit {
   messageForm: FormGroup;
   submitted = false;
   success = false;
+
+  category = ['Βραχυπρόθεσμο', 'Μακρυπρόθεσμο'];
 
 
   constructor(private formBuilder: FormBuilder, private data: DataService) { }
@@ -45,13 +45,21 @@ export class ProdNewComponent implements OnInit {
     }
     console.log(this.messageForm.controls.name.value);
     this.success = true;
-    this.data.addProduct(this.messageForm.controls.name.value, this.messageForm.controls.description.value,
-      this.messageForm.controls.category.value, this.messageForm.controls.tags.value).subscribe(data => {
-        this.prod = data;
-        console.log(this.prod);
-      }
-    );
+    if (this.messageForm.controls.category.value === 'Βραχυπρόθεσμο') {
+      this.data.addProduct(this.messageForm.controls.name.value, this.messageForm.controls.description.value,
+        'short-term', this.messageForm.controls.tags.value).subscribe(data => {
+          this.prod = data;
+          console.log(this.prod);
+        }
+      );
+    } else {
+      this.data.addProduct(this.messageForm.controls.name.value, this.messageForm.controls.description.value,
+        'long-term', this.messageForm.controls.tags.value).subscribe(data => {
+          this.prod = data;
+          console.log(this.prod);
+        }
+      );
+    }
   }
-
 
 }

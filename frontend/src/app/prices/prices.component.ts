@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl, } from '@angular/forms';
+import {FormBuilder, FormGroup } from '@angular/forms';
+
+import OlMap from 'ol/Map';
+import OlXYZ from 'ol/source/XYZ';
+import OlTileLayer from 'ol/layer/Tile';
+import OlView from 'ol/View';
+import { fromLonLat } from 'ol/proj';
+import * as proj from 'ol/proj';
 
 
 @Component({
@@ -32,10 +39,12 @@ export class PricesComponent  implements OnInit {
   shoplast = '';
 
   // MAP STUFF
-  latitude: number = 37.9758788;
-  longitude: number = 23.7353989;
-  map: any;
-  ol: any;
+  latitude = 37.9758788;
+  longitude = 23.7353989;
+  map: OlMap;
+  source: OlXYZ;
+  layer: OlTileLayer;
+  view: OlView;
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
@@ -64,22 +73,28 @@ export class PricesComponent  implements OnInit {
     );
 
     // MAP CODE
-    this.map = new ol.Map({
+    this.source = new OlXYZ({
+      url: 'http://tile.osm.org/{z}/{x}/{y}.png'
+    });
+
+    this.layer = new OlTileLayer({
+      source: this.source
+    });
+
+    this.view = new OlView({
+      center: fromLonLat([this.longitude, this.latitude]),
+      zoom: 15
+    });
+
+    this.map = new OlMap({
       target: 'map',
-      layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM()
-        })
-      ],
-      view: new ol.View({
-        center: ol.proj.fromLonLat([this.longitude, this.latitude]),
-        zoom: 16
-      })
+      layers: [this.layer],
+      view: this.view
     });
 
     this.map.on('click', function (args) {
       console.log(args.coordinate);
-      const lonlat = ol.proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
+      const lonlat = proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
       console.log(lonlat);
 
       const lon = lonlat[0];

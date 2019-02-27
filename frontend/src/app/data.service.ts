@@ -68,7 +68,7 @@ export class DataService {
     return this.http.delete('https://localhost:8765/observatory/api/products/' + id, {headers: headers});
   }
 
-//SHOP TIME
+// SHOP TIME
 
   getShops(sort, status) {
     const params = new HttpParams().set('sort', sort).set('status', status);
@@ -114,7 +114,7 @@ export class DataService {
     return this.http.delete('https://localhost:8765/observatory/api/shops/' + id, {headers: headers});
   }
 
-  //PRICE TIME
+  // PRICE TIME
   getPrices(sort, geoDist, geoLng, geoLat, dateFrom, dateTo, products, shops, tags) {
     console.log('dist is' + geoDist);
     let params = new HttpParams();
@@ -129,9 +129,9 @@ export class DataService {
       params = params.set('dateTo', dateTo);
     }
     if (products !== '') {
-      let str_array = products.split(',');
-      for(let i = 0; i < str_array.length; i++) {
-        if( i == 0){
+      const str_array = products.split(',');
+      for (let i = 0; i < str_array.length; i++) {
+        if ( i == 0) {
           params = params.set('products', str_array[i]);
         } else {
           params = params.append('products', str_array[i]);
@@ -139,9 +139,9 @@ export class DataService {
       }
     }
     if (shops !== '') {
-      let str_array = shops.split(',');
-      for(let i = 0; i < str_array.length; i++) {
-        if( i == 0){
+      const str_array = shops.split(',');
+      for (let i = 0; i < str_array.length; i++) {
+        if ( i == 0) {
           params = params.set('shops', str_array[i]);
         } else {
           params = params.append('shops', str_array[i]);
@@ -150,10 +150,10 @@ export class DataService {
     }
     // console.log(tags);
     if (tags !== '') {
-      let str_array = tags.split(',');
-      for(let i = 0; i < str_array.length; i++) {
-        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
-        if( i == 0){
+      const str_array = tags.split(',');
+      for (let i = 0; i < str_array.length; i++) {
+        str_array[i] = str_array[i].replace(/^\s*/, '').replace(/\s*$/, '');
+        if ( i == 0) {
           params = params.set('tags', str_array[i]);
         } else {
           params = params.append('tags', str_array[i]);
@@ -186,7 +186,7 @@ export class DataService {
     console.log(name);
     console.log(email);
     console.log(admin);
-    const token = ''
+    const token = '';
     const body = `username=${username}&password=${password}&name=${name}&email=${email}&admin=${admin}&token=${token}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');

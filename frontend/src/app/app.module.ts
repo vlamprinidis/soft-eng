@@ -5,8 +5,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -36,8 +34,6 @@ import {MatTabsModule} from '@angular/material/tabs';
   declarations: [
     AppComponent,
     NavComponent,
-    AboutComponent,
-    ContactComponent,
     HomeComponent,
     LoginComponent,
     LoginhomeComponent,

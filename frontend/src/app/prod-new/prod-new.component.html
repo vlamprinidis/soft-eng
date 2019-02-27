@@ -24,7 +24,11 @@
 
         <label>
           Κατηγορία:
-          <input type="text" name="category" formControlName="category" class="my-input">
+          <select name="cat" formControlName="category" class="my-input" style="margin-left:10px; width:52.6%;">
+            <option *ngFor="let cat of category" [value]="cat">
+              {{ cat }}
+            </option>
+          </select>
           <div *ngIf="submitted && messageForm.controls.category.errors" class="error">
             <div *ngIf="messageForm.controls.category.errors.required">Η κατηγορία είναι απαραίτητη</div>
           </div>

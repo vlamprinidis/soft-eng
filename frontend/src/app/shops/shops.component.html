@@ -5,26 +5,32 @@
   <div class="ibox-body">
     <h4 style="text-decoration: underline;">Φίλτρα προβολής:</h4>
 
-    <label>
-      Εμφάνισε:
-      <select id="st" (change)="onStatusSelect($event)" >
-        <option *ngFor="let st of status" [value]="st">
-          {{ st }}
-        </option>
-      </select>
-    </label>
+    <div style="float:left; width: 200px; height: 50px;">
+      <label>
+        Εμφάνισε:
+        <select id="st" (change)="onStatusSelect($event)" >
+          <option *ngFor="let st of status" [value]="st">
+            {{ st }}
+          </option>
+        </select>
+      </label>
+    </div>
 
-    <label>
-      Ταξινόμησε:
-      <select id="so" (change)="onSortSelect($event)" >
-        <option *ngFor="let so of sort" [value]="so">
-          {{ so }}
-        </option>
-      </select>
-    </label>
+    <div style="float:left; height: 50px;">
+      <label>
+        Ταξινόμησε:
+        <select id="so" (change)="onSortSelect($event)" >
+          <option *ngFor="let so of sort" [value]="so">
+            {{ so }}
+          </option>
+        </select>
+      </label>
+    </div>
 
-    <br>
-    <br>
+    <div style="float: right; height: 50px; margin-right: 20px;">
+      Καταστήματα ανά σελίδα:
+      <input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value">
+    </div>
 
     <table *ngIf="shops" class="table table-striped table-bordered center" id="shop-table" cellspacing="0" width="100%">
       <thead>
@@ -55,14 +61,11 @@
       </tr>
       </tbody>
     </table>
-    <div>
-      <div style="float: left; width: 10%;"><input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value"></div>
-      <div style="float: left; width: 90%;"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+
+    <div style="margin-left: auto; margin-right: auto; width: 500px;">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
-
-  <br>
-  <br>
 
   <a routerLink="/shop-new"><button class="btn btn-success pull-right" class="cta" style="margin: 20px;">Πρόσθεσε κατάστημα</button></a>
 </div>
