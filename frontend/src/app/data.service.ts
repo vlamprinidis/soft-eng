@@ -88,7 +88,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
     return this.http.post('https://localhost:8765/observatory/api/shops',
       body, {headers: headers});
   }
@@ -186,8 +186,8 @@ export class DataService {
     console.log(name);
     console.log(email);
     console.log(admin);
-
-    const body = `username=${username}&password=${password}&name=${name}&email=${email}&admin=${admin}`;
+    const token = ''
+    const body = `username=${username}&password=${password}&name=${name}&email=${email}&admin=${admin}&token=${token}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
       .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
     return this.http.post('https://localhost:8765/observatory/api/signup',

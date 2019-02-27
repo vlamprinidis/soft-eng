@@ -37,7 +37,6 @@ export class PricesComponent  implements OnInit {
   map: any;
   ol: any;
 
-
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
       tags: [''],
