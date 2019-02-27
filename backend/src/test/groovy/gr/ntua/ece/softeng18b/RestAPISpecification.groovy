@@ -43,4 +43,12 @@ import spock.lang.Stepwise
         returned.tags == sent.tags &&
         returned.withdrawn == sent.withdrawn
     }
+	
+	/*def "User lists the products"() {
+        when:
+        api.getProducts()
+        
+        then:
+        api.isLoggedIn()
+    }*/
 }

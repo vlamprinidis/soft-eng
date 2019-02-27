@@ -135,8 +135,14 @@ public class ShopResource extends ServerResource {
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,address,lng,lat and tags are compulsory fields");
 			
 			for(int i=0; i<mytags.length; i++){
-				if(i!=0)tags = tags + ",";
-				tags = tags + mytags[i];
+				String[] str = mytags[i].split(",");
+				for(int j=0; j<str.length; j++){
+					if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
+						if(!(i==0 && j==0))tags = tags + ",";
+						tags = tags + str[j];
+					}
+				}
+			
 			}
 
 			Optional<Shop> optional = dataAccess.fullUpdateShop(id,name, address, lng, lat, withdrawn, tags);
@@ -215,8 +221,14 @@ public class ShopResource extends ServerResource {
 			else if(mytags.length != 0){
 					param = "tags";
 					for(int i=0; i<mytags.length; i++){
-						if(i!=0)tags = tags + ",";
-						tags = tags + mytags[i];
+						String[] str = mytags[i].split(",");
+						for(int j=0; j<str.length; j++){
+							if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
+								if(!(i==0 && j==0))tags = tags + ",";
+								tags = tags + str[j];
+							}
+						}
+					
 					}
 					optional = dataAccess.partialUpdateShop(id,param,tags);
 					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));

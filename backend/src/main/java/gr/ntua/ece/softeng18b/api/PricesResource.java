@@ -11,7 +11,7 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -166,7 +166,7 @@ public class PricesResource extends ServerResource {
 		if(dist)prices = dataAccess.getPrices(limits, sort, sh, pr, tgs, geoDist, geoLng, geoLat);
 		else nodistprices = dataAccess.getPrices2(limits, sort, sh, pr, tgs);}
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         map.put("start", limits.getStart());
         map.put("count", limits.getCount());
         map.put("total", limits.getTotal());

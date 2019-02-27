@@ -7,10 +7,10 @@ public class Shop {
 	private final long id;
 	private final String name;
 	private final String address;
-	private final double lng;
 	private final double lat;
-	private final boolean withdrawn;
+	private final double lng;
 	private final List<String> tags;
+	private final boolean withdrawn;
 
 	public Shop(long id, String name, String address, double lng, double lat, boolean withdrawn, List<String> tags) {
 		this.id          = id;

@@ -138,9 +138,15 @@ public class ProductResource extends ServerResource {
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
 			
 			for(int i=0; i<mytags.length; i++){
-				if(i!=0)tags = tags + ",";
-				tags = tags + mytags[i];
+			String[] str = mytags[i].split(",");
+			for(int j=0; j<str.length; j++){
+				if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
+					if(!(i==0 && j==0))tags = tags + ",";
+					tags = tags + str[j];
+				}
 			}
+			
+		}
 			
 			Optional<Product> optional;
 			optional = dataAccess.fullUpdateProduct(id,name, description, category, with, tags);
@@ -217,8 +223,14 @@ public class ProductResource extends ServerResource {
 					else if(mytags.length != 0){
 							param = "tags";
 							for(int i=0; i<mytags.length; i++){
-								if(i!=0)tags = tags + ",";
-								tags = tags + mytags[i];
+								String[] str = mytags[i].split(",");
+								for(int j=0; j<str.length; j++){
+									if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
+										if(!(i==0 && j==0))tags = tags + ",";
+										tags = tags + str[j];
+									}
+								}
+								
 							}
 							optional = dataAccess.partialUpdateProduct(id,param,tags);
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));

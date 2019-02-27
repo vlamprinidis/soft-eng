@@ -83,7 +83,7 @@ public class DataAccess {
 
                 }
                 else {
-                        throw new RuntimeException("Creation of Product_tag failed");
+                        throw new RuntimeException("Creation of Product failed, please check your tags");
                 }
         }
 

@@ -8,16 +8,16 @@ public class Product {
 	private final String name;
 	private final String description;
 	private final String category;
-	private final boolean withdrawn;
 	private final List<String> tags;
+	private final boolean withdrawn;
 
 	public Product(long id, String name, String description, String category, boolean withdrawn, List<String> tags) {
 		this.id          = id;
 		this.name        = name;
 		this.description = description;
 		this.category    = category;
+		this.tags	 	 = tags;
 		this.withdrawn   = withdrawn;
-		this.tags	 = tags;
 	}
 
 	public long getId() {

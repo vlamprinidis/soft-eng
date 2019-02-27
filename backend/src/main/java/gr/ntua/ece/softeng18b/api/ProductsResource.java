@@ -10,12 +10,13 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.restlet.data.Status;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.restlet.util.Series;
 import javax.mail.Header;
 import java.util.Optional;
+import java.lang.*;
 
 public class ProductsResource extends ServerResource {
 
@@ -75,7 +76,7 @@ public class ProductsResource extends ServerResource {
 		limits = new Limits(st, cnt);
 		products = dataAccess.getProducts(limits, status, sort);}
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         map.put("start", limits.getStart());
         map.put("count", limits.getCount());
         map.put("total", limits.getTotal());
@@ -114,8 +115,14 @@ public class ProductsResource extends ServerResource {
 			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
 		
 		for(int i=0; i<mytags.length; i++){
-			if(i!=0)tags = tags + ",";
-			tags = tags + mytags[i];
+			String[] str = mytags[i].split(",");
+			for(int j=0; j<str.length; j++){
+				if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
+					if(!(i==0 && j==0))tags = tags + ",";
+					tags = tags + str[j];
+				}
+			}
+			
 		}
 
 		//getNext value
