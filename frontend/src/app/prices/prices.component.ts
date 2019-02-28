@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import {FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import OlMap from 'ol/Map';
 import OlXYZ from 'ol/source/XYZ';
@@ -28,7 +28,7 @@ export class PricesComponent  implements OnInit {
   cntprod = 0;
   cntshop = 0;
 
-  slidervalue: number = 1;
+  slidervalue = 1;
   options: Options = {
     floor: 1,
     ceil: 12,

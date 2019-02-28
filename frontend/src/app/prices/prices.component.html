@@ -1,4 +1,4 @@
-<div class="ibox">
+<div class="ibox" style="width: 100%">
   <div class="ibox-head">
     <h1 class="ibox-title">Τιμές</h1>
   </div>
@@ -7,14 +7,41 @@
       <h4 style="text-decoration: underline; margin-top:0;">Φίλτρα αναζήτησης:</h4>
 
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-        <div style="height:350px;">
-          <div style="float:left; height:350px; width: 35%; background-color: black;">
+        <div style="height:430px;">
+          <div style="float:left; height: 420px; width: 38%; background-color: black;">
             <div id="map" class="map" style="width:100%; height:100%"></div>
           </div>
 
           <div style="float:right; margin-right: 30px; height: 350px;">
             <mat-tab-group animationDuration="0ms">
-              <mat-tab label="Προϊόντα">
+              <mat-tab label="Πότε">
+                <div class="search-tab" style="width:600px; word-wrap: break-word;">
+                  <p>Συπλήρωσε ποιες ημερομηνίες σε ενδιαφέρουν (αν δεν συμπληρώσεις θα δοθεί αυτόματα η σημερινή):</p>
+
+                  <div style="float:left; width: 50%">
+                    <label>
+                      Ημερομηνία εκκίνησης:
+                      <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input" style="width: 80%">
+                      <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
+                        <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div style="float:left; width: 50%">
+                    <label>
+                      Ημερομηνία λήξης:
+                      <input type="date" name="dateTo" formControlName="dateTo" class="my-input" style="width: 80%">
+                      <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
+                        <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
+                      </div>
+                    </label>
+                  </div>
+                  <p>Προσοχή! Συμπλήρωσε τα και τα 2 ή κανενα!</p>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="Πόσο">
                 <div class="search-tab">
                   <p>Διάλεξε για πόσο χρόνο θέλεις να παρκάρεις:</p>
                   <div class="custom-slider" style="width:90%">
@@ -22,24 +49,7 @@
                   </div>
                   <br><br><br><br>
                   value {{slidervalue}}
-                  <!--<div class="slidecontainer">
-                    <input type="range" min="1" max="12" value="1" class="slider" id="myRange">
-                    <datalist class="sliderticks">
-                      <p>1</p>
-                      <p>2</p>
-                      <p>3</p>
-                      <p>4</p>
-                      <p>5</p>
-                      <p>6</p>
-                      <p>7</p>
-                      <p>8</p>
-                      <p>9</p>
-                      <p>10</p>
-                      <p>ημέρα</p>
-                      <p>μήνα</p>
-                    </datalist>
-                  </div>
-                  Value {{value}}
+
                   <!--<div style="height:200px; overflow: auto;">
                     <label *ngIf="myprods">
                       <label *ngFor="let prod of myprods.products" style="padding: 0.3em;">
@@ -50,9 +60,9 @@
                 </div>
               </mat-tab>
 
-              <mat-tab label="Καταστήματα">
+              <mat-tab label="Πού">
                 <div class="search-tab">
-                  <p>Διάλεξε καταστήματα αν ξέρεις τι ψάχνεις! ;)</p>
+                  <p>Διάλεξε χώρους στάθμευσης αν ξέρεις τι ψάχνεις! ;)</p>
                   <div style="height:200px; overflow: auto;">
                     <label *ngIf="myshops">
                     <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
@@ -107,42 +117,17 @@
               </mat-tab>
               -->
 
-              <mat-tab label="Ημερομηνία">
-                <div class="search-tab" style="width:600px; word-wrap: break-word;">
-                  <p>Συπλήρωσε ποιες ημερομηνίες σε ενδιαφέρουν (αν δεν συμπληρώσεις θα δοθεί αυτόματα η σημερινή)</p>
-                  <p>Προσοχή! Συμπλήρωσε τα και τα 2 ή κανενα!</p>
 
-                  <div style="float:left; width: 50%">
-                    <label>
-                      Ημερομηνία εκκίνησης:
-                      <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input" style="width: 80%">
-                      <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
-                        <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
-                      </div>
-                    </label>
-                  </div>
-
-                  <div style="float:left; width: 50%">
-                    <label>
-                      Ημερομηνία λήξης:
-                      <input type="date" name="dateTo" formControlName="dateTo" class="my-input" style="width: 80%">
-                      <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
-                        <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </mat-tab>
             </mat-tab-group>
           </div>
-        </div>
 
-        <div style="height:80px">
-          <div style="float: left;">
-            <input type="submit" value="Εφαρμογή Φίλτρων" class="cta" style="margin: 20px;">
-          </div>
-          <div style="float: right; padding-right: 20px;">
-            <button (click)="refresh()" class="cta" style="margin: 20px; background: #960516;">Εκκαθάριση φίλτρων</button>
+          <div style="height:80px">
+            <div style="float: left; padding-left: 20px;">
+              <input type="submit" value="Εφαρμογή Φίλτρων" class="cta" style="margin: 20px;">
+            </div>
+            <div style="float: right; padding-right: 20px;">
+              <button (click)="refresh()" class="cta" style="margin: 20px; background: #960516;">Εκκαθάριση φίλτρων</button>
+            </div>
           </div>
         </div>
       </form>

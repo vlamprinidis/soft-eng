@@ -46,14 +46,14 @@ export class ProdNewComponent implements OnInit {
     this.success = true;
     if (this.messageForm.controls.category.value === 'Βραχυπρόθεσμο') {
       this.data.addProduct(this.messageForm.controls.name.value, this.messageForm.controls.description.value,
-        'short-term', this.messageForm.controls.tags.value).subscribe(data => {
+        'Βραχυπρόθεσμο', this.messageForm.controls.tags.value).subscribe(data => {
           this.prod = data;
           console.log(this.prod);
         }
       );
     } else {
       this.data.addProduct(this.messageForm.controls.name.value, this.messageForm.controls.description.value,
-        'long-term', this.messageForm.controls.tags.value).subscribe(data => {
+        'Μακροπρόθεσμο', this.messageForm.controls.tags.value).subscribe(data => {
           this.prod = data;
           console.log(this.prod);
         }
