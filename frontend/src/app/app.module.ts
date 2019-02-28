@@ -9,9 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { LoginComponent } from './login/login.component';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { LoginhomeComponent } from './loginhome/loginhome.component';
 import { RegisterComponent } from './register/register.component';
 
 import { ProductsComponent } from './products/products.component';
@@ -36,8 +33,6 @@ import { Ng5SliderModule } from 'ng5-slider';
     AppComponent,
     NavComponent,
     HomeComponent,
-    LoginComponent,
-    LoginhomeComponent,
     PricesComponent,
     ProductsComponent,
     ProdNewComponent,
@@ -60,8 +55,7 @@ import { Ng5SliderModule } from 'ng5-slider';
     MatTabsModule,
     Ng5SliderModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
+  providers: [],
   bootstrap: [AppComponent, HomeComponent]
 })
 export class AppModule { }

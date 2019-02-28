@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { LoginhomeComponent } from './loginhome/loginhome.component';
 
 import {ProductsComponent} from './products/products.component';
 import { ProdNewComponent} from './prod-new/prod-new.component';
@@ -29,8 +27,6 @@ const routes: Routes = [
   { path: 'shop-update', component: ShopUpdateComponent },
   { path: 'prices', component: PricesComponent },
   { path: 'price-new', component: PriceNewComponent},
-  { path: 'login', component: LoginComponent },
-  { path: 'loginhome', component: LoginhomeComponent},
   { path: 'register', component: RegisterComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
