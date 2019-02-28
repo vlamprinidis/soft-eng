@@ -1,4 +1,4 @@
-<div class="ibox">
+<div class="ibox" style="width: 100%">
   <div class="ibox-head">
     <h1 class="ibox-title">Τιμές</h1>
   </div>
@@ -7,38 +7,77 @@
       <h4 style="text-decoration: underline; margin-top:0;">Φίλτρα αναζήτησης:</h4>
 
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-        <div style="height:350px;">
-          <div style="float:left; height:350px; width: 35%; background-color: black;">
+        <div style="height:430px;">
+          <div style="float:left; height: 420px; width: 38%; background-color: black;">
             <div id="map" class="map" style="width:100%; height:100%"></div>
           </div>
 
-          <div style="float:left; margin-left: 30px;">
+          <div style="float:right; margin-right: 30px; height: 350px;">
             <mat-tab-group animationDuration="0ms">
-              <mat-tab label="Προϊόντα">
-                <div class="search-tab">
-                  <label *ngIf="myprods">
-                    <label *ngFor="let prod of myprods.products" style="padding: 0.3em;">
-                      <input type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)"> &nbsp; {{ prod.name }}
+              <mat-tab label="Πότε">
+                <div class="search-tab" style="width:600px; word-wrap: break-word;">
+                  <p>Συπλήρωσε ποιες ημερομηνίες σε ενδιαφέρουν (αν δεν συμπληρώσεις θα δοθεί αυτόματα η σημερινή):</p>
+
+                  <div style="float:left; width: 50%">
+                    <label>
+                      Ημερομηνία εκκίνησης:
+                      <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input" style="width: 80%">
+                      <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
+                        <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
+                      </div>
                     </label>
-                  </label>
+                  </div>
+
+                  <div style="float:left; width: 50%">
+                    <label>
+                      Ημερομηνία λήξης:
+                      <input type="date" name="dateTo" formControlName="dateTo" class="my-input" style="width: 80%">
+                      <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
+                        <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
+                      </div>
+                    </label>
+                  </div>
+                  <p>Προσοχή! Συμπλήρωσε τα και τα 2 ή κανενα!</p>
                 </div>
               </mat-tab>
 
-              <mat-tab label="Καταστήματα">
+              <mat-tab label="Πόσο">
                 <div class="search-tab">
-                  <label *ngIf="myshops">
-                  <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
-                    <input type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)"> &nbsp; {{ shop.name }} - {{shop.address}}
+                  <p>Διάλεξε για πόσο χρόνο θέλεις να παρκάρεις:</p>
+                  <div class="custom-slider" style="width:90%">
+                    <ng5-slider [(value)]="slidervalue" [options]="options"></ng5-slider>
+                  </div>
+                  <br><br><br><br>
+                  value {{slidervalue}}
+
+                  <!--<div style="height:200px; overflow: auto;">
+                    <label *ngIf="myprods">
+                      <label *ngFor="let prod of myprods.products" style="padding: 0.3em;">
+                        <input type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)"> &nbsp; {{ prod.name }}
+                      </label>
+                    </label>
+                  </div>-->
+                </div>
+              </mat-tab>
+
+              <mat-tab label="Πού">
+                <div class="search-tab">
+                  <p>Διάλεξε χώρους στάθμευσης αν ξέρεις τι ψάχνεις! ;)</p>
+                  <div style="height:200px; overflow: auto;">
+                    <label *ngIf="myshops">
+                    <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
+                      <input type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)"> &nbsp; {{ shop.name }} - {{shop.address}}
+                    </label>
                   </label>
-                </label>
+                  </div>
                 </div>
               </mat-tab>
 
               <mat-tab label="Tags">
                 <div class="search-tab">
                   <label>
-                    <p>Tags(παραθέστε στη μορφή α,β,γ):</p>
-                    <input type="text" name="tags" formControlName="tags" class="my-input">
+                    <p>Ψάξε με keywords (tags). Παράθεσέ τα στη μορφή α,β,γ):</p>
+                    <input type="text" name="tags" formControlName="tags" class="my-input" style="width:80%;">
                     <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
                       <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
                     </div>
@@ -48,6 +87,7 @@
 
               <!--<mat-tab label="Απόσταση">
                 <div class="search-tab">
+                  <p>Ούτε σε εμας αρέσει το περπάτημα! Πες μας πόση απόσταση θέλεις να περπατήσεις:</p>
                   <p>Τα 3 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα:</p>
 
                   <label>
@@ -77,37 +117,17 @@
               </mat-tab>
               -->
 
-              <mat-tab label="Ημερομηνία">
-                <div class="search-tab">
-                  <p>Τα 2 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα(default η σημερινή ημερομηνία):</p>
 
-                  <label>
-                    Ημερομηνία εκκίνησης:
-                    <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input">
-                    <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
-                      <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
-                    </div>
-                  </label>
-
-                  <label>
-                    Ημερομηνία λήξης:
-                    <input type="date" name="dateTo" formControlName="dateTo" class="my-input">
-                    <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
-                      <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
-                    </div>
-                  </label>
-                </div>
-              </mat-tab>
             </mat-tab-group>
           </div>
-        </div>
 
-        <div style="height:80px">
-          <div style="float: left;">
-            <input type="submit" value="Εφαρμογή Φίλτρων" class="cta" style="margin: 20px;">
-          </div>
-          <div style="float: right; padding-right: 20px;">
-            <button (click)="refresh()" class="cta" style="margin: 20px; background: #960516;">Εκκαθάριση φίλτρων</button>
+          <div style="height:80px">
+            <div style="float: left; padding-left: 20px;">
+              <input type="submit" value="Εφαρμογή Φίλτρων" class="cta" style="margin: 20px;">
+            </div>
+            <div style="float: right; padding-right: 20px;">
+              <button (click)="refresh()" class="cta" style="margin: 20px; background: #960516;">Εκκαθάριση φίλτρων</button>
+            </div>
           </div>
         </div>
       </form>
@@ -115,7 +135,7 @@
 
     <br> <br> <br>
 
-    <div style="float:left; width: 200px; height: 50px;">
+    <div style="float:left; width: 250px; height: 50px;">
       <label>
         Ταξινόμησε:
         <select id="so" (change)="onSortSelect($event)" >
@@ -146,7 +166,7 @@
       </thead>
       <tbody>
       <tr *ngFor ="let price of pric.prices | paginate: { itemsPerPage: numItems, currentPage: p, totalItems: total } ">
-        <td style="text-align: center; width:60px;">{{ price.price }}</td>
+        <td style="text-align: center; width:60px;">{{ price.price }} €</td>
         <td>{{ price.date }}</td>
         <td>{{ price.productName }}</td>
         <td>{{ price.productTags }}</td>

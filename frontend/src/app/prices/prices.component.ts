@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import {FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import OlMap from 'ol/Map';
 import OlXYZ from 'ol/source/XYZ';
@@ -8,6 +8,8 @@ import OlTileLayer from 'ol/layer/Tile';
 import OlView from 'ol/View';
 import { fromLonLat } from 'ol/proj';
 import * as proj from 'ol/proj';
+
+import { Options } from 'ng5-slider';
 
 
 @Component({
@@ -25,6 +27,27 @@ export class PricesComponent  implements OnInit {
   myshops: Object;
   cntprod = 0;
   cntshop = 0;
+
+  slidervalue = 1;
+  options: Options = {
+    floor: 1,
+    ceil: 12,
+    showTicks: true,
+    stepsArray: [
+      {value: 1, legend: '1 ώρα'},
+      {value: 2, legend: '2 ώρες'},
+      {value: 3, legend: '3 ώρες'},
+      {value: 4, legend: '4 ώρες'},
+      {value: 5, legend: '5 ώρες'},
+      {value: 6, legend: '6 ώρες'},
+      {value: 7, legend: '7 ώρες'},
+      {value: 8, legend: '8 ώρες'},
+      {value: 9, legend: '9 ώρες'},
+      {value: 10, legend: '10 ώρες'},
+      {value: 11, legend: '1 ημέρα'},
+      {value: 12, legend: '1 μήνα'},
+    ]
+  };
 
   constructor(private formBuilder: FormBuilder, private data: DataService) {}
 

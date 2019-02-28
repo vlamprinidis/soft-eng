@@ -34,8 +34,9 @@ export class DataService {
     // token = blah blah;
     /*try{
       // If the string is UTF-8, this will work and not throw an error.
-       name=unescape(encodeURIComponent(name));;
-      console.log('decoded' + name);
+      console.log('orig ', name)
+      name=unescape(encodeURIComponent(name));;
+      console.log('decoded ' + name);
     }catch(e){
       // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
       name=name;
@@ -131,7 +132,7 @@ export class DataService {
     if (products !== '') {
       const str_array = products.split(',');
       for (let i = 0; i < str_array.length; i++) {
-        if ( i == 0) {
+        if ( i === 0) {
           params = params.set('products', str_array[i]);
         } else {
           params = params.append('products', str_array[i]);
@@ -141,7 +142,7 @@ export class DataService {
     if (shops !== '') {
       const str_array = shops.split(',');
       for (let i = 0; i < str_array.length; i++) {
-        if ( i == 0) {
+        if ( i === 0) {
           params = params.set('shops', str_array[i]);
         } else {
           params = params.append('shops', str_array[i]);
@@ -153,7 +154,7 @@ export class DataService {
       const str_array = tags.split(',');
       for (let i = 0; i < str_array.length; i++) {
         str_array[i] = str_array[i].replace(/^\s*/, '').replace(/\s*$/, '');
-        if ( i == 0) {
+        if ( i === 0) {
           params = params.set('tags', str_array[i]);
         } else {
           params = params.append('tags', str_array[i]);

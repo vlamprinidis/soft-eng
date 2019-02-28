@@ -6,6 +6,22 @@
 
 .search-tab {
   padding: 1em;
-  height: 230px;
-  overflow: auto;
+}
+
+::ng-deep {
+  .custom-slider .ng5-slider .ng5-slider-bubble {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-bar {
+    background: #631940;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-tick {
+    background: #631940;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer {
+    background: #CE5D99;
+  }
 }

@@ -24,7 +24,7 @@
 
         <label>
           Κατηγορία:
-          <select name="cat" formControlName="category" class="my-input" style="margin-left:10px; width:52.6%;">
+          <select name="cat" formControlName="category" class="new-sel">
             <option *ngFor="let cat of category" [value]="cat">
               {{ cat }}
             </option>
@@ -36,7 +36,7 @@
 
         <label>
           Tags(παραθέστε στη μορφή α,β,γ):
-          <input type="text" name="tags" formControlName="tags" class="my-input">
+          <input type="textarea" name="tags" formControlName="tags" class="my-input">
           <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
             <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
           </div>

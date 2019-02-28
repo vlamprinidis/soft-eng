@@ -27,8 +27,9 @@ import { ShopUpdateComponent } from './shop-update/shop-update.component';
 import { PricesComponent } from './prices/prices.component';
 import { PriceNewComponent } from './price-new/price-new.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatTabsModule} from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     NgxPaginationModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    Ng5SliderModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
