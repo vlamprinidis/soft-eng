@@ -44,7 +44,7 @@ export class DataService {
     }*/
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
     return this.http.post('https://localhost:8765/observatory/api/products',
      body, {headers: headers});
   }
@@ -57,7 +57,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
     return this.http.put('https://localhost:8765/observatory/api/products/' + id,
       body, {headers: headers});
   }
@@ -103,7 +103,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
     return this.http.put('https://localhost:8765/observatory/api/shops/' + id,
       body, {headers: headers});
   }
@@ -117,7 +117,7 @@ export class DataService {
 
   // PRICE TIME
   getPrices(sort, geoDist, geoLng, geoLat, dateFrom, dateTo, products, shops, tags) {
-    console.log('dist is' + geoDist);
+    console.log('coords are' + geoLng + geoLat);
     let params = new HttpParams();
     params = params.set('sort', sort);
     if (geoDist !== '' && geoLng !== '' && geoLat !== '') {

@@ -43,11 +43,11 @@ export class ProdUpdateComponent implements OnInit, OnDestroy {
       });
     this.messageForm = this.formBuilder.group({
       id: [''],
-      name: ['', Validators.required],
+      name: [''],
       description: [''],
-      category: ['', Validators.required],
+      category: [''],
       withdrawn: [''],
-      tags: ['', Validators.required]
+      tags: ['']
     });
   }
 
@@ -61,8 +61,20 @@ export class ProdUpdateComponent implements OnInit, OnDestroy {
       return;
     }
     this.success = true;
-    this.data.updateProduct(this.messageForm.controls.name.value, this.messageForm.controls.description.value,
-      this.messageForm.controls.category.value, this.messageForm.controls.tags.value, this.id).subscribe(data => {
+    if(this.messageForm.controls.name.value !== ''){
+      this.name = this.messageForm.controls.name.value;
+    }
+    if(this.messageForm.controls.description.value !== ''){
+      this.description = this.messageForm.controls.description.value;
+    }
+    if(this.messageForm.controls.category.value !== ''){
+      this.category = this.messageForm.controls.category.value;
+    }
+    if(this.messageForm.controls.tags.value !== ''){
+      this.tags = this.messageForm.controls.tags.value;
+    }
+    this.data.updateProduct(this.name, this.description,
+      this.category, this.tags, this.id).subscribe(data => {
         this.prod = data;
         console.log(this.prod);
       }

@@ -46,12 +46,12 @@ export class ShopUpdateComponent implements OnInit, OnDestroy {
       });
     this.messageForm = this.formBuilder.group({
       id: [''],
-      name: ['', Validators.required],
-      address: ['', Validators.required],
-      lng: ['', Validators.required],
-      lat: ['', Validators.required],
+      name: [''],
+      address: [''],
+      lng: [''],
+      lat: [''],
       withdrawn: [''],
-      tags: ['', Validators.required]
+      tags: ['']
     });
   }
 
@@ -65,8 +65,25 @@ export class ShopUpdateComponent implements OnInit, OnDestroy {
       return;
     }
     this.success = true;
-    this.data.updateShop(this.messageForm.controls.name.value, this.messageForm.controls.address.value, this.messageForm.controls.lng.value,
-      this.messageForm.controls.lat.value, this.messageForm.controls.tags.value, this.id).subscribe(data => {
+    if(this.messageForm.controls.name.value !== ''){
+      this.name = this.messageForm.controls.name.value;
+    }
+    if(this.messageForm.controls.address.value !== ''){
+      this.address = this.messageForm.controls.address.value;
+    }
+    if(this.messageForm.controls.lng.value !== ''){
+      this.lng = this.messageForm.controls.lng.value;
+    }
+    if(this.messageForm.controls.lat.value !== ''){
+      this.lat = this.messageForm.controls.lat.value;
+    }
+    if(this.messageForm.controls.tags.value !== ''){
+      this.tags = this.messageForm.controls.tags.value;
+    }
+
+    //console.log('name' + this.messageForm.controls.name.value);
+    this.data.updateShop(this.name, this.address, this.lng,
+      this.lat, this.tags, this.id).subscribe(data => {
         this.shop = data;
         console.log(this.shop);
       }
