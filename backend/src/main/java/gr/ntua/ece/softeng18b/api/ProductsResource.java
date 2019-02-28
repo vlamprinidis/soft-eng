@@ -17,6 +17,9 @@ import org.restlet.util.Series;
 import javax.mail.Header;
 import java.util.Optional;
 import java.lang.*;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 
 public class ProductsResource extends ServerResource {
 
@@ -88,6 +91,7 @@ public class ProductsResource extends ServerResource {
     @Override
     protected Representation post(Representation entity) throws ResourceException {
 	
+	  try {
 		Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
 		String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
 		if(auth==null)
@@ -104,8 +108,16 @@ public class ProductsResource extends ServerResource {
         Form form = new Form(entity);
         //Read the parameters
         String name = form.getFirstValue("name");
+		//String fieldvalue_utf8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+		//System.out.println("name1st"+name);
+		
+		//System.out.println("name"+fieldvalue_utf8);
         String description = form.getFirstValue("description");
         String category = form.getFirstValue("category");
+		
+			 //name = URLDecoder.decode(name, "UTF-8");
+			 //System.out.println("name2"+name);	 
+		
         boolean withdrawn = Boolean.valueOf(form.getFirstValue("withdrawn"));
 		
         String tags = "";
@@ -114,12 +126,18 @@ public class ProductsResource extends ServerResource {
 		if(name==null||category==null||mytags.length == 0)
 			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
 		
+		String name_utf8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+		name = name_utf8;
+		String description_utf8 = new String(description.getBytes("ISO-8859-1"), "UTF-8");
+		description = description_utf8;
+		
 		for(int i=0; i<mytags.length; i++){
 			String[] str = mytags[i].split(",");
 			for(int j=0; j<str.length; j++){
 				if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
 					if(!(i==0 && j==0))tags = tags + ",";
-					tags = tags + str[j];
+					String tag_utf8 = new String(str[j].getBytes("ISO-8859-1"), "UTF-8");
+					tags = tags + tag_utf8;
 				}
 			}
 			
@@ -134,5 +152,11 @@ public class ProductsResource extends ServerResource {
         Product product = dataAccess.addProduct(name, description, category, withdrawn, tags);
 
         return new JsonProductRepresentation(product);
+		
+		} catch (Exception E) {
+			throw new AssertionError("UTF-8 is unknown");
+			// or 'throw new AssertionError("Impossible things are happening today. " +
+			//                              "Consider buying a lottery ticket!!");'
+		} 
     }
 }

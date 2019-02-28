@@ -92,7 +92,7 @@ public class ShopResource extends ServerResource {
 
 	@Override
 		protected Representation put(Representation entity) throws ResourceException {
-
+		 
 			Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
 			String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
 			if(auth==null)
@@ -133,13 +133,30 @@ public class ShopResource extends ServerResource {
 			
 			if(name==null||address==null||form.getFirstValue("lng")==null||form.getFirstValue("lat")==null||mytags.length == 0)
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,address,lng,lat and tags are compulsory fields");
+		 try{
+			String name_utf8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+			name = name_utf8;
+			String address_utf8 = new String(address.getBytes("ISO-8859-1"), "UTF-8");
+			address = address_utf8;
+		} catch (Exception E) {
+			throw new AssertionError("UTF-8 is unknown");
+			// or 'throw new AssertionError("Impossible things are happening today. " +
+			//                              "Consider buying a lottery ticket!!");'
+		  } 
 			
 			for(int i=0; i<mytags.length; i++){
 				String[] str = mytags[i].split(",");
 				for(int j=0; j<str.length; j++){
 					if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
 						if(!(i==0 && j==0))tags = tags + ",";
-						tags = tags + str[j];
+						try{
+						String tag_utf8 = new String(str[j].getBytes("ISO-8859-1"), "UTF-8");
+						tags = tags + tag_utf8;
+						} catch (Exception E) {
+							throw new AssertionError("UTF-8 is unknown");
+							// or 'throw new AssertionError("Impossible things are happening today. " +
+							//                              "Consider buying a lottery ticket!!");'
+						  } 
 					}
 				}
 			
@@ -149,11 +166,12 @@ public class ShopResource extends ServerResource {
 			shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
 
 			return new JsonShopRepresentation(shop);
+		  
 		}
 
 	@Override
 		protected Representation patch(Representation entity) throws ResourceException {
-
+		  try{
 			Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
 			String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
 			if(auth==null)
@@ -195,11 +213,15 @@ public class ShopResource extends ServerResource {
 			Optional<Shop> optional;
 			if (name!= null) {
 					param = "name";
+					String name_utf8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+					name = name_utf8;
 					optional = dataAccess.partialUpdateShop(id,param,name);
 					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
 			}
 			else if(address!=null){
 					param = "address";
+					String address_utf8 = new String(address.getBytes("ISO-8859-1"), "UTF-8");
+					address = address_utf8;
 					optional = dataAccess.partialUpdateShop(id,param,address);
 					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
 			}
@@ -225,7 +247,8 @@ public class ShopResource extends ServerResource {
 						for(int j=0; j<str.length; j++){
 							if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
 								if(!(i==0 && j==0))tags = tags + ",";
-								tags = tags + str[j];
+								String tag_utf8 = new String(str[j].getBytes("ISO-8859-1"), "UTF-8");
+								tags = tags + tag_utf8;
 							}
 						}
 					
@@ -239,6 +262,11 @@ public class ShopResource extends ServerResource {
 					shop = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Shop not found - id: " + idAttr));
 			}
 			return new JsonShopRepresentation(shop);
+		  } catch (Exception E) {
+			throw new AssertionError("UTF-8 is unknown");
+			// or 'throw new AssertionError("Impossible things are happening today. " +
+			//                              "Consider buying a lottery ticket!!");'
+		  } 
 
 		}
 

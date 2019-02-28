@@ -13,6 +13,7 @@ import java.util.Optional;
 import org.restlet.util.Series;
 import javax.mail.Header;
 import gr.ntua.ece.softeng18b.data.model.User;
+import java.lang.*;
 
 public class ProductResource extends ServerResource {
 
@@ -93,7 +94,7 @@ public class ProductResource extends ServerResource {
 
 	@Override
 		protected Representation put(Representation entity) throws ResourceException {
-
+		 
 			Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
 			String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
 			if(auth==null)
@@ -127,7 +128,7 @@ public class ProductResource extends ServerResource {
 			//Read the parameters
 			String name = form.getFirstValue("name");
 			String description = form.getFirstValue("description");
-			String category = form.getFirstValue("category");
+			String category = form.getFirstValue("category");		
 			String withdrawn = form.getFirstValue("withdrawn");
 			boolean with = Boolean.valueOf(withdrawn);
 			
@@ -136,13 +137,32 @@ public class ProductResource extends ServerResource {
 			
 			if(name==null||category==null||mytags.length == 0)
 				throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
+		  try {
+			String name_utf8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+			name = name_utf8;
+			if(description!=null){
+				String description_utf8 = new String(description.getBytes("ISO-8859-1"), "UTF-8");
+				description = description_utf8;
+			}
+		  } catch (Exception E) {
+				throw new AssertionError("UTF-8 is unknown");
+				// or 'throw new AssertionError("Impossible things are happening today. " +
+				//                              "Consider buying a lottery ticket!!");'
+		  } 
 			
 			for(int i=0; i<mytags.length; i++){
 			String[] str = mytags[i].split(",");
 			for(int j=0; j<str.length; j++){
 				if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
 					if(!(i==0 && j==0))tags = tags + ",";
-					tags = tags + str[j];
+					try{
+					String tag_utf8 = new String(str[j].getBytes("ISO-8859-1"), "UTF-8");
+					tags = tags + tag_utf8;
+					} catch (Exception E) {
+			throw new AssertionError("UTF-8 is unknown");
+			// or 'throw new AssertionError("Impossible things are happening today. " +
+			//                              "Consider buying a lottery ticket!!");'
+		} 
 				}
 			}
 			
@@ -154,11 +174,14 @@ public class ProductResource extends ServerResource {
 
 
 				return new JsonProductRepresentation(product);
-			}
+				
+		
+	}
 
 
 			@Override
 				protected Representation patch(Representation entity) throws ResourceException {
+				 try{
 
 					Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
 					String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
@@ -201,12 +224,16 @@ public class ProductResource extends ServerResource {
 					String param = new String();
 					Optional<Product> optional;
 					if (name!= null) {
-						param = "name";
-						optional = dataAccess.partialUpdateProduct(id,param,name);
-						product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
+							param = "name";
+							String name_utf8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+							name = name_utf8;
+							optional = dataAccess.partialUpdateProduct(id,param,name);
+							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
 					}
 					else if(description!=null){
-						param = "description";
+							param = "description";
+							String description_utf8 = new String(description.getBytes("ISO-8859-1"), "UTF-8");
+							description = description_utf8;
 							optional = dataAccess.partialUpdateProduct(id,param,description);
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
 					}
@@ -227,7 +254,8 @@ public class ProductResource extends ServerResource {
 								for(int j=0; j<str.length; j++){
 									if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
 										if(!(i==0 && j==0))tags = tags + ",";
-										tags = tags + str[j];
+										String tag_utf8 = new String(str[j].getBytes("ISO-8859-1"), "UTF-8");
+										tags = tags + tag_utf8;
 									}
 								}
 								
@@ -241,7 +269,12 @@ public class ProductResource extends ServerResource {
 							product = optional.orElseThrow(() -> new ResourceException(Status.CLIENT_ERROR_NOT_FOUND, "Product not found - id: " + idAttr));
 					}
 					return new JsonProductRepresentation(product);
+				} catch (Exception E) {
+					throw new AssertionError("UTF-8 is unknown");
+					// or 'throw new AssertionError("Impossible things are happening today. " +
+					//                              "Consider buying a lottery ticket!!");'
+				} 
 
-				}
+			}
 		}
 
