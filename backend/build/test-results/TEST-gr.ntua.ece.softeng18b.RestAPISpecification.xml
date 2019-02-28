@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="gr.ntua.ece.softeng18b.RestAPISpecification" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-02-27T13:21:39" hostname="DESKTOP-3A5GUF9" time="1.357">
+<testsuite name="gr.ntua.ece.softeng18b.RestAPISpecification" tests="2" skipped="0" failures="1" errors="0" timestamp="2019-02-27T23:33:36" hostname="DESKTOP-3A5GUF9" time="1.479">
   <properties/>
-  <testcase name="User logins" classname="gr.ntua.ece.softeng18b.RestAPISpecification" time="1.108"/>
-  <testcase name="User adds product" classname="gr.ntua.ece.softeng18b.RestAPISpecification" time="0.248"/>
+  <testcase name="User logins" classname="gr.ntua.ece.softeng18b.RestAPISpecification" time="1.163"/>
+  <testcase name="User adds product" classname="gr.ntua.ece.softeng18b.RestAPISpecification" time="0.316">
+    <failure message="Condition not satisfied:&#10;&#10;returned.name == sent.name &amp;&amp; returned.description == sent.description &amp;&amp; returned.category == sent.category &amp;&amp; returned.tags == sent.tags &amp;&amp; returned.withdrawn == sent.withdrawn&#10;|        |    |  |    |    |                                           |                                     |                             |&#10;|        ?????|  |    |    false                                       false                                 false                         false&#10;|             |  |    Αγαπη&#10;|             |  gr.ntua.ece.softeng18b.client.model.Product(null, Αγαπη, Description, Category, [x, y, z], false)&#10;|             false&#10;|             5 differences (0% similarity)&#10;|             (?????)&#10;|             (Αγαπη)&#10;gr.ntua.ece.softeng18b.client.model.Product(81, ?????, Description, Category, [x, y, z], false)&#10;" type="org.spockframework.runtime.ConditionNotSatisfiedError">Condition not satisfied:
+
+returned.name == sent.name &amp;&amp; returned.description == sent.description &amp;&amp; returned.category == sent.category &amp;&amp; returned.tags == sent.tags &amp;&amp; returned.withdrawn == sent.withdrawn
+|        |    |  |    |    |                                           |                                     |                             |
+|        ?????|  |    |    false                                       false                                 false                         false
+|             |  |    Αγαπη
+|             |  gr.ntua.ece.softeng18b.client.model.Product(null, Αγαπη, Description, Category, [x, y, z], false)
+|             false
+|             5 differences (0% similarity)
+|             (?????)
+|             (Αγαπη)
+gr.ntua.ece.softeng18b.client.model.Product(81, ?????, Description, Category, [x, y, z], false)
+
+	at gr.ntua.ece.softeng18b.RestAPISpecification.User adds product(RestAPISpecification.groovy:44)
+</failure>
+  </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

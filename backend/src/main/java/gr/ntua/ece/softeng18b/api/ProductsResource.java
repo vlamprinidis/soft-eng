@@ -91,7 +91,6 @@ public class ProductsResource extends ServerResource {
     @Override
     protected Representation post(Representation entity) throws ResourceException {
 	
-	  try {
 		Series headers = (Series) getRequestAttributes().get("org.restlet.http.headers");
 		String auth = headers.getFirstValue("X-OBSERVATORY-AUTH");
 		if(auth==null)
@@ -125,19 +124,34 @@ public class ProductsResource extends ServerResource {
 		
 		if(name==null||category==null||mytags.length == 0)
 			throw new ResourceException(Status.CLIENT_ERROR_BAD_REQUEST, "Name,category and tags are compulsory fields");
-		
+	  try{
 		String name_utf8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
 		name = name_utf8;
-		String description_utf8 = new String(description.getBytes("ISO-8859-1"), "UTF-8");
-		description = description_utf8;
-		
+		if(description!=null){
+			String description_utf8 = new String(description.getBytes("ISO-8859-1"), "UTF-8");
+			description = description_utf8;
+		}
+	  } catch (Exception E) {
+			throw new AssertionError("UTF-8 is unknown");
+			// or 'throw new AssertionError("Impossible things are happening today. " +
+			//                              "Consider buying a lottery ticket!!");'
+		} 
+
 		for(int i=0; i<mytags.length; i++){
 			String[] str = mytags[i].split(",");
 			for(int j=0; j<str.length; j++){
+				try{
+				String tag_utf8 = new String(str[j].getBytes("ISO-8859-1"), "UTF-8");
+				str[j] = tag_utf8;
+				} catch (Exception E) {
+					throw new AssertionError("UTF-8 is unknown");
+					// or 'throw new AssertionError("Impossible things are happening today. " +
+					//                              "Consider buying a lottery ticket!!");'
+				} 
 				if(!tags.contains(","+str[j]+",") && !(tags.split(",")[0]).equals(str[j]) && !(tags.split(",")[tags.split(",").length-1]).equals(str[j])){
 					if(!(i==0 && j==0))tags = tags + ",";
-					String tag_utf8 = new String(str[j].getBytes("ISO-8859-1"), "UTF-8");
-					tags = tags + tag_utf8;
+					tags = tags + str[j];
+					
 				}
 			}
 			
@@ -153,10 +167,6 @@ public class ProductsResource extends ServerResource {
 
         return new JsonProductRepresentation(product);
 		
-		} catch (Exception E) {
-			throw new AssertionError("UTF-8 is unknown");
-			// or 'throw new AssertionError("Impossible things are happening today. " +
-			//                              "Consider buying a lottery ticket!!");'
-		} 
+		
     }
 }
