@@ -6,6 +6,33 @@
 
 .search-tab {
   padding: 1em;
+  height: 280px;
+}
+
+.mapper {
+  position:absolute;
+  float: right;
+  width: 430px;
+  height: 350px;
+}
+
+.map {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #ccc;
+}
+
+.pointer{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background: red;
 }
 
 ::ng-deep {

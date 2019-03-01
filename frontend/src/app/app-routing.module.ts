@@ -3,18 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 
-import {ProductsComponent} from './products/products.component';
+import { ProductsComponent } from './products/products.component';
 import { ProdNewComponent} from './prod-new/prod-new.component';
 import { ProdShowComponent} from './prod-show/prod-show.component';
 import { ProdUpdateComponent} from './prod-update/prod-update.component';
+
 import { ShopsComponent } from './shops/shops.component';
 import { ShopNewComponent } from './shop-new/shop-new.component';
 import { ShopShowComponent } from './shop-show/shop-show.component';
 import { ShopUpdateComponent } from './shop-update/shop-update.component';
 import {PricesComponent} from './prices/prices.component';
 import {PriceNewComponent} from './price-new/price-new.component';
-import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
+
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

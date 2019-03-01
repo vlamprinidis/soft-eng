@@ -2,251 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f97a99-b9fd-482b-b546-8486dc1b311d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/LoginResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/LoginResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/PricesResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/PricesResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/ProductResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/ProductResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/ProductsResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/ProductsResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/ShopResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/ShopResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/ShopsResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/api/ShopsResource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/DataAccess.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/DataAccess.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/PriceRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/PriceRowMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/model/Price.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/model/Price.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/model/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/model/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/classes/java/main/gr/ntua/ece/softeng18b/data/model/Shop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/build/gretty_ports.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build/gretty_ports.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/karma" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/karma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/array-slice/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/array-slice/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/array-slice/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/array-slice/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/circular-json/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/circular-json/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/circular-json/build/circular-json.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/circular-json/build/circular-json.max.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/circular-json/build/circular-json.node.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/circular-json/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/circular-json/template/license.after" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/circular-json/template/license.before" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/combine-lists/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/combine-lists/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/combine-lists/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/combine-lists/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/combine-lists/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/date-format/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/date-format/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/date-format/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/date-format/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/date-format/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/date-format/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/date-format/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/date-format/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/date-format/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/date-format/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/date-format/lib/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/date-format/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/date-format/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/date-format/test/date_format-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/date-format/test/date_format-test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/array-unique/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/array-unique/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/array-unique/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/array-unique/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/.jshintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/.verb.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/LICENSE-MIT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/benchmark/fixtures/expand-basic.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/benchmark/fixtures/expand-nested.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/benchmark/fixtures/expand-range.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/benchmark/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/benchmark/libs/brace-expansion.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/benchmark/libs/braces.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/benchmark/libs/minimatch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/benchmark/libs/pathname-expansion.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/examples.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/node_modules/braces/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-braces/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/.jshintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/.verbrc.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/LICENSE-MIT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/benchmark/check.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/benchmark/fixtures/alpha-lower.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/benchmark/fixtures/alpha-upper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/benchmark/fixtures/padded.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/benchmark/fixtures/range.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/benchmark/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/benchmark/libs/brace-expansion.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/benchmark/libs/expand.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/.jshintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/.verbrc.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/LICENSE-MIT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/is-number/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/.jshintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/.verbrc.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/LICENSE-MIT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/bower.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/node_modules/repeat-string/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/expand-range/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/CODE_OF_CONDUCT.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/CODE_OF_CONDUCT.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/ISSUE_TEMPLATE.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/ISSUE_TEMPLATE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/PULL_REQUEST_TEMPLATE.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/appveyor.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/appveyor.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/bin/karma" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/bin/karma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/common/stringify.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/common/stringify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/common/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/common/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/config.tpl.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/config.tpl.coffee" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/config.tpl.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/config.tpl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/config.tpl.ls" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/config.tpl.ls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/config.tpl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/config.tpl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/context/karma.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/context/karma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/context/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/context/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/gruntfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/gruntfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/browser_collection.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/browser_collection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/browser_result.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/browser_result.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/cli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/completion.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/completion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/detached.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/detached.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/emitter_wrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/emitter_wrapper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/executor.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/executor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/file-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/file-list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/file.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/file.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/init/color_schemes.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/init/color_schemes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/init/formatters.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/init/formatters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/init/log-queue.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/init/log-queue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/init/state_machine.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/init/state_machine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/launcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/launcher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/launchers/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/launchers/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/launchers/capture_timeout.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/launchers/capture_timeout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/launchers/process.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/launchers/process.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/launchers/retry.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/launchers/retry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/logger.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/logger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/middleware/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/middleware/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/middleware/karma.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/middleware/karma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/middleware/proxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/middleware/proxy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/middleware/runner.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/middleware/runner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/middleware/source_files.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/middleware/source_files.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/middleware/stopper.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/middleware/stopper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/middleware/strip_host.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/middleware/strip_host.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/preprocessor.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/preprocessor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/reporter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/reporter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/reporters/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/reporters/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/reporters/base_color.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/reporters/base_color.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/reporters/dots.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/reporters/dots.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/reporters/dots_color.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/reporters/dots_color.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/reporters/multi.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/reporters/multi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/reporters/progress.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/reporters/progress.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/reporters/progress_color.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/reporters/progress_color.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/runner.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/runner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/stopper.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/stopper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/temp_dir.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/temp_dir.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/utils/bundle-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/utils/bundle-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/utils/crypto-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/utils/crypto-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/utils/file-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/utils/file-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/utils/json-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/utils/json-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/utils/net-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/utils/net-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/utils/path-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/utils/path-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/utils/pattern-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/utils/pattern-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/watcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/watcher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/lib/web-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/lib/web-server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/requirejs.config.tpl.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/requirejs.config.tpl.coffee" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/requirejs.config.tpl.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/requirejs.config.tpl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/scripts/integration-tests.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/scripts/integration-tests.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/scripts/karma-completion.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/scripts/karma-completion.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/scripts/validate-commit-msg.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/scripts/validate-commit-msg.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/static/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/static/client.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/static/client_with_context.html" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/static/client_with_context.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/static/context.html" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/static/context.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/static/context.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/static/context.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/static/debug.html" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/static/debug.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/static/debug.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/static/debug.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/static/karma.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/static/karma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/wallaby.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/wallaby.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/karma/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/karma/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/LoggingEvent.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/LoggingEvent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/adapters.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/adapters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/categoryFilter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/categoryFilter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/console.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/console.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/dateFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/dateFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/file.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/file.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/fileSync.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/fileSync.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/logLevelFilter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/logLevelFilter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/multiFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/multiFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/multiprocess.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/multiprocess.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/recording.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/recording.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/stderr.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/stderr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/stdout.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/stdout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/tcp-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/tcp-server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/tcp.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/appenders/tcp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/categories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/clustering.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/clustering.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/configuration.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/configuration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/connect-logger.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/connect-logger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/layouts.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/layouts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/levels.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/levels.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/log4js.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/log4js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/lib/logger.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/lib/logger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/types/log4js.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/types/log4js.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/types/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/types/test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/log4js/types/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/log4js/types/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/.jshintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/lib/BaseRollingFileStream.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/lib/DateRollingFileStream.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/lib/DateRollingFileStream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/lib/RollingFileStream.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/lib/RollingFileStream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/lib/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/stream-test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/test/BaseRollingFileStream-test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/test/DateRollingFileStream-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/test/DateRollingFileStream-test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/test/RollingFileStream-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/streamroller/test/RollingFileStream-test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/streamroller/test/read-only-file-test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/gr/ntua/ece/softeng18b/api/ProductsResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/gr/ntua/ece/softeng18b/api/ProductsResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/gr/ntua/ece/softeng18b/api/SignupResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/gr/ntua/ece/softeng18b/api/SignupResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/gr/ntua/ece/softeng18b/data/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/gr/ntua/ece/softeng18b/data/DataAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nav/nav.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav/nav.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/price-new/price-new.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/price-new/price-new.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/price-new/price-new.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/price-new/price-new.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/prices/prices.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/prices/prices.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/prices/prices.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/prices/prices.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/prices/prices.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/prices/prices.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/prod-new/prod-new.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/prod-new/prod-new.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/register.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shop-new/shop-new.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -263,8 +37,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="221">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -273,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/data.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="190" column="59" lean-forward="true" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="59" />
+              <caret line="190" column="59" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="59" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -285,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/shop-show/shop-show.component.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="44">
-              <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+              <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
               </folding>
@@ -297,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/login/login.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="5" column="29" lean-forward="true" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -314,13 +91,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/jwt.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+            <state relative-caret-position="214">
+              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -380,13 +169,13 @@
         <option value="$PROJECT_DIR$/src/app/prices/prices.component.html" />
         <option value="$PROJECT_DIR$/src/app/loginhome/loginhome.component.ts" />
         <option value="$PROJECT_DIR$/src/app/login/login.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/src/app/login/login.component.html" />
         <option value="$PROJECT_DIR$/src/app/home/home.component.html" />
         <option value="$PROJECT_DIR$/src/app/data.service.ts" />
         <option value="$PROJECT_DIR$/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/src/app/login/login.component.ts" />
         <option value="$PROJECT_DIR$/src/app/jwt.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
       </list>
     </option>
   </component>
@@ -540,12 +329,12 @@
       <workItem from="1551222196799" duration="1846000" />
       <workItem from="1551259149040" duration="3247000" />
       <workItem from="1551388303204" duration="1365000" />
-      <workItem from="1551451069097" duration="18960000" />
+      <workItem from="1551451069097" duration="19444000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79086000" />
+    <option name="totallyTimeSpent" value="79570000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -606,7 +395,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/prices/prices.component.ts</url>
-          <line>186</line>
+          <line>148</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -826,16 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/register/register.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -858,8 +637,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="221">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -876,7 +658,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/shop-show/shop-show.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
-          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
           </folding>
@@ -886,7 +668,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/data.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="190" column="59" lean-forward="true" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="59" />
+          <caret line="190" column="59" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="59" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
@@ -896,7 +678,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/login/login.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="5" column="29" lean-forward="true" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -912,10 +694,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/jwt.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        <state relative-caret-position="214">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

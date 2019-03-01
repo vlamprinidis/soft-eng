@@ -6,7 +6,7 @@
     <div *ngIf="!success" >
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="input-container">
-          <input class="input-field" type="text" placeholder="Όνομα" formControlName="name">
+          <input type="text" placeholder="Όνομα" formControlName="name" class="input-field">
         </div>
 
         <label class="input-container">
@@ -17,14 +17,15 @@
         </label>
 
         <label class="input-container">
-          <input class="input-field" type="text" placeholder="Email" formControlName="email">
+          <input type="email" placeholder="Email" formControlName="email" class="input-field">
           <div *ngIf="submitted && registerForm.controls.email.errors" class="error">
             <div *ngIf="registerForm.controls.email.errors.required">Το email είναι απαραίτητο</div>
+            <div *ngIf="registerForm.controls.email.errors.email">Το email δεν είναι έγκυρο</div>
           </div>
         </label>
 
         <label class="input-container">
-          <input class="input-field" type="password" placeholder="Κωδικός" formControlName="password">
+          <input type="password" placeholder="Κωδικός" formControlName="password" class="input-field">
           <div *ngIf="submitted && registerForm.controls.password.errors" class="error">
             <div *ngIf="registerForm.controls.password.errors.required">Ο κωδικός είναι απαραίτητος</div>
           </div>

@@ -8,8 +8,16 @@
 
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <div style="height:430px;">
-          <div style="float:left; height: 420px; width: 38%; background-color: black;">
-            <div id="map" class="map" style="width:100%; height:100%"></div>
+            <div class="mapper">
+              <div id="map" class="map"></div>
+              <div class="pointer"></div>
+            </div>
+
+          <div style="float: left; padding-top: 360px; width: 430px;">
+            <label>
+              Μέγιστη ακτίνα απόστασης (km):
+              <input type="text" name="geoDist" formControlName="geoDist" class="my-input">
+            </label>
           </div>
 
           <div style="float:right; margin-right: 30px; height: 350px;">
@@ -22,9 +30,6 @@
                     <label>
                       Ημερομηνία εκκίνησης:
                       <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input" style="width: 80%">
-                      <div *ngIf="submitted && messageForm.controls.dateFrom.errors" class="error">
-                        <div *ngIf="messageForm.controls.dateFrom.errors.required">Τα tags είναι απαραίτητα</div>
-                      </div>
                     </label>
                   </div>
 
@@ -32,9 +37,6 @@
                     <label>
                       Ημερομηνία λήξης:
                       <input type="date" name="dateTo" formControlName="dateTo" class="my-input" style="width: 80%">
-                      <div *ngIf="submitted && messageForm.controls.dateTo.errors" class="error">
-                        <div *ngIf="messageForm.controls.dateTo.errors.required">Τα tags είναι απαραίτητα</div>
-                      </div>
                     </label>
                   </div>
                   <p>Προσοχή! Συμπλήρωσε τα και τα 2 ή κανενα!</p>
@@ -44,18 +46,15 @@
               <mat-tab label="Πόσο">
                 <div class="search-tab">
                   <p>Διάλεξε για πόσο χρόνο θέλεις να παρκάρεις:</p>
-                  <div class="custom-slider" style="width:90%">
-                    <ng5-slider [(value)]="slidervalue" [options]="options"></ng5-slider>
-                  </div>
-                  <br><br><br><br>
-                  value {{slidervalue}}
-
-                  <!--<div style="height:200px; overflow: auto;">
+                  <div style="height:200px; overflow: auto;">
                     <label *ngIf="myprods">
                       <label *ngFor="let prod of myprods.products" style="padding: 0.3em;">
                         <input type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)"> &nbsp; {{ prod.name }}
                       </label>
                     </label>
+                  </div>
+                  <!--<div class="custom-slider" style="width:90%;">
+                    <ng5-slider [(value)]="slidervalue" [options]="options" ></ng5-slider>
                   </div>-->
                 </div>
               </mat-tab>
@@ -65,10 +64,10 @@
                   <p>Διάλεξε χώρους στάθμευσης αν ξέρεις τι ψάχνεις! ;)</p>
                   <div style="height:200px; overflow: auto;">
                     <label *ngIf="myshops">
-                    <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
-                      <input type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)"> &nbsp; {{ shop.name }} - {{shop.address}}
+                      <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
+                        <input type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)"> &nbsp; {{ shop.name }} - {{shop.address}}
+                      </label>
                     </label>
-                  </label>
                   </div>
                 </div>
               </mat-tab>
@@ -78,9 +77,6 @@
                   <label>
                     <p>Ψάξε με keywords (tags). Παράθεσέ τα στη μορφή α,β,γ):</p>
                     <input type="text" name="tags" formControlName="tags" class="my-input" style="width:80%;">
-                    <div *ngIf="submitted && messageForm.controls.tags.errors" class="error">
-                      <div *ngIf="messageForm.controls.tags.errors.required">Τα tags είναι απαραίτητα</div>
-                    </div>
                   </label>
                 </div>
               </mat-tab>
@@ -88,35 +84,16 @@
               <!--<mat-tab label="Απόσταση">
                 <div class="search-tab">
                   <p>Ούτε σε εμας αρέσει το περπάτημα! Πες μας πόση απόσταση θέλεις να περπατήσεις:</p>
-                  <p>Τα 3 παρακάτω πεδία πρέπει να συμπληρωθούν είτε όλα είτε κανένα:</p>
+                  <p>Βρες το κατάστημα που θέλεις να προσθέσεις στο χάρτη και μετακίνησε τον ώστε η κόκκινη τελίτσα να δείχνει εκεί που θες! <br>
 
                   <label>
-                    Μέγιστη ακτίνα απόστασης(km):
+                    Μέγιστη ακτίνα απόστασης (km):
                     <input type="text" name="geoDist" formControlName="geoDist" class="my-input">
-                    <div *ngIf="submitted && messageForm.controls.geoDist.errors" class="error">
-                      <div *ngIf="messageForm.controls.geoDist.errors.required">Τα tags είναι απαραίτητα</div>
-                    </div>
                   </label>
-
-                  <label>
-                    Γεωγραφικό μήκος:
-                    <input type="text" name="geoLng" formControlName="geoLng" class="my-input">
-                    <div *ngIf="submitted && messageForm.controls.geoLng.errors" class="error">
-                      <div *ngIf="messageForm.controls.geoLng.errors.required">Τα tags είναι απαραίτητα</div>
-                    </div>
-                  </label>
-
-                  <label>
-                    Γεωγραφικό πλάτος:
-                    <input type="text" name="geoLat" formControlName="geoLat" class="my-input">
-                    <div *ngIf="submitted && messageForm.controls.geoLat.errors" class="error">
-                      <div *ngIf="messageForm.controls.geoLat.errors.required">Τα tags είναι απαραίτητα</div>
-                    </div>
                   </label>
                 </div>
               </mat-tab>
               -->
-
 
             </mat-tab-group>
           </div>
@@ -188,6 +165,3 @@
 
     <a routerLink="/price-new"><button class="btn btn-success pull-right" class="cta" style="margin: 20px;">Πρόσθεσε Τιμή</button></a>
 </div>
-
-<!--<div class="display-form"  [ngStyle]="{left:form_left + 'px',top:form_top+'px'}" ></div>-->
-

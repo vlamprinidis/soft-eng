@@ -63,30 +63,16 @@ export class ShopNewComponent implements OnInit {
       layers: [this.layer],
       view: this.view
     });
-
-    this.map.on('click', function (args) {
-      console.log(args.coordinate);
-      const lonlat = proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
-      console.log(lonlat);
-
-      this.lng = lonlat[0];
-      this.lat = lonlat[1];
-      alert(`lat: ${this.lat} long: ${this.lng}`);
-      console.log(this.lng);
-      console.log(this.lat);
-    });
-  }
-
-  ShowClick(id) {
-    console.log('clicked');
-    this.data.getShop(id).subscribe(data => {
-        this.shop = data;
-        console.log(this.shop);
-      }
-    );
   }
 
   onSubmit() {
+    const coordinates = this.map.getView().getCenter();
+    const lonlat = proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326');
+    console.log(lonlat);
+
+    this.lng = lonlat[0];
+    this.lat = lonlat[1];
+
     this.submitted = true;
 
     if (this.messageForm.invalid) {

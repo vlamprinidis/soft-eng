@@ -481,14 +481,14 @@ public class DataAccess {
 	}
 
 	
-	public List<ShowPrice> getPrices(Limits limits,String sort,String shops,String products, String tgs, String geoDist, String geoLng, String geoLat) {
+public List<ShowPrice> getPrices(Limits limits,String sort,String shops,String products, String tgs, String geoDist, String geoLng, String geoLat) {
 		double maxdist = Double.valueOf(geoDist);
 		double lng = Double.valueOf(geoLng);
 		double lat = Double.valueOf(geoLat);
 		int count;
-		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + "", Integer.class);
+		count = jdbcTemplate.queryForObject("SELECT count(*) from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist,shop.id as tempId from shop)foo where productId = product.id and shopId = shop.id and tempId=shopId and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + "", Integer.class);
 		limits.setTotal(count);
-		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address, dist from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist from shop)foo where product.withdrawn = 0 and shop.withdrawn = 0 and productId = product.id and shopId = shop.id and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new ShowPriceRowMapper());
+		return jdbcTemplate.query("select value, tdate.tempdate, product.name, product.id, shop.id, shop.name, shop.address, dist from price,product,shop,tdate,(SELECT distanceOf(shop.lng,shop.lat," + lng + ", " + lat+ ") as dist,shop.id as tempId from shop)foo where product.withdrawn = 0 and shop.withdrawn = 0 and productId = product.id and shopId = shop.id and tempId=shopId and tempdate>=dateFrom and tempdate<=dateTo " + shops + products + tgs + " and dist < " + maxdist + " ORDER BY " + sort + " LIMIT " + limits.getStart() + "," + limits.getCount() + "", new ShowPriceRowMapper());
 	}
 	
 public List<NoDistShowPrice> getPrices2(Limits limits,String sort,String shops,String products, String tgs) {
