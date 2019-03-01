@@ -38,6 +38,13 @@ public class SignupResource extends ServerResource {
         //validate the values (in the general case)
         //...
 	try {
+        String username_utf8 = new String(username.getBytes("ISO-8859-1"), "UTF-8");
+		username = username_utf8;
+        String password_utf8 = new String(password.getBytes("ISO-8859-1"), "UTF-8");
+		password = password_utf8;
+        String name_utf8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+		name = name_utf8;
+        
 		MessageDigest digest = MessageDigest.getInstance("SHA-256");
 		byte[] encodedhash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
 		StringBuffer hexString = new StringBuffer();
@@ -50,7 +57,9 @@ public class SignupResource extends ServerResource {
 	} catch (NoSuchAlgorithmException exception) {
             // TODO Auto-generated catch block
             exception.printStackTrace();
-        }
+    } catch (Exception E) {
+        throw new AssertionError("UTF-8 is unknown");
+    }
 
 	
 		//String sha256hex = //org.apache.commons.codec.digest.DigestUtils.sha256Hex(stringText); 

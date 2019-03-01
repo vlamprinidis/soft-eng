@@ -131,6 +131,8 @@ public class ProductsResource extends ServerResource {
 			String description_utf8 = new String(description.getBytes("ISO-8859-1"), "UTF-8");
 			description = description_utf8;
 		}
+        String category_utf8 = new String(category.getBytes("ISO-8859-1"), "UTF-8");
+        category = category_utf8;
 	  } catch (Exception E) {
 			throw new AssertionError("UTF-8 is unknown");
 			// or 'throw new AssertionError("Impossible things are happening today. " +

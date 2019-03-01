@@ -9,7 +9,7 @@ import OlView from 'ol/View';
 import { fromLonLat } from 'ol/proj';
 import * as proj from 'ol/proj';
 
-import { Options } from 'ng5-slider';
+// import { Options } from 'ng5-slider';
 
 
 @Component({
@@ -28,12 +28,13 @@ export class PricesComponent  implements OnInit {
   cntprod = 0;
   cntshop = 0;
 
-  slidervalue = 1;
+  /*slidervalue = 0;
   options: Options = {
-    floor: 1,
+    floor: 0,
     ceil: 12,
     showTicks: true,
     stepsArray: [
+      {value: 0, legend: 'όλα'},
       {value: 1, legend: '1 ώρα'},
       {value: 2, legend: '2 ώρες'},
       {value: 3, legend: '3 ώρες'},
@@ -47,7 +48,7 @@ export class PricesComponent  implements OnInit {
       {value: 11, legend: '1 ημέρα'},
       {value: 12, legend: '1 μήνα'},
     ]
-  };
+  };*/
 
   constructor(private formBuilder: FormBuilder, private data: DataService) {}
 
@@ -68,20 +69,15 @@ export class PricesComponent  implements OnInit {
   source: OlXYZ;
   layer: OlTileLayer;
   view: OlView;
-  long = '';
+  lng = '';
   lat = '';
-  form_left:number;
-  form_top:number;
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
       tags: [''],
       geoDist: [''],
-      geoLng: [''],
-      geoLat: [''],
       dateFrom: [''],
-      dateTo: ['']
-      /*}, { validator: DistanceRequired })*/
+      dateTo: [''],
     });
     this.data.getProducts('id|ASC', 'ACTIVE' ).subscribe(data => {
         this.myprods = data;
@@ -118,40 +114,6 @@ export class PricesComponent  implements OnInit {
       layers: [this.layer],
       view: this.view
     });
-
-    /*this.map.on('click', function (args) {
-      console.log(args.coordinate);
-      const lonlat = proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
-      console.log(lonlat);
-
-      this.long = lonlat[0];
-      this.lat = lonlat[1];
-      alert(`lat: ${this.lat} long: ${this.long}`);
-      console.log(this.lat);
-      console.log(this.long);
-      this.getMyPois(lonlat[0],lonlat[1]);
-    });*/
-
-  /*  this.map.on('click', (evt: any) => {
-      alert('coordinates good');
-      let found = false;
-      this.map.forEachFeatureAtPixel(evt.pixel,(feature=>{
-        //let p = feature.getProperties();
-        this.form_left = evt.pixel[0] +10;
-        this.form_top = evt.pixel[1]+10;
-        found = true;
-      }))
-      if(!found){
-        this.form_left = -9999;
-      }
-    })*/
-
-
-  }
-
-  getMyPois(lng,lat){
-    console.log('pleaaase'+lng);
-    console.log('pleaaase'+lat);
   }
 
   onProdSelect(id, event) {
@@ -186,7 +148,6 @@ export class PricesComponent  implements OnInit {
       }
     }
     console.log(this.products);
-
   }
 
   onShopSelect(id, event) {
@@ -247,26 +208,31 @@ export class PricesComponent  implements OnInit {
   }
 
   onSubmit() {
-    let coordinates = this.map.getView().getCenter();
+    if (this.messageForm.controls.geoDist.value.includes(',')) {
+      alert('Παρακαλώ χρησιμοποίησε "." (τελεία) για υποδιαστολή');
+      return;
+    }
+
+    const coordinates = this.map.getView().getCenter();
     const lonlat = proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326');
     console.log(lonlat);
 
-    this.long = lonlat[0];
+    this.lng = lonlat[0];
     this.lat = lonlat[1];
-    alert(`lat: ${this.lat} long: ${this.long}`);
+    // alert(`lat: ${this.lat} long: ${this.lng}`);
     this.submitted = true;
 
-    /*(((this.messageForm.controls.geoDist.value === '' && this.long === '' && this.lat === '')
-    || (this.messageForm.controls.geoDist.value !== '' && this.long !== '' && this.lat !== '')) &&*/
+    /*(((this.messageForm.controls.geoDist.value === '' && this.lng === '' && this.lat === '')
+    || (this.messageForm.controls.geoDist.value !== '' && this.lng !== '' && this.lat !== '')) &&*/
     if ((this.messageForm.controls.dateFrom.value === '' && this.messageForm.controls.dateTo.value === '' )
         || (this.messageForm.controls.dateFrom.value !== '' && this.messageForm.controls.dateTo.value !== '' )) {
-      if(this.messageForm.controls.geoDist.value === ''){
-        this.long = '';
+      if (this.messageForm.controls.geoDist.value === '') {
+        this.lng = '';
         this.lat = '';
       }
       this.success = true;
       console.log(this.messageForm.controls.tags.value);
-      this.data.getPrices(this.getsort, this.messageForm.controls.geoDist.value, this.long,
+      this.data.getPrices(this.getsort, this.messageForm.controls.geoDist.value, this.lng,
         this.lat, this.messageForm.controls.dateFrom.value, this.messageForm.controls.dateTo.value,
         this.products, this.shops, this.messageForm.controls.tags.value ).subscribe
       (data => {

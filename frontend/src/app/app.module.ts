@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +26,6 @@ import { PriceNewComponent } from './price-new/price-new.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
-import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
   declarations: [
@@ -53,7 +52,6 @@ import { Ng5SliderModule } from 'ng5-slider';
     NgxPaginationModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    Ng5SliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent, HomeComponent]

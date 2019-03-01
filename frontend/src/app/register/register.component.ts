@@ -20,19 +20,10 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       name: [''],
       username: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       agree: ['', Validators.required]
     });
-  }
-
-  ShowClick() {
-    console.log('clicked');
-    this.data.getUser().subscribe(data => {
-        this.user = data;
-        console.log(this.user);
-      }
-    );
   }
 
   onSubmit() {

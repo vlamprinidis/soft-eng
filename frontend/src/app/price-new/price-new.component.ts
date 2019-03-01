@@ -54,17 +54,17 @@ export class PriceNewComponent implements OnInit {
       return;
     }
     if (this.productId === -1 || this.shopId === -1) {
-      alert('Πρέπει να επιλέξετε προϊόν και κατάστημα υποχρεωτικά');
+      alert('Πρέπει να επιλέξεις προϊόν και κατάστημα υποχρεωτικά');
       return;
     }
 
-    if(isNaN(parseFloat(this.messageForm.controls.price.value))){
+    if (isNaN(parseFloat(this.messageForm.controls.price.value))) {
       alert('Η τιμή πρέπει να είναι αριθμός');
       return;
     }
 
-    if(this.messageForm.controls.price.value.includes(',')){
-      alert('Χρησιμοποιείστε "." για υποδιαστολή');
+    if (this.messageForm.controls.price.value.includes(',')) {
+      alert('Παρακαλώ χρησιμοποίησε "." (τελεία) για υποδιαστολή');
       return;
     }
 
