@@ -14,6 +14,7 @@ import { ShopUpdateComponent } from './shop-update/shop-update.component';
 import {PricesComponent} from './prices/prices.component';
 import {PriceNewComponent} from './price-new/price-new.component';
 import {RegisterComponent} from './register/register.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'prices', component: PricesComponent },
   { path: 'price-new', component: PriceNewComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'login', component: LoginComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
