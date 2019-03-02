@@ -15,9 +15,9 @@ export class NavComponent implements OnInit {
   constructor(private jwt: JwtService) { }
 
   ngOnInit() {
-    if (!this.jwt.LoggedIn()) { this.log = 'Σύνδεση'; return; }
-    this.log = 'Αποσύνδεση';
-    return;
+    setInterval(() => {
+    if (!this.jwt.LoggedIn()) { this.log = 'Σύνδεση'; } else { this.log = 'Αποσύνδεση'; }
+    }, 250 );
   }
 
 }
