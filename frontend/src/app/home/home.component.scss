@@ -1,0 +1,23 @@
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px 0;
+  color: #631940;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 30%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 1px solid #631940;
+}
+

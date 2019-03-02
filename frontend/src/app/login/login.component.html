@@ -2,29 +2,31 @@
     <div class="ibox-head">
       <h1 class="ibox-title">Σύνδεση</h1>
     </div>
-    <div class="ibox-body">
-      <div *ngIf="!success" >
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <label class="input-container">
-            <input type="text" placeholder="Όνομα χρήστη" formControlName="username" class="input-field">
-            <div *ngIf="submitted && loginForm.controls.username.errors" class="error">
-              <div *ngIf="loginForm.controls.username.errors.required">Το όνομα χρήστη είναι απαραίτητο</div>
-            </div>
-          </label>
+      <div class="ibox-body">
+        <div *ngIf="!success" >
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <label class="input-container">
+              <input type="text" placeholder="Όνομα χρήστη" formControlName="username" class="input-field">
+              <div *ngIf="submitted && loginForm.controls.username.errors" class="error">
+                <div *ngIf="loginForm.controls.username.errors.required">Το όνομα χρήστη είναι απαραίτητο</div>
+              </div>
+            </label>
 
-          <label class="input-container">
-            <input class="input-field" type="password" placeholder="Κωδικός" formControlName="password">
-            <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
-              <div *ngIf="loginForm.controls.password.errors.required">Ο κωδικός είναι απαραίτητος</div>
-            </div>
-          </label>
+            <label class="input-container">
+              <input class="input-field" type="password" placeholder="Κωδικός" formControlName="password">
+              <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+                <div *ngIf="loginForm.controls.password.errors.required">Ο κωδικός είναι απαραίτητος</div>
+              </div>
+            </label>
 
-          <input type="submit" value="Σύνσεση" class="cta" style="width: 30%;">
-        </form>
-
-      <div *ngIf="success" class="results" style="width: 30%;">
-        <h1 *ngIf="success"><strong>Καλώς όρισες, {{username}}!</strong></h1>
+            <input type="submit" value="Σύνσεση" class="cta" style="width: 30%;">
+          </form>
       </div>
-    </div>
+      <div *ngIf="success" class="results" style="width: 30%;">
+        <h1><strong>Καλώς όρισες, {{username}}!</strong></h1>
+      </div>
+  </div>
+  <div class="ibox-body" *ngIf="!success">
+    <a [routerLink]="['/register']" style="color:#4E022A;">Εγγραφή ως νέος χρήστης</a>
   </div>
 </div>

@@ -15,23 +15,27 @@ import { ShopUpdateComponent } from './shop-update/shop-update.component';
 import {PricesComponent} from './prices/prices.component';
 import {PriceNewComponent} from './price-new/price-new.component';
 import {LoginComponent} from './login/login.component';
+import {LogoutComponent} from './logout/logout.component';
 
 import { RegisterComponent } from './register/register.component';
 
+import { AuthGuardService as AuthGuard } from './auth-guard.service';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'prod-show', component: ProdShowComponent },
-  { path: 'prod-new', component: ProdNewComponent },
-  { path: 'prod-update', component: ProdUpdateComponent },
-  { path: 'shops', component: ShopsComponent },
-  { path: 'shop-new', component: ShopNewComponent },
-  { path: 'shop-show', component: ShopShowComponent },
-  { path: 'shop-update', component: ShopUpdateComponent },
-  { path: 'prices', component: PricesComponent },
-  { path: 'price-new', component: PriceNewComponent},
+  { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
+  { path: 'prod-show', component: ProdShowComponent, canActivate: [AuthGuard] },
+  { path: 'prod-new', component: ProdNewComponent, canActivate: [AuthGuard] },
+  { path: 'prod-update', component: ProdUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'shops', component: ShopsComponent, canActivate: [AuthGuard] },
+  { path: 'shop-new', component: ShopNewComponent, canActivate: [AuthGuard] },
+  { path: 'shop-show', component: ShopShowComponent, canActivate: [AuthGuard] },
+  { path: 'shop-update', component: ShopUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'prices', component: PricesComponent, canActivate: [AuthGuard] },
+  { path: 'price-new', component: PriceNewComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

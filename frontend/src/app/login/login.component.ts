@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log(this.loginForm.controls.username.value);
-    console.log(this.loginForm.controls.password.value);
+    // console.log(this.loginForm.controls.username.value);
+    // console.log(this.loginForm.controls.password.value);
     this.username = this.loginForm.controls.username.value;
     this.success = true;
     this.data.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value).subscribe(data => {
