@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {JwtService} from './jwt.service';
+import {FormBuilder} from '@angular/forms';
 
 
 @Injectable({
@@ -8,7 +10,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 export class DataService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private data: JwtService) {
   }
 
 
@@ -44,7 +46,7 @@ export class DataService {
     }*/
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
-      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
+      .set('X-OBSERVATORY-AUTH', this.data.giveToken());
     return this.http.post('https://localhost:8765/observatory/api/products',
      body, {headers: headers});
   }
@@ -57,7 +59,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
+      .set('X-OBSERVATORY-AUTH', this.data.giveToken());
     return this.http.put('https://localhost:8765/observatory/api/products/' + id,
       body, {headers: headers});
   }
@@ -65,7 +67,7 @@ export class DataService {
   deleteProduct(id) {
     console.log(id);
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', this.data.giveToken());
     return this.http.delete('https://localhost:8765/observatory/api/products/' + id, {headers: headers});
   }
 
@@ -89,7 +91,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
+      .set('X-OBSERVATORY-AUTH', this.data.giveToken());
     return this.http.post('https://localhost:8765/observatory/api/shops',
       body, {headers: headers});
   }
@@ -103,7 +105,7 @@ export class DataService {
     // token = blah blah;
     const body = `name=${name}&address=${address}&lng=${lng}&lat=${lat}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'kikikokotoula');
+      .set('X-OBSERVATORY-AUTH', this.data.giveToken());
     return this.http.put('https://localhost:8765/observatory/api/shops/' + id,
       body, {headers: headers});
   }
@@ -111,7 +113,7 @@ export class DataService {
   deleteShop(id) {
     console.log(id);
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', this.data.giveToken());
     return this.http.delete('https://localhost:8765/observatory/api/shops/' + id, {headers: headers});
   }
 
@@ -174,7 +176,7 @@ export class DataService {
     // token = blah blah;
     const body = `price=${price}&dateTo=${dateTo}&productId=${productId}&shopId=${shopId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-OBSERVATORY-AUTH', 'cm9vdGtva286cm9vdGtva28=');
+      .set('X-OBSERVATORY-AUTH', this.data.giveToken());
     return this.http.post('https://localhost:8765/observatory/api/prices',
       body, {headers: headers});
   }

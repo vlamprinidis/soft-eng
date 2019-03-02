@@ -23,11 +23,8 @@ export class JwtService {
   }
 
   logout(token: string) {
-    const httpHeaders = new HttpHeaders({
-      'Content-Type' : 'application/json',
-      'Cache-Control': 'no-cache',
-      'X-OBSERVATORY-AUTH': token
-    });
+    const httpHeaders = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
+      .set('X-OBSERVATORY-AUTH', token);
     const options = {
       headers: httpHeaders
     };
@@ -42,11 +39,6 @@ export class JwtService {
 
   public LoggedIn(): boolean {
     return localStorage.getItem('token') !==  null;
-  }
-
-  public IsAuth(): boolean {
-    return true;
-
   }
 
   public giveToken() {
