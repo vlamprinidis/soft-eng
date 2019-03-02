@@ -121,22 +121,29 @@ public class PricesResource extends ServerResource {
 		tgs = tgs + ") ";
 	}
 	
-	String sort = getQueryValue("sort");
+	String srt="";
+	String[] sort = queryParams.getValuesArray("sort"); 
 
-	if(sort == null)
-		sort = "value ASC";
-	else if(sort.equals("dist|DESC")&& dist)
-		sort = "dist DESC";
-	else if(sort.equals("dist|ASC")&& dist)
-		sort = "dist ASC"; 
-	else if( sort.equals("date|ASC"))	
-		sort = "tempdate ASC";
-	else if(sort.equals("date|DESC"))
-		sort = "tempdate DESC";
-	else if(sort.equals("price|DESC"))
-		sort = "value DESC";
-	else 
-		sort = "value ASC";
+	if(sort.length!=0){
+		for(int i=0; i<sort.length; i++){
+			if (i!=0) srt = srt + ", ";
+			if(sort[i].equals("dist|DESC")&& dist)
+				srt += "dist DESC";
+			else if(sort[i].equals("dist|ASC")&& dist)
+				srt += "dist ASC"; 
+			else if( sort[i].equals("date|ASC"))	
+				srt += "tempdate ASC";
+			else if(sort[i].equals("date|DESC"))
+				srt += "tempdate DESC";
+			else if(sort[i].equals("price|DESC"))
+				srt += "value DESC";
+			else if(sort[i].equals("price|ASC"))
+				srt += "value ASC";
+			else
+				srt = "value ASC";
+		}
+	}else 
+		srt = "value ASC";
 
 	List<ShowPrice> prices = new  ArrayList<ShowPrice>();
 	List<NoDistShowPrice> nodistprices = new ArrayList<NoDistShowPrice>();
@@ -147,24 +154,24 @@ public class PricesResource extends ServerResource {
 
 	if(start == null && count == null){
 		limits = new Limits(0);
-	 	if(dist)prices = dataAccess.getPrices(limits, sort, sh, pr, tgs, geoDist, geoLng, geoLat);
-		else nodistprices = dataAccess.getPrices2(limits, sort, sh, pr, tgs);}
+	 	if(dist)prices = dataAccess.getPrices(limits, srt, sh, pr, tgs, geoDist, geoLng, geoLat);
+		else nodistprices = dataAccess.getPrices2(limits, srt, sh, pr, tgs);}
 	else if(start == null){
 		cnt = Integer.valueOf(count);
 		limits = new Limits(0,cnt);
-		if(dist)prices = dataAccess.getPrices(limits, sort, sh, pr, tgs, geoDist, geoLng, geoLat);
-		else nodistprices = dataAccess.getPrices2(limits, sort, sh, pr, tgs);}
+		if(dist)prices = dataAccess.getPrices(limits, srt, sh, pr, tgs, geoDist, geoLng, geoLat);
+		else nodistprices = dataAccess.getPrices2(limits, srt, sh, pr, tgs);}
 	else if(getQueryValue("count") == null){
 		st = Integer.valueOf(start);
 		limits = new Limits(st);
-		if(dist)prices = dataAccess.getPrices(limits, sort, sh, pr, tgs, geoDist, geoLng, geoLat);
-		else nodistprices = dataAccess.getPrices2(limits, sort, sh, pr, tgs);}
+		if(dist)prices = dataAccess.getPrices(limits, srt, sh, pr, tgs, geoDist, geoLng, geoLat);
+		else nodistprices = dataAccess.getPrices2(limits, srt, sh, pr, tgs);}
 	else{
 		cnt = Integer.valueOf(count);
 		st = Integer.valueOf(start);
 		limits = new Limits(st, cnt);
-		if(dist)prices = dataAccess.getPrices(limits, sort, sh, pr, tgs, geoDist, geoLng, geoLat);
-		else nodistprices = dataAccess.getPrices2(limits, sort, sh, pr, tgs);}
+		if(dist)prices = dataAccess.getPrices(limits, srt, sh, pr, tgs, geoDist, geoLng, geoLat);
+		else nodistprices = dataAccess.getPrices2(limits, srt, sh, pr, tgs);}
 
         Map<String, Object> map = new LinkedHashMap<>();
         map.put("start", limits.getStart());
