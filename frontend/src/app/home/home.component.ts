@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtService} from '../jwt.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  logged = false;
+  username: string;
 
-  constructor() { }
+  constructor(private data: JwtService) { }
 
   ngOnInit() {
+    if ( this.data.LoggedIn() ) {
+      this.logged = true;
+      this.username = this.data.giveName();
+    }
   }
 
 }

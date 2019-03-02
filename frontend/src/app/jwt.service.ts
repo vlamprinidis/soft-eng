@@ -17,20 +17,22 @@ export class JwtService {
       });
     return this.httpClient.post<{token: string}>('https://localhost:8765/observatory/api/login',
       body, {headers: headers}).pipe(
-        tap(result => { localStorage.setItem('token', result.token); } )
+        tap(result => { localStorage.setItem('token', result.token);
+        localStorage.setItem('username', username); } )
     );
   }
 
-  logout(token: string){
-    let httpHeaders = new HttpHeaders({
+  logout(token: string) {
+    const httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',
       'Cache-Control': 'no-cache',
       'X-OBSERVATORY-AUTH': token
     });
-    let options = {
+    const options = {
       headers: httpHeaders
     };
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     return this.httpClient.post<{message: string}>('https://localhost:8765/observatory/api/logout', token, options).subscribe(
       data => console.log('success', data.message),
       error => console.log('oops', error)
@@ -42,7 +44,16 @@ export class JwtService {
     return localStorage.getItem('token') !==  null;
   }
 
+  public IsAuth(): boolean {
+    return true;
+
+  }
+
   public giveToken() {
     return localStorage.getItem('token');
+  }
+
+  public giveName() {
+    return localStorage.getItem('username');
   }
 }
