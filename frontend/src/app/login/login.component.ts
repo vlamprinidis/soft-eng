@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   success = false;
   logged = false;
 
-  constructor(private formBuilder: FormBuilder, private data: JwtService) { }
+  constructor(private formBuilder: FormBuilder, private jwt: JwtService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     // console.log(this.loginForm.controls.password.value);
     this.username = this.loginForm.controls.username.value;
     this.success = true;
-    this.data.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value).subscribe(data => {
+    this.jwt.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value).subscribe(data => {
       console.log(data['token']);
       this.logged = true;
     });

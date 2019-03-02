@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 export class LogoutComponent implements OnInit {
   token: string;
 
-  constructor(private data: JwtService,  public router: Router) { }
+  constructor(private jwt: JwtService,  public router: Router) { }
 
   ngOnInit() {
   }
 
   onClickMe() {
-    if (!this.data.LoggedIn()) { this.router.navigate(['/login']); return; }
-    this.token = this.data.giveToken();
-    this.data.logout(this.token);
+    if (!this.jwt.LoggedIn()) { this.router.navigate(['/login']); return; }
+    this.token = this.jwt.giveToken();
+    this.jwt.logout(this.token);
     this.router.navigate(['/login']);
     return;
   }

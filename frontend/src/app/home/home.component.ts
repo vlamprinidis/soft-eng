@@ -10,12 +10,12 @@ export class HomeComponent implements OnInit {
   logged = false;
   username: string;
 
-  constructor(private data: JwtService) { }
+  constructor(private jwt: JwtService) { }
 
   ngOnInit() {
-    if ( this.data.LoggedIn() ) {
+    if ( this.jwt.LoggedIn() ) {
       this.logged = true;
-      this.username = this.data.giveName();
+      this.username = this.jwt.giveName();
     }
   }
 

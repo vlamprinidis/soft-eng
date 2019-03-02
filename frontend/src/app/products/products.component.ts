@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import {Observable} from 'rxjs';
+import { JwtService} from '../jwt.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +18,7 @@ export class ProductsComponent implements OnInit {
   submitted = false;
   delmes: Object;
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private jwt: JwtService, public router: Router) { }
 
   status = [ 'Ενεργά', 'Όλα', 'Ανενεργά' ];
   sort = ['id φθίνον', 'id αύξον', 'όνομα αύξον', 'όνομα φθίνον'];
@@ -81,6 +83,11 @@ export class ProductsComponent implements OnInit {
 
   DeleteClick(id) {
     console.log('clicked');
+    if( !this.jwt.LoggedIn() ) { // if not logged in, throw away
+      alert('Πρέπει να συνδεθείς πρώτα');
+      this.router.navigate(['/login']);
+      return;
+    }
     if(confirm("Είσαι σίγουρος ότι θέλεις να διαγράψεις αυτό το προϊόν;")) {
     this.data.deleteProduct(id).subscribe(data => {
         this.delmes = data;
