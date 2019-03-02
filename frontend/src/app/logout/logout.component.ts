@@ -19,7 +19,7 @@ export class LogoutComponent implements OnInit {
     if (!this.jwt.LoggedIn()) { this.router.navigate(['/login']); return; }
     this.token = this.jwt.giveToken();
     this.jwt.logout(this.token);
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
     return;
   }
 
