@@ -214,9 +214,9 @@ export class PricesComponent  implements OnInit {
     // console.log(event.target.value);
     let temp = event.target.value;
     if (temp === 'Απόσταση αύξουσα') {
-      temp = 'geoDist|ASC';
+      temp = 'dist|ASC';
     } else if (temp === 'Απόσταση φθίνουσα') {
-      temp = 'geoDist|DESC';
+      temp = 'dist|DESC';
     } else if (temp === 'Τιμή αύξουσα') {
       temp = 'price|ASC';
     } else if (temp === 'Τιμή φθίνουσα') {
