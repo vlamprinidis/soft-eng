@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   success = false;
+  logged = false;
 
   constructor(private formBuilder: FormBuilder, private data: JwtService) { }
 
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
     this.success = true;
     this.data.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value).subscribe(data => {
       console.log(data['token']);
+      this.logged = true;
     });
   }
 
