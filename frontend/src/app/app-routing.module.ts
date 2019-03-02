@@ -12,11 +12,11 @@ import { ShopsComponent } from './shops/shops.component';
 import { ShopNewComponent } from './shop-new/shop-new.component';
 import { ShopShowComponent } from './shop-show/shop-show.component';
 import { ShopUpdateComponent } from './shop-update/shop-update.component';
-import {PricesComponent} from './prices/prices.component';
-import {PriceNewComponent} from './price-new/price-new.component';
-import {LoginComponent} from './login/login.component';
-import {LogoutComponent} from './logout/logout.component';
 
+import { PriceNewComponent } from './price-new/price-new.component';
+
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
@@ -31,7 +31,6 @@ const routes: Routes = [
   { path: 'shop-new', component: ShopNewComponent, canActivate: [AuthGuard] },
   { path: 'shop-show', component: ShopShowComponent},
   { path: 'shop-update', component: ShopUpdateComponent, canActivate: [AuthGuard] },
-  { path: 'prices', component: PricesComponent},
   { path: 'price-new', component: PriceNewComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},

@@ -1,12 +1,174 @@
-<div *ngIf="logged" class="results" style="width: 30%;">
-  <h1><strong>Συνδέθηκες ως: <br><br>{{username}} </strong></h1>
-</div>
+<div class="ibox" style="width: 100%">
+  <div class="ibox-head">
+    <h1 class="ibox-title">Τιμές</h1>
+  </div>
+  <div class="ibox-body">
+    <div class="search-area">
+      <h4 style="text-decoration: underline; margin-top:0;">Φίλτρα αναζήτησης:</h4>
 
-<div *ngIf="!logged" class="results" >
-  <div style="text-align: center; margin-top:20px; width: 30%;">
-    <a [routerLink]="['/login']" style="color:#4E022A;">Είσοδος</a>
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <div style="height:430px;">
+          <div class="mapper">
+            <div id="map" class="map"></div>
+            <div class="pointer"></div>
+          </div>
+
+          <div style="float: left; padding-top: 360px; width: 430px;">
+            <label>
+              <div class="tooltip">Μέγιστη ακτίνα απόστασης (km):
+                <span class="tooltiptext">Βρες στο χάρτη πού θέλεις να πας και μετακίνησε τον ώστε η κόκκινη τελίτσα να δείχνει εκεί που θες! <br> Μετά συμπλήρωσε τη μέγιστη απόσταση που θέλεις να περπατήσεις.</span>
+              </div>
+              <input type="text" name="geoDist" formControlName="geoDist" class="my-input">
+            </label>
+          </div>
+
+          <div style="float:right; margin-right: 30px; height: 350px;">
+            <mat-tab-group animationDuration="0ms">
+              <mat-tab label="Πότε">
+                <div class="search-tab" style="width:600px; word-wrap: break-word;">
+                  <p>Συπλήρωσε ποιες ημερομηνίες σε ενδιαφέρουν (αν δεν συμπληρώσεις θα δοθεί αυτόματα η σημερινή):</p>
+
+                  <div style="float:left; width: 50%">
+                    <label>
+                      Ημερομηνία εκκίνησης:
+                      <input type="date" name="dateFrom" formControlName="dateFrom" class="my-input" style="width: 80%">
+                    </label>
+                  </div>
+
+                  <div style="float:left; width: 50%">
+                    <label>
+                      Ημερομηνία λήξης:
+                      <input type="date" name="dateTo" formControlName="dateTo" class="my-input" style="width: 80%">
+                    </label>
+                  </div>
+                  <p>Προσοχή! Συμπλήρωσε τα και τα 2 ή κανενα!</p>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="Πόσο">
+                <div class="search-tab">
+                  <p>Διάλεξε για πόσο χρόνο θέλεις να παρκάρεις:</p>
+                  <div style="height:200px; overflow: auto;">
+                    <label *ngIf="myprods">
+                      <label *ngFor="let prod of myprods.products" style="padding: 0.3em;">
+                        <input type="checkbox" [value]="prod.id" (change)="onProdSelect(prod.id,$event)"> &nbsp; {{ prod.name }}
+                      </label>
+                    </label>
+                  </div>
+                  <!--<div class="custom-slider" style="width:90%;">
+                    <ng5-slider [(value)]="slidervalue" [options]="options" ></ng5-slider>
+                  </div>-->
+                </div>
+              </mat-tab>
+
+              <mat-tab label="Πού">
+                <div class="search-tab">
+                  <p>Διάλεξε χώρους στάθμευσης αν ξέρεις τι ψάχνεις! ;)</p>
+                  <div style="height:200px; overflow: auto;">
+                    <label *ngIf="myshops">
+                      <label *ngFor="let shop of myshops.shops" style="padding: 0.3em;">
+                        <input type="checkbox" [value]="shop.id" (change)="onShopSelect(shop.id,$event)"> &nbsp; {{ shop.name }} - {{shop.address}}
+                      </label>
+                    </label>
+                  </div>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="Tags">
+                <div class="search-tab">
+                  <label>
+                    <p>Ψάξε με keywords (tags). Παράθεσέ τα στη μορφή α,β,γ):</p>
+                    <input type="text" name="tags" formControlName="tags" class="my-input" style="width:80%;">
+                  </label>
+                </div>
+              </mat-tab>
+
+              <!--<mat-tab label="Απόσταση">
+                <div class="search-tab">
+                  <p>Ούτε σε εμας αρέσει το περπάτημα! Πες μας πόση απόσταση θέλεις να περπατήσεις:</p>
+                  <p>Βρες το κατάστημα που θέλεις να προσθέσεις στο χάρτη και μετακίνησε τον ώστε η κόκκινη τελίτσα να δείχνει εκεί που θες! <br>
+
+                  <label>
+                    Μέγιστη ακτίνα απόστασης (km):
+                    <input type="text" name="geoDist" formControlName="geoDist" class="my-input">
+                  </label>
+                  </label>
+                </div>
+              </mat-tab>
+              -->
+
+            </mat-tab-group>
+          </div>
+
+          <div style="height:80px">
+            <div style="float: left; padding-left: 20px;">
+              <input type="submit" value="Εφαρμογή Φίλτρων" class="cta" style="margin: 20px;">
+            </div>
+            <div style="float: right; padding-right: 20px;">
+              <button (click)="refresh()" class="cta" style="margin: 20px; background: #960516;">Εκκαθάριση φίλτρων</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br> <br> <br>
+
+    <div style="float:left; width: 600px; height: 90px;">
+      <label>
+        Ταξινόμησε:
+        <div style="height: 60px; column-count:3;">
+          <label *ngFor="let so of sort" style="padding: 0.3em;">
+            <input type="checkbox" [value]="so" (change)="onSortSelect(so,$event)"> {{so}}
+          </label>
+        </div>
+        <!--<select id="so" (change)="onSortSelect($event)" >
+          <option *ngFor="let so of sort" [value]="so">
+            {{ so }}
+          </option>
+        </select>-->
+      </label>
+    </div>
+
+    <div style="float: right; height: 50px; margin-right: 20px;">
+      <br><br> Τιμές ανά σελίδα:
+      <input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value">
+    </div>
+
+    <table *ngIf="pric" class="table table-striped table-bordered center" id="price-table" cellspacing="0" width="100%">
+      <thead>
+      <tr>
+        <th style="width:60px;">Αξία</th>
+        <th>Ημερομηνία</th>
+        <th>Όνομα προϊόντος</th>
+        <th>Tags προϊόντος</th>
+        <th>Όνομα καταστήματος</th>
+        <th>Tags καταστήματος</th>
+        <th>Διεύθυνση καταστήματος</th>
+        <th>Απόσταση από προορισμό (km)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor ="let price of pric.prices | paginate: { itemsPerPage: numItems, currentPage: p, totalItems: total } ">
+        <td style="text-align: center; width:60px;">{{ price.price }} €</td>
+        <td>{{ price.date }}</td>
+        <td>{{ price.productName }}</td>
+        <td>{{ price.productTags }}</td>
+        <td>{{ price.shopName }}</td>
+        <td>{{ price.shopTags }}</td>
+        <td>{{ price.shopAddress }}</td>
+        <td>{{ price.shopDist || 'Δεν υπολογίζεται' }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-left: auto; margin-right: auto; width: 500px;">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
   </div>
-  <div style="text-align: center; margin-top:20px; width: 30%;">
-    <a [routerLink]="['/register']" style="color:#4E022A;">Εγγραφή ως νέος χρήστης</a>
-  </div>
+
+  <br>
+  <br>
+
+  <a routerLink="/price-new"><button class="btn btn-success pull-right" class="cta" style="margin: 20px;">Πρόσθεσε Τιμή</button></a>
 </div>

@@ -112,24 +112,24 @@
 
     <br> <br> <br>
 
-    <div style="float:left; width: 250px; height: 50px;">
+    <div style="float:left; width: 600px; height: 90px;">
       <label>
         Ταξινόμησε:
+        <div style="height: 60px; column-count:3;">
+          <label *ngFor="let so of sort" style="padding: 0.3em;">
+            <input type="checkbox" [value]="so" (change)="onSortSelect(so,$event)"> {{so}}
+          </label>
+        </div>
         <!--<select id="so" (change)="onSortSelect($event)" >
           <option *ngFor="let so of sort" [value]="so">
             {{ so }}
           </option>
         </select>-->
-        <label *ngFor="let so of sort" style="padding: 0.3em;">
-          <input type="checkbox" [value]="so" (change)="onSortSelect(so,$event)"> {{so}}
-        </label>
       </label>
     </div>
 
-    <br><br><br><br><br><br><br>
-
     <div style="float: right; height: 50px; margin-right: 20px;">
-      Τιμές ανά σελίδα:
+      <br><br> Τιμές ανά σελίδα:
       <input #box type="number" name="quantity" value ="10" min="1" max="20" (change)= "numItems = box.value">
     </div>
 
