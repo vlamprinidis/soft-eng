@@ -27,6 +27,7 @@ export class PricesComponent  implements OnInit {
   myshops: Object;
   cntprod = 0;
   cntshop = 0;
+  cntsort = 0;
 
   /*slidervalue = 0;
   options: Options = {
@@ -56,11 +57,17 @@ export class PricesComponent  implements OnInit {
   getsort = 'price|ASC';
   products = '';
   shops = '';
+  dist = '';
+  tags = '';
+  datefrom = '';
+  dateto = '';
   pric: Object;
   prodfirst = '';
   prodlast = '';
   shopfirst = '';
   shoplast = '';
+  sortfirst = '';
+  sortlast = '';
 
   // MAP STUFF
   latitude = 37.9758788;
@@ -185,7 +192,7 @@ export class PricesComponent  implements OnInit {
 
   }
 
-  onSortSelect(event) {
+  /*onSortSelect(event) {
     console.log(event.target.value);
     const temp = event.target.value;
     if (temp === 'Απόσταση αύξουσα') {
@@ -201,6 +208,60 @@ export class PricesComponent  implements OnInit {
     } else {
       this.getsort = 'date|DESC';
     }
+  }*/
+
+  onSortSelect(id,event) {
+    // console.log(event.target.value);
+    let temp = event.target.value;
+    if (temp === 'Απόσταση αύξουσα') {
+      temp = 'geoDist|ASC';
+    } else if (temp === 'Απόσταση φθίνουσα') {
+      temp = 'geoDist|DESC';
+    } else if (temp === 'Τιμή αύξουσα') {
+      temp = 'price|ASC';
+    } else if (temp === 'Τιμή φθίνουσα') {
+      temp = 'price|DESC';
+    } else if (temp === 'Ημερομηνία αύξουσα') {
+      temp = 'date|ASC';
+    } else {
+      temp = 'date|DESC';
+    }
+
+    if (this.cntsort === 0) {
+      this.getsort = temp;
+      this.sortfirst = temp;
+      this.cntsort ++;
+    } else {
+      if (!this.getsort.includes(',' + temp + ',') && temp !== this.sortfirst && temp !== this.sortlast) {
+        this.getsort = this.getsort + ',' + temp;
+        this.sortlast = temp;
+        this.cntsort ++;
+      } else if (this.getsort.includes(',' + temp + ',')) {
+        this.getsort = this.getsort.replace(',' + temp + ',', ',');
+        this.cntsort --;
+      } else if (temp === this.sortfirst) {
+        if (this.cntsort === 1) {
+          this.getsort = this.getsort.replace(temp, '');
+        } else {
+          this.getsort = this.getsort.replace(temp + ',', '');
+        }
+        // console.log('begin ' + this.shops);
+        const str_array = this.getsort.split(',');
+        this.sortfirst = str_array[0];
+        this.cntsort --;
+      } else {
+        this.getsort = this.getsort.replace(',' + temp, '');
+        const str_array = this.getsort.split(',');
+        this.sortlast = str_array[str_array.length - 1];
+        this.cntsort --;
+      }
+    }
+    console.log(this.getsort);
+    this.data.getPrices(this.getsort, this.dist, this.lng, this.lat, this.datefrom, this.dateto, this.products, this.shops, this.tags ).subscribe(data => {
+        this.pric = data;
+        console.log(this.pric);
+      }
+    );
   }
 
   refresh() {
@@ -230,6 +291,12 @@ export class PricesComponent  implements OnInit {
         this.lng = '';
         this.lat = '';
       }
+
+      this.dist = this.messageForm.controls.geoDist.value;
+      this.datefrom = this.messageForm.controls.dateFrom.value;
+      this.dateto = this.messageForm.controls.dateTo.value;
+      this.tags = this.messageForm.controls.tags.value;
+
       this.success = true;
       console.log(this.messageForm.controls.tags.value);
       this.data.getPrices(this.getsort, this.messageForm.controls.geoDist.value, this.lng,

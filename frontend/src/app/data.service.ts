@@ -121,7 +121,17 @@ export class DataService {
   getPrices(sort, geoDist, geoLng, geoLat, dateFrom, dateTo, products, shops, tags) {
     console.log('coords are' + geoLng + geoLat);
     let params = new HttpParams();
-    params = params.set('sort', sort);
+    //params = params.set('sort', sort);
+    if (sort !== '') {
+      const str_array = sort.split(',');
+      for (let i = 0; i < str_array.length; i++) {
+        if ( i === 0) {
+          params = params.set('sort', str_array[i]);
+        } else {
+          params = params.append('sort', str_array[i]);
+        }
+      }
+    }
     if (geoDist !== '' && geoLng !== '' && geoLat !== '') {
       params = params.set('geoDist', geoDist);
       params = params.set('geoLng', geoLng);
