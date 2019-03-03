@@ -25,6 +25,7 @@
         <label>
           Κατηγορία:
           <select name="cat" formControlName="category" class="new-sel">
+            <option selected="selected" disabled="disabled">Επίλεξε κατηγορία</option>
             <option *ngFor="let cat of category" [value]="cat">
               {{ cat }}
             </option>

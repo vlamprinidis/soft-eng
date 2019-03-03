@@ -12,7 +12,9 @@ export class DataService {
   }
 
   getProducts(sort, status) {
-    const params = new HttpParams().set('sort', sort).set('status', status);
+    let params = new HttpParams();
+    params = params.set('sort', sort).set('status', status);
+    params = params.set('count', '100');
     return this.http.get('https://localhost:8765/observatory/api/products', {params: params});
   }
 
@@ -55,7 +57,9 @@ export class DataService {
 // SHOP TIME
 
   getShops(sort, status) {
-    const params = new HttpParams().set('sort', sort).set('status', status);
+    let params = new HttpParams();
+    params = params.set('sort', sort).set('status', status);
+    params = params.set('count', '100');
     return this.http.get('https://localhost:8765/observatory/api/shops', {params: params});
   }
 
@@ -102,6 +106,7 @@ export class DataService {
   getPrices(sort, geoDist, geoLng, geoLat, dateFrom, dateTo, products, shops, tags) {
     console.log('coords are' + geoLng + geoLat);
     let params = new HttpParams();
+    params = params.set('count', '500');
     // params = params.set('sort', sort);
     if (sort !== '') {
       const str_array = sort.split(',');
