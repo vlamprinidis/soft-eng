@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { JwtService} from '../jwt.service';
 import { Router } from '@angular/router';
 
@@ -70,18 +70,14 @@ export class ShopsComponent implements OnInit {
     );
   }
 
-  ShowClick(id) {
-    console.log('clicked');
-  }
-
   DeleteClick(id) {
     console.log('clicked');
-    if( !this.jwt.LoggedIn() ) { // if not logged in, throw away
+    if ( !this.jwt.LoggedIn() ) { // if not logged in, throw away
       alert('Πρέπει να συνδεθείς πρώτα');
       this.router.navigate(['/login']);
       return;
     }
-    if(confirm("Είσαι σίγουρος ότι θέλεις να διαγράψεις αυτό το κατάστημα;")) {
+    if (confirm('Είσαι σίγουρος ότι θέλεις να διαγράψεις αυτό το κατάστημα;')) {
       this.data.deleteShop(id).subscribe(data => {
           this.delmes = data;
           console.log(this.delmes);

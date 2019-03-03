@@ -31,6 +31,10 @@
   opacity: 0.95;
 }
 
+.my-pagi /deep/ .ngx-pagination .current {
+  background: #6E043C;
+}
+
 section {
   width: 80%;
   margin: 0 auto;

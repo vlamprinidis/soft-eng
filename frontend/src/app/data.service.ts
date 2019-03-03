@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {JwtService} from './jwt.service';
-import {FormBuilder} from '@angular/forms';
-
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +9,6 @@ import {FormBuilder} from '@angular/forms';
 export class DataService {
 
   constructor(private http: HttpClient, private jwt: JwtService) {
-  }
-
-
-  firstClick() {
-    // this.router.navigateByUrl('/about');
-    return console.log('clicked');
   }
 
   getProducts(sort, status) {
@@ -33,17 +25,6 @@ export class DataService {
     console.log(description);
     console.log(category);
     console.log(tags);
-    // token = blah blah;
-    /*try{
-      // If the string is UTF-8, this will work and not throw an error.
-      console.log('orig ', name)
-      name=unescape(encodeURIComponent(name));;
-      console.log('decoded ' + name);
-    }catch(e){
-      // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
-      name=name;
-      console.log(name);
-    }*/
     const body = `name=${name}&description=${description}&category=${category}&tags=${tags}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
       .set('X-OBSERVATORY-AUTH', this.jwt.giveToken());
@@ -121,7 +102,7 @@ export class DataService {
   getPrices(sort, geoDist, geoLng, geoLat, dateFrom, dateTo, products, shops, tags) {
     console.log('coords are' + geoLng + geoLat);
     let params = new HttpParams();
-    //params = params.set('sort', sort);
+    // params = params.set('sort', sort);
     if (sort !== '') {
       const str_array = sort.split(',');
       for (let i = 0; i < str_array.length; i++) {
