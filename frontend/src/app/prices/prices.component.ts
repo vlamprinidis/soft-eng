@@ -28,6 +28,7 @@ export class PricesComponent  implements OnInit {
   cntprod = 0;
   cntshop = 0;
   cntsort = 0;
+  numItems = 10;
 
   /*slidervalue = 0;
   options: Options = {

@@ -16,6 +16,7 @@ export class ShopsComponent implements OnInit {
   shop: Object;
   submitted = false;
   delmes: Object;
+  numItems = 10;
 
   constructor(private data: DataService, private jwt: JwtService, public router: Router) { }
 
