@@ -46,9 +46,16 @@
         <a [routerLink]="['/login']" style="color:#4E022A;">Συνδέσου!</a>
       </div>
     </div>
-
-    <div *ngIf="success" class="results" style="width: 30%;">
-      <h1 *ngIf="success"><strong>Καλώς όρισες, {{user.username}}!</strong></h1>
-    </div>
   </div>
+
+  <div *ngIf="success&&logged" class="results" style="width: 30%;">
+    <h1 *ngIf="success"><strong>Καλώς όρισες, {{user.username}}!</strong></h1>
+  </div>
+
+  <div *ngIf="!logged&&success">
+    <h1><strong>Κάτι πήγε στραβά...</strong></h1>
+    <a (click)="retry()" style="color:#4E022A;">Προσπάθησε ξανά με άλλο username</a>
+  </div>
+
+
 </div>
