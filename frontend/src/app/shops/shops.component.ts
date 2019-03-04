@@ -95,6 +95,7 @@ export class ShopsComponent implements OnInit {
           console.log(this.shops);
         }
       );
+      window.location.reload();
     }
   }
 

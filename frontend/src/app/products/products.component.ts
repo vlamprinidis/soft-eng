@@ -89,7 +89,7 @@ export class ProductsComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    if(confirm("Είσαι σίγουρος ότι θέλεις να διαγράψεις αυτό το προϊόν;")) {
+    if (confirm("Είσαι σίγουρος ότι θέλεις να διαγράψεις αυτό το προϊόν;")) {
     this.data.deleteProduct(id).subscribe(data => {
         this.delmes = data;
         console.log(this.delmes);
@@ -103,7 +103,7 @@ export class ProductsComponent implements OnInit {
         this.prods = data;
         console.log(this.prods);
       }
-    );}
+    ); window.location.reload(); }
   }
 
 
