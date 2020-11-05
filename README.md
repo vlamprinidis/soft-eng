@@ -1,7 +1,5 @@
-Όνομα ομάδα : Javaτζήδες
-Μέλη:
-Ιωακειμίδη Αθηνά              3114758
-Λαμπρινίδης Λέντελ Βλαντισλάβ 3114054
-Μαυρομμάτης Ιάσων             3114771
-Νικητοπούλου Δήμητρα          3114954
-Παπαγεωργίου Ιάσων            3114034
+Price-observatory for parking spots based on crowdsourcing, as part of a Software Engineering Course
+
+A web-based app with RESTful API
+
+Site functionalities: Add, update and delete new parking sites and prices, user login and register
