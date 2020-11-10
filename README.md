@@ -1,4 +1,4 @@
-Price-observatory for parking spots based on crowdsourcing, as part of a Software Engineering Course.
+Price observatory for parking spots based on crowdsourcing, as part of a Software Engineering Course.
 
 A web-based app with a RESTful API.
 
