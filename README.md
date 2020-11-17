@@ -3,3 +3,5 @@ Price observatory for parking spots based on crowdsourcing, as part of a Softwar
 A web-based app with a RESTful API.
 
 Site functionalities: Add, update and delete new parking sites and prices, user login and register.
+
+Group project: Athena Ioakeimidi, Dimitra Nikitopoulou, Vlantislav Lamprinidis-Lentel
